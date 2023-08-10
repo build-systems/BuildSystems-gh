@@ -1,0 +1,11 @@
+C:\Users\danie\source\repos\build-systems-gh\BuildSystemsGH\bin\Debug\net48\BuildSystemsGH.gha
+C:\Users\danie\source\repos\build-systems-gh\BuildSystemsGH\bin\Debug\net48\BuildSystemsGH.pdb
+C:\Users\danie\source\repos\build-systems-gh\BuildSystemsGH\obj\Debug\net48\BuildSystemsGH.csproj.AssemblyReference.cache
+C:\Users\danie\source\repos\build-systems-gh\BuildSystemsGH\obj\Debug\net48\BuildSystemsGH.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\danie\source\repos\build-systems-gh\BuildSystemsGH\obj\Debug\net48\BuildSystemsGH.AssemblyInfoInputs.cache
+C:\Users\danie\source\repos\build-systems-gh\BuildSystemsGH\obj\Debug\net48\BuildSystemsGH.AssemblyInfo.cs
+C:\Users\danie\source\repos\build-systems-gh\BuildSystemsGH\obj\Debug\net48\BuildSystemsGH.csproj.CoreCompileInputs.cache
+C:\Users\danie\source\repos\build-systems-gh\BuildSystemsGH\obj\Debug\net48\BuildSystemsGH.gha
+C:\Users\danie\source\repos\build-systems-gh\BuildSystemsGH\obj\Debug\net48\BuildSystemsGH.pdb
+C:\Users\danie\source\repos\build-systems-gh\BuildSystemsGH\bin\Debug\net48\Newtonsoft.Json.dll
+C:\Users\danie\source\repos\build-systems-gh\BuildSystemsGH\obj\Debug\net48\BuildSystemsGH.csproj.CopyComplete

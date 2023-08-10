@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "oHZxhYTpYy0FaHZDA4bEaJv8zDrcRyjhOA3U8Z5FFwL3VolLkifRgfYCyNtEEchnOePRwBdP/LW8TTWqERm1iw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\danie\\source\\repos\\build-systems-gh\\BuildSystemsGH\\BuildSystemsGH.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\danie\\.nuget\\packages\\grasshopper\\7.13.21348.13001\\grasshopper.7.13.21348.13001.nupkg.sha512",
+    "C:\\Users\\danie\\.nuget\\packages\\rhinocommon\\7.13.21348.13001\\rhinocommon.7.13.21348.13001.nupkg.sha512"
+  ],
+  "logs": []
+}
