@@ -1,22 +1,15 @@
-﻿using Rhino;
-using Rhino.Collections;
-using Rhino.DocObjects;
-using Rhino.Geometry;
-using Rhino.Runtime;
-using Grasshopper;
-using Grasshopper.Kernel;
+﻿using Grasshopper.Kernel;
 using Grasshopper.Kernel.Data;
 using Grasshopper.Kernel.Types;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Collections;
-using System.ComponentModel;
-using System.Data;
+
+using BSoM;
 
 namespace BuildSystemsGH.Components
 {
@@ -26,7 +19,7 @@ namespace BuildSystemsGH.Components
         /// Initializes a new instance of the MyComponent1 class.
         /// </summary>
 
-        public GH_Structure<GH_String> mapToAlpha1(GH_Structure<GH_String> datatree, JToken children, int newIndex, int index)
+        public GH_Structure<GH_String> MapChildrenToAlpha1(GH_Structure<GH_String> datatree, JToken children, int newIndex, int index)
         {
             // Function to map data to surface tool alpha 1
             string childLOD = (string)children[newIndex]["Properties"]["LOD"];
@@ -66,7 +59,7 @@ namespace BuildSystemsGH.Components
             return datatree;
         }
 
-        public GH_Structure<GH_String> deserializeJSONToDataTree(GH_Structure<GH_String> datatree, JToken children, ref int index)
+        public GH_Structure<GH_String> DeserializeJSONToDataTree(GH_Structure<GH_String> datatree, JToken children, ref int index)
         {
             int newIndex = 0;
             int sizeChildren = children.Count();
@@ -75,18 +68,40 @@ namespace BuildSystemsGH.Components
             {
                 while (children[newIndex]["Children"] == null)
                 {
-                    mapToAlpha1(datatree, children, newIndex, index);
+                    MapChildrenToAlpha1(datatree, children, newIndex, index);
                     index++;
                     newIndex++;
                     if (newIndex == sizeChildren || children[newIndex]["Children"] != null) break;
                 }
                 if (newIndex == sizeChildren) break;
                 JToken childrenOfChildren = children[newIndex]["Children"];
-                deserializeJSONToDataTree(datatree, childrenOfChildren, ref index);
+                DeserializeJSONToDataTree(datatree, childrenOfChildren, ref index);
                 newIndex++;
-                //return datatree;
             }
             return datatree;
+        }
+
+        public void AppendAssemblyToTree(GH_Structure<GH_String> componentDataTree, string assembly, string[] jsonAssemblyPathArray, string header, ref int index)
+        {
+            if (assembly != string.Empty)
+            {
+                // Filter the json Assembly paths list to find the selected Aufbau
+                List<string> assemblyPath = jsonAssemblyPathArray.Where(s => s.Contains(assembly)).ToList();
+
+                // Open the json file with path superAufbauPath[0]
+                string jsonAssembly = File.ReadAllText(assemblyPath[0]);
+
+                // Convert json string to a json object
+                JObject jObjectAssembly = JObject.Parse(jsonAssembly);
+
+                JObject jObjectAssembled = new JObject();
+                jObjectAssembled[header] = jObjectAssembly;
+
+                JToken children = jObjectAssembly["Children"];
+
+                // Add the children of the super Aufbau to the bauteilDataTree
+                componentDataTree = DeserializeJSONToDataTree(componentDataTree, children, ref index);
+            }
         }
 
         public ComponentsLibrary()
@@ -100,9 +115,14 @@ namespace BuildSystemsGH.Components
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            // Could have an automatic way to find the necessry folder
-            pManager.AddTextParameter("Folder Path", "Path", "Root folder containing the three other folders with the JSON libraries.", GH_ParamAccess.item);
-            pManager.AddTextParameter("Building Component", "Component", "ID of the building component (Bauteil)", GH_ParamAccess.item);
+            GH_AssemblyInfo info = Grasshopper.Instances.ComponentServer.FindAssembly(new Guid("36538369-6017-4b4c-9973-aee8f072399a"));
+            string filePath = info.Location;
+            // Get the directory name from the original path.
+            string directoryPath = Path.GetDirectoryName(filePath);
+            // Combine with the new directory.
+            string libPath = Path.Combine(directoryPath, "Build Systems");
+            pManager.AddTextParameter("Folder Path", "Path", "Root folder containing the three other folders with the JSON libraries.", GH_ParamAccess.item, libPath);
+            pManager.AddTextParameter("Building Component ID", "ID", "ID of the building component (Bauteil)", GH_ParamAccess.item);
         }
 
         /// <summary>
@@ -119,123 +139,190 @@ namespace BuildSystemsGH.Components
         /// <param name="DA">The DA object is used to retrieve from inputs and store in outputs.</param>
         protected override void SolveInstance(IGH_DataAccess DA)
         {
-            string filePath = "";
+            string libPath = "";
             string componentName = "";
-            if (!DA.GetData(0, ref filePath)) return;
+            DA.GetData(0, ref libPath);
             if (!DA.GetData(1, ref componentName)) return;
 
-            //filePath = "C:\\Users\\danie\\AppData\\Roaming\\Grasshopper\\Libraries\\Build Systems\\";
-            //filePath = "C:\Users\danie\AppData\Roaming\Grasshopper\Libraries\Build Systems\" ;
-            //componentName = "DD-tr-HM-A";
+            // Initialize
 
             List<string> buildingComponets = new List<string>();
             GH_Structure<GH_String> MaterialList = new GH_Structure<GH_String>();
-
-            // Make a list of json files in the database directory
-            string databaseBauteil = filePath + "Bauteil";
-            string[] jsonBauteilPathArray = System.IO.Directory.GetFiles(databaseBauteil, "*.json");
-            string databaseAssembly = filePath + "Assembly";
-            string[] jsonAssemblyPathArray = System.IO.Directory.GetFiles(databaseAssembly, "*.json");
-            string databaseMaterial = filePath + "Material";
-            string[] jsonMaterialPathArray = System.IO.Directory.GetFiles(databaseMaterial, "*.json");
-
-            // Convert to list
-            buildingComponets = jsonBauteilPathArray.ToList();
-            // Get the name of file without the path
-            for (int i = 0; i < buildingComponets.Count; i++)
+            string[] jsonComponentPathArray;
+            string[] jsonAssemblyPathArray;
+            string[] jsonMaterialPathArray;
+            // Sanity check
+            // Check if the folder path is valid
+            string[] requiredFolders = { "Component", "Assembly", "Material" };
+            try
             {
-                buildingComponets[i] = buildingComponets[i].Substring(buildingComponets[i].LastIndexOf("\\") + 1);
-                buildingComponets[i] = buildingComponets[i].Substring(0, buildingComponets[i].LastIndexOf("."));
-            }
+                // Get all subdirectories
+                string[] subdirectories = Directory.GetDirectories(libPath);
 
-            // Filter the jsonBauteil list to find the selected component
-            List<string> selBauteilPath = jsonBauteilPathArray.Where(s => s.Contains(componentName)).ToList();
+                // Check if the required folders match the subdirectories
+                foreach (string requiredFolder in requiredFolders)
+                {
+                    // Check if the required folder is in the subdirectories
+                    if (!subdirectories.Contains(libPath + "\\" + requiredFolder))
+                    {
+                        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "The folder path is not valid. The sub-folder '" + requiredFolder + "' is missing.");
+                        return;
+                    }
+                }
 
-            // Open the json file with path selBauteilPath[0]
-            string jsonBauteil = File.ReadAllText(selBauteilPath[0]);
+                // Make a list of json files in the database directory
+                string databaseComponent = libPath + "\\" + "Component";
+                jsonComponentPathArray = System.IO.Directory.GetFiles(databaseComponent, "*.json");
+                string databaseAssembly = libPath + "\\" + "Assembly";
+                jsonAssemblyPathArray = System.IO.Directory.GetFiles(databaseAssembly, "*.json");
+                string databaseMaterial = libPath + "\\" + "Material";
+                jsonMaterialPathArray = System.IO.Directory.GetFiles(databaseMaterial, "*.json");
 
-            // Convert json string to a json object
-            JObject jObjectBauteil = JObject.Parse(jsonBauteil);
+                // Convert to list
+                buildingComponets = jsonComponentPathArray.ToList();
 
-            // Declare super, main and sub Aufbau
-            string superAufbau = "";
-            string mainAufbau = "";
-            string subAufbau = "";
+                // Filter the jsonBauteil list to find the selected component
+                List<string> selComponentPath = jsonComponentPathArray.Where(s => s.Contains(componentName)).ToList();
+                
+                // Get the name of file without the path
+                for (int i = 0; i < buildingComponets.Count; i++)
+                {
+                    buildingComponets[i] = buildingComponets[i].Substring(buildingComponets[i].LastIndexOf("\\") + 1);
+                    buildingComponets[i] = buildingComponets[i].Substring(0, buildingComponets[i].LastIndexOf("."));
+                }
 
-            // Get the super, main and sub Aufbau from the json object
-            superAufbau = (string)jObjectBauteil["Super-Aufbau"];
-            mainAufbau = (string)jObjectBauteil["Main-Aufbau"];
-            subAufbau = (string)jObjectBauteil["Sub-Aufbau"];
-
-            // Get the path of the json files for super, main and sub Aufbau
-            List<string> superAufbauPath = new List<string>();
-            List<string> mainAufbauPath = new List<string>();
-            List<string> subAufbauPath = new List<string>();
-
-            JObject jObjectSuperAufbau = new JObject();
-            JObject jObjectMainAufbau = new JObject();
-            JObject jObjectSubAufbau = new JObject();
-
-            JObject jObjectAssembled = new JObject();
-
-            // Create a new GH data tree for the bauteil data
-            GH_Structure<GH_String> bauteilDataTree = new GH_Structure<GH_String>();
-
-            int indexList = 0;
-            if (superAufbau != string.Empty)
-            {
-                // Filter the json Assembly paths list to find the selected Aufbau
-                superAufbauPath = jsonAssemblyPathArray.Where(s => s.Contains(superAufbau)).ToList();
-
-                // Open the json file with path superAufbauPath[0]
-                string jsonSuperAufbau = File.ReadAllText(superAufbauPath[0]);
+                // Open the json file with path selBauteilPath[0]
+                string jsonComponent = File.ReadAllText(selComponentPath[0]);
 
                 // Convert json string to a json object
-                jObjectSuperAufbau = JObject.Parse(jsonSuperAufbau);
-                jObjectAssembled["Super-Aufbau"] = jObjectSuperAufbau;
+                JObject jObjectComponent = JObject.Parse(jsonComponent);
 
-                JToken children = jObjectSuperAufbau["Children"];
+                // Keys on the JSON. They derive from the headers on the Excel database
+                string keySuper = "Super-Aufbau";
+                string keyMain = "Main-Aufbau";
+                string keySub = "Sub-Aufbau";
 
-                // Add the children of the super Aufbau to the bauteilDataTree
-                bauteilDataTree = deserializeJSONToDataTree(bauteilDataTree, children, ref indexList);
+                // Get the super, main and sub Aufbau from the json object
+                string superAssembly = (string)jObjectComponent[keySuper];
+                string mainAssembly = (string)jObjectComponent[keyMain];
+                string subAssembly = (string)jObjectComponent[keySub];
+
+                // Create a new GH data tree for the bauteil data
+                GH_Structure<GH_String> componentDataTree = new GH_Structure<GH_String>();
+
+                int indexDataTree = 0;
+                AppendAssemblyToTree(componentDataTree, superAssembly, jsonAssemblyPathArray, keySuper, ref indexDataTree);
+                AppendAssemblyToTree(componentDataTree, mainAssembly, jsonAssemblyPathArray, keyMain, ref indexDataTree);
+                AppendAssemblyToTree(componentDataTree, subAssembly, jsonAssemblyPathArray, keySub, ref indexDataTree);
+
+                DA.SetDataTree(0, componentDataTree);
             }
-
-            if (mainAufbau != string.Empty)
+            catch (Exception ex)
             {
-                // Filter the json Assembly paths list to find the selected Aufbau
-                mainAufbauPath = jsonAssemblyPathArray.Where(s => s.Contains(mainAufbau)).ToList();
-
-                // Open the json file with path mainAufbauPath[0]
-                string jsonMainAufbau = File.ReadAllText(mainAufbauPath[0]);
-
-                // Convert json string to a json object
-                jObjectMainAufbau = JObject.Parse(jsonMainAufbau);
-                jObjectAssembled["Main-Aufbau"] = jObjectMainAufbau;
-
-                JToken children = jObjectMainAufbau["Children"];
-
-                // Add the children of the super Aufbau to the bauteilDataTree
-                bauteilDataTree = deserializeJSONToDataTree(bauteilDataTree, children, ref indexList);
+                AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "An error occurred: " + ex.Message);
             }
+        }
 
-            if (subAufbau != string.Empty)
+        public override void AddedToDocument(GH_Document document)
+        {
+            // Find a way to add value list dynamically
+            //Add Value List
+            int[] stringID = new int[] { 1 };
+
+            for (int i = 0; i < stringID.Length; i++)
             {
-                subAufbauPath = jsonAssemblyPathArray.Where(s => s.Contains(subAufbau)).ToList();
+                Grasshopper.Kernel.Parameters.Param_String in0str = Params.Input[stringID[i]] as Grasshopper.Kernel.Parameters.Param_String;
+                if (in0str == null || in0str.SourceCount > 0 || in0str.PersistentDataCount > 0) return;
+                Attributes.PerformLayout();
+                int x = (int)in0str.Attributes.Pivot.X - 200;
+                int y = (int)in0str.Attributes.Pivot.Y - 11;
+                Grasshopper.Kernel.Special.GH_ValueList valList = new Grasshopper.Kernel.Special.GH_ValueList();
+                valList.CreateAttributes();
+                valList.Attributes.Pivot = new PointF(x, y);
+                valList.Attributes.ExpireLayout();
+                valList.ListItems.Clear();
 
-                // Open the json file with path subAufbauPath[0]
-                string jsonSubAufbau = File.ReadAllText(subAufbauPath[0]);
+                List<string> maualList = new List<string>
+                {
+                    "TD-tr-HM-A",
+                    "TD-tr-HM-B",
+                    "TD-tr-HM-C",
+                    "TD-tr-HT-A",
+                    "TD-tr-HT-B",
+                    "TD-tr-HBV-A",
+                    "TD-tr-HBV-B",
+                    "TD-tr-STB-A",
+                    "DD-tr-HM-A",
+                    "DD-tr-HM-B",
+                    "DD-tr-HM-C",
+                    "DD-tr-HT-A",
+                    "DD-tr-HT-B",
+                    "DD-tr-STB-A",
+                    "DD-tr-STB-B",
+                    "TW-tr-HM-A",
+                    "TW-tr-HM-B",
+                    "TW-tr-HM-C",
+                    "TW-tr-HM-D",
+                    "TW-tr-HAT-A",
+                    "TW-tr-HAT-B",
+                    "TW-tr-HAT-C",
+                    "TW-tr-STB",
+                    "TW-tr-MWZ-A",
+                    "TW-tr-MWZ-B",
+                    "TW-tr-MWKS-A",
+                    "TW-tr-MWKS-B",
+                    "TW-nt-LB-A",
+                    "TW-nt-LB-B",
+                    "IW-tr-HM-A",
+                    "IW-nt-HT-A",
+                    "IW-nt-HT-B",
+                    "IW-tr-STB",
+                    "IW-nt-MWZ-A",
+                    "IW-tr-MWKS-A",
+                    "IW-tr-MWKS-B",
+                    "IW-nt-MWKS-C",
+                    "IW-nt-LB-A",
+                    "IW-nt-LB-B",
+                    "AW-tr-HM-A",
+                    "AW-tr-HM-B",
+                    "AW-tr-HM-C",
+                    "AW-tr-HM-D",
+                    "AW-tr-HM-E",
+                    "AW-nt-TF-A",
+                    "AW-tr-TF-B",
+                    "AW-tr-TF-C",
+                    "AW-tr-TF-D",
+                    "AW-tr-TF-E",
+                    "AW-tr-STB-A",
+                    "AW-tr-STB-B",
+                    "AW-tr-STB-C",
+                    "AW-tr-STB-D",
+                    "AW-tr-STB-E",
+                    "AW-tr-MWZ-A",
+                    "AW-tr-MWZ-B",
+                    "AW-tr-MWZ-C",
+                    "AW-tr-MWKS-A",
+                    "AW-tr-MWKS-B",
+                    "AW-tr-MWKS-C",
+                    "AW-tr-MWKS-D",
+                    "KW-tr-STB-A",
+                    "KW-tr-MWZ-A",
+                    "KW-tr-MWKS-A",
+                    "BP-tr-STB-A"
+                };
 
-                // Convert json string to a json object
-                jObjectSubAufbau = JObject.Parse(jsonSubAufbau);
-                jObjectAssembled["Sub-Aufbau"] = jObjectSubAufbau;
+                List<Grasshopper.Kernel.Special.GH_ValueListItem> componentsAvailable = new List<Grasshopper.Kernel.Special.GH_ValueListItem>();
+                    foreach (string component in maualList)
+                    {
+                    Grasshopper.Kernel.Special.GH_ValueListItem valueItem = new Grasshopper.Kernel.Special.GH_ValueListItem(component, '"' + component + '"');
+                        componentsAvailable.Add(valueItem);
+                    }
 
-                JToken children = jObjectSubAufbau["Children"];
-
-                // Add the children of the super Aufbau to the bauteilDataTree
-                bauteilDataTree = deserializeJSONToDataTree(bauteilDataTree, children, ref indexList);
+                valList.ListItems.AddRange(componentsAvailable);
+                document.AddObject(valList, false);
+                in0str.AddSource(valList);
             }
-
-            DA.SetDataList(0, bauteilDataTree);
+            base.AddedToDocument(document);
         }
 
         /// <summary>

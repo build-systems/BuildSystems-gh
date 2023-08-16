@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
+using System.IO;
 using System.Linq;
-
 using Grasshopper.Kernel;
 using Grasshopper.Kernel.Data;
 using Grasshopper.Kernel.Types;
+using Newtonsoft.Json.Linq;
 using Rhino.Geometry;
+using System.Drawing;
 
 namespace BuildSystemsGH.Components
 {
@@ -23,7 +22,28 @@ namespace BuildSystemsGH.Components
             public List<string> ListPaths = new List<string>();
             public GH_Structure<GH_Box> ListBoxes = new GH_Structure<GH_Box>();
 
-            public BuildComponent(List<Surface> surfaces, GH_Structure<GH_String> component)
+            // Component indexes to map from the Components Library
+            public const int indexLod = 0;
+            public const int indexLevel = 1;
+            public const int indexBom = 2;
+            public const int indexMatId = 3;
+            public const int indexMatName = 4;
+            public const int indexMatCategory = 5;
+            public const int indexMatDescription = 6;
+            public const int indexMatThickness = 7;
+            public const int indexMatWidth = 8;
+            public const int indexMatSpread = 9;
+
+            // Composite materials - This is used because the composite data in the column width is actually used as percentage
+            // This whole AssembleComponent needs a rework after the BSoM is finished
+            public List<string> compositeMaterials = new List<string>
+            {
+                "Stahlbeton",
+                "Mauerwerk",
+                "Beton"
+            };
+
+            public BuildComponent(List<Surface> surfaces, GH_Structure<GH_String> component, int bomRoot)
             {
                 /////// Loop through each surfaces ///////
                 for (int i = 0; i < surfaces.Count; i++)
@@ -34,6 +54,8 @@ namespace BuildSystemsGH.Components
 
                     // Initialize current height
                     double currentHeight = 0;
+
+                    double prevThickness = 0;
 
                     // Create a brep from the surface
                     Brep baseBrep = Brep.CreateFromSurface(surface);
@@ -50,7 +72,7 @@ namespace BuildSystemsGH.Components
                     // Initialize the spread number
                     int spreadNumber = 0;
 
-                    // Initialize trimmed curves for insulation
+                    // Initialize trimmed curves for insulation (also for framing)
                     Curve mainTrimmedCurve = new LineCurve();
                     Curve parallelTrimmedCurve = new LineCurve();
 
@@ -150,35 +172,42 @@ namespace BuildSystemsGH.Components
                     /////// Loop through the component data tree ///////
                     for (int j = 0; j < iListPaths.Count; j++)
                     {
-                        // Get current path & current material level
+                        // Get current path
                         GH_Path path = iListPaths[j];
                         string layerLevel = "";
-                        GH_Convert.ToString(component.get_Branch(path)[1], out layerLevel, GH_Conversion.Primary);
+                        GH_Convert.ToString(component.get_Branch(path)[indexLevel], out layerLevel, GH_Conversion.Primary);
                         char lastlayerLevelChar = layerLevel[layerLevel.Length - 1];
                         int subLayerLevel = Convert.ToInt32(lastlayerLevelChar.ToString());
-                        string materialLevelString = "";
-                        GH_Convert.ToString(component.get_Branch(path)[2], out materialLevelString, GH_Conversion.Primary);
-                        int materialLevel = Convert.ToInt32(materialLevelString);
+                        
+                        // Get current BOM (legacy)
+                        string bomString = "";
+                        GH_Convert.ToString(component.get_Branch(path)[indexBom], out bomString, GH_Conversion.Primary);
+                        int bomCurrent = Convert.ToInt32(bomString);
 
-                        // Get next path & next material level
-                        int nextMaterialLevel = new int();
+                        // Get category
+                        string categoryCurrent = "";
+                        GH_Convert.ToString(component.get_Branch(path)[indexMatCategory], out categoryCurrent, GH_Conversion.Primary);
+
+                        // Get next path & next LOD
+                        int bomNext = new int();
                         if (j != iListPaths.Count - 1)
                         {
                             GH_Path nextPath = iListPaths[j + 1];
-                            string nextMaterialLevelString = "";
-                            GH_Convert.ToString(component.get_Branch(nextPath)[2], out nextMaterialLevelString, GH_Conversion.Primary);
-                            nextMaterialLevel = Convert.ToInt32(nextMaterialLevelString);
+                            string lodNextString = "";
+                            GH_Convert.ToString(component.get_Branch(nextPath)[indexBom], out lodNextString, GH_Conversion.Primary);
+                            bomNext = Convert.ToInt32(lodNextString);
                         }
 
                         // Get thickness from component data tree
                         string thicknessAsString = "";
-                        GH_Convert.ToString(component.get_Branch(path)[7], out thicknessAsString, GH_Conversion.Primary);
+                        GH_Convert.ToString(component.get_Branch(path)[indexMatThickness], out thicknessAsString, GH_Conversion.Primary);
                         // Convert string to double and fix any commas
                         thicknessAsString = thicknessAsString.Replace(",", ".");
                         double thickness = Convert.ToDouble(thicknessAsString);
 
                         // Add to the path list
                         ListPaths.Add(iListPaths[j].ToString());
+
 
                         /////// MaterialLevel 1 ///////
                         //Find moving direction
@@ -195,48 +224,78 @@ namespace BuildSystemsGH.Components
                         // Define plane
                         Plane brepPlane = new Plane(center, planeX, planeY);
 
-                        // change plane origin based on current height
+                        // Change plane origin based on current height
                         brepPlane.Origin = center + dir;
 
-                        if (materialLevel == 1)
+                        if (bomCurrent == bomRoot)
                         {
-                            if (nextMaterialLevel != 2) // Do not consider the sub-assembly item in the data tree
-                            {
 
-                                // Define intervals
-                                Interval intervalX = new Interval(-secondaryCurveLength / 2, secondaryCurveLength / 2);
-                                Interval intervalY = new Interval(-mainCurveLength / 2, mainCurveLength / 2);
-                                Interval intervalZ = new Interval(0, -thickness);
+                            // Define intervals
+                            Interval intervalX = new Interval(-secondaryCurveLength / 2, secondaryCurveLength / 2);
+                            Interval intervalY = new Interval(-mainCurveLength / 2, mainCurveLength / 2);
+                            Interval intervalZ = new Interval(0, -thickness);
 
-                                // 	Box(Plane, Interval, Interval, Interval)
-                                Box fullMatBox = new Box(brepPlane, intervalX, intervalY, intervalZ);
-                                GH_Box gH_fullMatBox = new GH_Box(fullMatBox);
+                            // 	Box(Plane, Interval, Interval, Interval)
+                            Box fullMatBox = new Box(brepPlane, intervalX, intervalY, intervalZ);
+                            GH_Box gH_fullMatBox = new GH_Box(fullMatBox);
 
-                                // Path
-                                GH_Path pathSurfMat = new GH_Path(i, j);
+                            // Path
+                            GH_Path pathSurfMat = new GH_Path(i, j);
 
-                                ListBoxes.Append(gH_fullMatBox, pathSurfMat);
+                            ListBoxes.Append(gH_fullMatBox, pathSurfMat);
 
-                                // Move the brep to the current plane origin
-                                currentHeight += thickness;
-                            }
+                            // Move the brep to the current plane origin
+                            currentHeight += thickness;
+                            
                         }
+                        
+
+                        // For now we have a composite situation in which I multiply the thickness by the percentage of material
+                        // The nice way would be to have the full composite thickness and calculate the material percentage in another method
+                        // Then in the GWP for example we can just multiply by the calculated material totals
+                        else if (compositeMaterials.Contains(categoryCurrent) == true)
+                        {
+                            string frameWidthString = "";
+                            GH_Convert.ToString(component.get_Branch(path)[indexMatWidth], out frameWidthString, GH_Conversion.Primary);
+                            frameWidth = Convert.ToDouble(frameWidthString.Replace(",", "."));
+
+                            // Define intervals
+                            Interval intervalX = new Interval(-secondaryCurveLength / 2, secondaryCurveLength / 2);
+                            Interval intervalY = new Interval(-mainCurveLength / 2, mainCurveLength / 2);
+                            Interval intervalZ = new Interval(0, -(thickness * frameWidth));
+
+                            // 	Box(Plane, Interval, Interval, Interval)
+                            Box fullMatBox = new Box(brepPlane, intervalX, intervalY, intervalZ);
+                            GH_Box gH_fullMatBox = new GH_Box(fullMatBox);
+
+                            // Path
+                            GH_Path pathSurfMat = new GH_Path(i, j);
+
+                            ListBoxes.Append(gH_fullMatBox, pathSurfMat);
+
+                            // Move the brep to the current plane origin
+                            currentHeight += (thickness * frameWidth);
+                            
+                        }
+
 
                         /////// MaterialLevel 2 ///////
                         // This part takes care of the materials that overlap
-                        else
+                        // if categoryCurrent is not in the list of composite materials
+                        else if (compositeMaterials.Contains(categoryCurrent) == false)
                         {
                             /////// Calculation for framing ///////
                             // There is always a framing material on the first layer
                             if (subLayerLevel == 1)
                             {
-                                // Get the frame width and spread from the component data tree
+                                // Get the frame width from the component data tree
                                 string frameWidthString = "";
-                                GH_Convert.ToString(component.get_Branch(path)[8], out frameWidthString, GH_Conversion.Primary);
+                                GH_Convert.ToString(component.get_Branch(path)[indexMatWidth], out frameWidthString, GH_Conversion.Primary);
                                 frameWidth = Convert.ToDouble(frameWidthString.Replace(",", "."));
 
+                                // Get the frame spread from the component data tree
                                 string spreadString = "";
-                                GH_Convert.ToString(component.get_Branch(path)[9], out spreadString, GH_Conversion.Primary);
+                                GH_Convert.ToString(component.get_Branch(path)[indexMatSpread], out spreadString, GH_Conversion.Primary);
                                 double spread = Convert.ToDouble(spreadString.Replace(",", "."));
 
                                 // Trim the surface edges to account for the frame width
@@ -251,8 +310,7 @@ namespace BuildSystemsGH.Components
                                 spreadNumber = Convert.ToInt32(Math.Round(mainCurveUtilFraming.GetLength() / spread));
                                 double[] paramStart = mainCurveUtilFraming.DivideByCount(spreadNumber, true);
                                 double[] paramEnd = secCurveUtilFraming.DivideByCount(spreadNumber, true);
-                                // Reverse the paramEnd array to match the paramStart array
-                                Array.Reverse(paramEnd);
+                                Array.Reverse(paramEnd); // Reverse the paramEnd array to match the paramStart array
 
                                 // Get the points from the parameters
                                 List<Point3d> pointsStart = new List<Point3d>();
@@ -300,16 +358,18 @@ namespace BuildSystemsGH.Components
                                     // Add the box to the list
                                     ListBoxes.Append(gH_frameBox, pathSurfMat);
                                 }
+                                //currentHeight += thickness;
                             }
                             /////// Calculation for insulation ///////
-                            else
+                            else 
                             {
                                 // Get the insulation width
-                                double insulationWidth = (mainCurve.GetLength() - ((spreadNumber + 1) * frameWidth)) / spreadNumber;
+                                mainCurveLength = mainCurve.GetLength();
+                                double insulationWidth = (mainCurveLength - ((spreadNumber + 1) * frameWidth)) / spreadNumber;
 
                                 // Get spread from the component data tree
                                 string spreadString = "";
-                                GH_Convert.ToString(component.get_Branch(path)[9], out spreadString, GH_Conversion.Primary);
+                                GH_Convert.ToString(component.get_Branch(path)[indexMatSpread], out spreadString, GH_Conversion.Primary);
                                 double spread = Convert.ToDouble(spreadString.Replace(",", "."));
 
                                 // Trim the surface edges to account for the frame width
@@ -344,7 +404,6 @@ namespace BuildSystemsGH.Components
                                 }
 
                                 // Define the boxes
-                                // First find the insulationPlanes list
                                 brepPlane.Origin = center + dir;
                                 for (int k = 0; k < insulationLengths.Count; k++)
                                 {
@@ -372,32 +431,23 @@ namespace BuildSystemsGH.Components
                                     // Add insulation to brep tree
                                     ListBoxes.Append(gH_insulationBox, pathSurfMat);
                                 }
-                                currentHeight += thickness;
+                                currentHeight += prevThickness;
                             }
                         }
-                    }
 
+                    // Previous thickness to calculate correct insulation location in the gap
+                    prevThickness = thickness;
+                    }
                 }
             }
 
-            public List<List<string>> ConvertDatabase(string componentDatabase)
-            {
-                //Split the database into rows. Now we have a list of strings.
-                List<string> rows = componentDatabase.Split('\n').ToList();
-
-                // Split the rows into lists of strings. Now we have a list of lists of strings.
-                List<List<string>> databaseLists = rows.Select(s => s.Split(';').ToList()).ToList();
-
-                return databaseLists;
-            }
-
             // GWP A1ToA3 method
-            public GH_Structure<GH_Number> GetGWPA1ToA3(List<List<string>> matDatabase, GH_Structure<GH_Box> ListBoxes, GH_Structure<GH_String> component)
+            public GH_Structure<GH_Number> GetMaterialData(List<List<string>> matDatabase, int matIdIndexDatabase, int propertyIndexDatabase, int indexUmrechnungsfaktor, GH_Structure<GH_String> component, int matIdIndexComponent, GH_Structure<GH_Box> ListBoxes)
             {
 
                 // Get GH_Path from ListBoxes
                 IList<GH_Path> boxesPaths = ListBoxes.Paths;
-                GH_Structure<GH_Number> panelGwpA1ToA3 = new GH_Structure<GH_Number>();
+                GH_Structure<GH_Number> panelProperty = new GH_Structure<GH_Number>();
                 foreach (GH_Path boxPath in boxesPaths)
                 {
                     double matVolume = 0;
@@ -423,40 +473,94 @@ namespace BuildSystemsGH.Components
                         // Check if the last index of the path matches the last index of the boxPath
                         if (lastIndex == i)
                         {
-                            string matID = "";
-                            GH_Convert.ToString(component.get_Branch(compPath)[3], out matID, GH_Conversion.Primary);
+                            // Get material ID from the component datatree
+                            string matIdComponent = "";
+                            GH_Convert.ToString(component.get_Branch(compPath)[matIdIndexComponent], out matIdComponent, GH_Conversion.Primary);
 
-                            // Loop through the material database and match the material ID
+                            // Initialize the variables
+                            double databaseProperty = 0;
+                            double databaseConversionFactor = 1;
+
+                            // Loop through the material database
                             for (int j = 0; j < matDatabase.Count; j++)
                             {
-                                // Get the material ID
-                                string matIDDatabase = matDatabase[j][1];
 
-                                // Check if the material ID matches
-                                if (matID == matIDDatabase)
+                                // Get the material ID on database
+                                string matIdDatabase = matDatabase[j][matIdIndexDatabase];
+                                // Check if the material ID from component matches the one from database
+                                if (matIdComponent == matIdDatabase)
                                 {
-                                    // Get the GWP A1ToA3 value
-                                    string gwpA1ToA3String = matDatabase[j][13];
-                                    if (gwpA1ToA3String == "")
+                                    // Get the property value (for example gwpA1ToA3)
+                                    string databasePropertyString = matDatabase[j][propertyIndexDatabase];
+                                    databasePropertyString = databasePropertyString.Replace(",", ".");
+                                    if (!double.TryParse(databasePropertyString, out databaseProperty))
                                     {
-                                        gwpA1ToA3String = "0";
+                                        databaseProperty = 0;  // Assign 0 if conversion is not successful.
                                     }
-                                    double unitGwpA1ToA3 = Convert.ToDouble(gwpA1ToA3String);
 
-                                    // Calculate the GWP A1ToA3 value
-                                    double gwpA1ToA3 = unitGwpA1ToA3 * matVolume;
-                                    GH_Number gH_Number = new GH_Number(gwpA1ToA3);
-                                    panelGwpA1ToA3.Append(gH_Number, panelPath);
+                                    //double databaseProperty = Convert.ToDouble(databasePropertyString.Replace(",", "."));
+
+                                    // Get the conversion factor (from kg to m3)
+                                    string databaseConversionFactorString = matDatabase[j][indexUmrechnungsfaktor];
+                                    databaseConversionFactorString = databaseConversionFactorString.Replace(",", ".");
+                                    if (!double.TryParse(databaseConversionFactorString, out databaseConversionFactor))
+                                    {
+                                        databaseConversionFactor = 1;  // Assign 0 if conversion is not successful.
+                                    }
+                                    //databaseConversionFactor = Convert.ToDouble(databaseConversionFactorString.Replace(",", "."));
                                 }
+
                             }
+                            // Calculate the Property total
+                            double propertyTotal = (databaseProperty * matVolume) * databaseConversionFactor;
+                            GH_Number gH_propertyTotal = new GH_Number(propertyTotal);
+                            panelProperty.Append(gH_propertyTotal, boxPath);
                         }
                     }
                 }
-                return panelGwpA1ToA3;
+                return panelProperty;
 
             }
 
         }
+
+        public List<List<string>> ConvertDatabase(string componentDatabase)
+        {
+            //Split the database into rows. Now we have a list of strings.
+            List<string> rows = componentDatabase.Split('\n').ToList();
+
+            // Split the rows into lists of strings. Now we have a list of lists of strings.
+            List<List<string>> databaseLists = rows.Select(s => s.Split(';').ToList()).ToList();
+
+            return databaseLists;
+        }
+
+        // First approach and less efficient. Convert all the json files into a list of lists.
+        public List<List<string>> ConvertJsonToMatDatabaseAlpha1(string filePath)
+            {
+
+                string databaseMaterialPath = filePath + "\\" + "Material";
+                string[] jsonComponentPathArray = System.IO.Directory.GetFiles(databaseMaterialPath, "*.json");
+                
+                List<List<string>> matDatabase = new List<List<string>>();
+
+                // Loop through each JSON
+                foreach (string path in jsonComponentPathArray)
+                {
+                    List<string> matJson = new List<string>();
+                    string jsonAssembly = File.ReadAllText(path);
+
+                    // Parse the JSON
+                    JObject jObjectAssembly = JObject.Parse(jsonAssembly);
+                    // Loop through each JSON key and add the values to the list
+                    foreach (JProperty property in jObjectAssembly.Properties())
+                    {
+                        matJson.Add(property.Value.ToString());
+                    }
+                    matDatabase.Add(matJson);
+                }
+                return matDatabase;
+            }
 
         public AssembleComponent()
           : base("Assemble Component", "AC",
@@ -470,7 +574,13 @@ namespace BuildSystemsGH.Components
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddTextParameter("Folder Path", "Path", "Root folder containing the three other folders with the JSON libraries.", GH_ParamAccess.item);
+            GH_AssemblyInfo info = Grasshopper.Instances.ComponentServer.FindAssembly( new Guid ("36538369-6017-4b4c-9973-aee8f072399a") );
+            string filePath = info.Location;
+            // Get the directory name from the original path.
+            string directoryPath = Path.GetDirectoryName(filePath);
+            // Combine with the new directory.
+            string libPath = Path.Combine(directoryPath, "Build Systems");
+            pManager.AddTextParameter("Folder Path", "Path", "Root folder containing the three sub-folders with JSON libraries.", GH_ParamAccess.item, libPath);
             pManager.AddSurfaceParameter("Building Surfaces", "Surfaces", "Building surfaces to generate the bateil.", GH_ParamAccess.list);
             pManager.AddTextParameter("Component Layers Tree", "Component", "Component layers in the format of GH Data Tree.", GH_ParamAccess.tree);
             // Here could be a value list that is filled automatically
@@ -483,9 +593,8 @@ namespace BuildSystemsGH.Components
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
             pManager.AddBoxParameter("Materials as Boxes", "Boxes", "Representation of materials as Boxes.", GH_ParamAccess.tree);
-            pManager.AddColourParameter("Materials' Color RGB", "RGB", "Materials' colors RGB for the Boxes.", GH_ParamAccess.tree);
-            pManager.AddTextParameter("Selected Phase PENRT", "PENRT", "PENRT calculated using the material volumes from the Boxes [MJ].", GH_ParamAccess.tree);
-            pManager.AddTextParameter("Selected Phase GWP", "GWP", "GWP calculated using the material volumes from the Boxes [kg CO2-eq].", GH_ParamAccess.tree);
+            pManager.AddNumberParameter("Selected Phase PENRT", "PENRT", "PENRT calculated using the material volumes from the Boxes [MJ].", GH_ParamAccess.tree);
+            pManager.AddNumberParameter("Selected Phase GWP", "GWP", "GWP calculated using the material volumes from the Boxes [kg CO2-eq].", GH_ParamAccess.tree);
         }
 
         /// <summary>
@@ -494,58 +603,178 @@ namespace BuildSystemsGH.Components
         /// <param name="DA">The DA object is used to retrieve from inputs and store in outputs.</param>
         protected override void SolveInstance(IGH_DataAccess DA)
         {
-            string filePath = "";
+            string libPath = "";
             List<Surface> buildignSurfaces = new List<Surface>();
             GH_Structure<GH_String> buildingComponent = new GH_Structure<GH_String>();
-            string calculationPhase = "A1ToA3";
+            string calculationPhase = "";
 
             GH_Structure<GH_Colour> componentColours = new GH_Structure<GH_Colour>();
-            GH_Structure<GH_Number> componentPENRT = new GH_Structure<GH_Number>();
-            GH_Structure<GH_Number> componentGWP = new GH_Structure<GH_Number>();
+            GH_Structure<GH_Number> componentPenrt = new GH_Structure<GH_Number>();
+            GH_Structure<GH_Number> componentGwp = new GH_Structure<GH_Number>();
 
-            if (!DA.GetData(0, ref filePath)) return;
-            if (!DA.GetDataList(1, buildignSurfaces)) return;
-            if (!DA.GetDataTree(2, out buildingComponent)) return;
+            DA.GetData(0, ref libPath);
+            if (!DA.GetDataList(1, buildignSurfaces))
+            {
+                AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "No building surfaces were provided.");
+                return;
+            }
+            if (!DA.GetDataTree(2, out buildingComponent))
+            {
+                AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "No components were provided.");
+                return;
+            }
             DA.GetData(3, ref calculationPhase);
 
+            // Sanity check
+            // Check if the folder path is valid
+            string[] requiredFolders = { "Component", "Assembly", "Material" };
+            try
+            {
+                // Get all subdirectories
+                string[] subdirectories = Directory.GetDirectories(libPath);
+                foreach (string requiredFolder in requiredFolders)
+                {
+                    // Check if the required folder is in the subdirectories
+                    if (!subdirectories.Contains(libPath + "\\" + requiredFolder))
+                    {
+                        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "The folder path is not valid. The sub-folder '" + requiredFolder + "' is missing.");
+                        return;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "An error occurred: " + ex.Message);
+            }
+
+
             // Generate the building component object
-            BuildComponent buildComponent = new BuildComponent(buildignSurfaces, buildingComponent);
+            BuildComponent buildComponent = new BuildComponent(buildignSurfaces, buildingComponent, 2);
 
             // Retrieve the boxes data tree with the ListBoxes method
             GH_Structure<GH_Box> ListBoxes = buildComponent.ListBoxes;
 
             // Material database to get the GWP next
-            List<List<string>> matDatabase = buildComponent.ConvertDatabase(filePath);
+            List<List<string>> matDatabase = ConvertJsonToMatDatabaseAlpha1(libPath);
 
             // Create a method to genereate the RGB colour data tree here
             //componentColours = buildComponent.GetRGB;
 
+            // Indexes of material database. The index 0 for example gets values on the first column of the database.
+            const int indexUmrechnungsfaktor = 3;
+            const int indexPenrtA1ToA3 = 9;
+            const int indexPenrtC3 = 10;
+            const int indexPenrtC4 = 11;
+            const int indexPenrtD1 = 12;
+            const int indexGwpA1ToA3 = 13;
+            const int indexGwpC3 = 14;
+            const int indexGwpC4 = 15;
+            const int indexGwpD1 = 16;
+            const int indexMatIdDatabase = 0;
+
+            // Index of material ID on component list. (The component datatree is filtered into a single list inside the GetMaterialData method).
+            const int matIdIndexComponent = 3;
+
             // Get the GWP based on the selected phase
             if (calculationPhase == "A1ToA3")
             {
-                //componentPENRT = buildComponent.GetPENRTA1ToA3(matDatabase, ListBoxes, Component);
-                componentGWP = buildComponent.GetGWPA1ToA3(matDatabase, ListBoxes, buildingComponent);
+                componentPenrt = buildComponent.GetMaterialData(matDatabase, indexMatIdDatabase, indexPenrtA1ToA3, indexUmrechnungsfaktor, buildingComponent, matIdIndexComponent, ListBoxes);
+                componentGwp = buildComponent.GetMaterialData(matDatabase, indexMatIdDatabase, indexGwpA1ToA3, indexUmrechnungsfaktor, buildingComponent, matIdIndexComponent, ListBoxes);
             }
             else if (calculationPhase == "C3")
             {
-                //componentPENRT = buildComponent.GetPENRTC3(matDatabase, ListBoxes, Component);
-                //componentGWP = buildComponent.GetGWPC3(matDatabase, ListBoxes, buildComponent);
+                componentPenrt = buildComponent.GetMaterialData(matDatabase, indexMatIdDatabase, indexPenrtC3, indexUmrechnungsfaktor, buildingComponent, matIdIndexComponent, ListBoxes);
+                componentGwp = buildComponent.GetMaterialData(matDatabase, indexMatIdDatabase, indexGwpC3, indexUmrechnungsfaktor, buildingComponent, matIdIndexComponent, ListBoxes);
+            }            
+            else if (calculationPhase == "C4")
+            {
+                componentPenrt = buildComponent.GetMaterialData(matDatabase, indexMatIdDatabase, indexPenrtC4, indexUmrechnungsfaktor, buildingComponent, matIdIndexComponent, ListBoxes);
+                componentGwp = buildComponent.GetMaterialData(matDatabase, indexMatIdDatabase, indexGwpC4, indexUmrechnungsfaktor, buildingComponent, matIdIndexComponent, ListBoxes);
             }
             else if (calculationPhase == "D1")
             {
-                //componentPENRT = buildComponent.GetPENRTD1(matDatabase, ListBoxes, Component);
-                //componentGWP = buildComponent.GetGWPD1(matDatabase, ListBoxes, buildComponent);
+                componentPenrt = buildComponent.GetMaterialData(matDatabase, indexMatIdDatabase, indexPenrtD1, indexUmrechnungsfaktor, buildingComponent, matIdIndexComponent, ListBoxes);
+                componentGwp = buildComponent.GetMaterialData(matDatabase, indexMatIdDatabase, indexGwpD1, indexUmrechnungsfaktor, buildingComponent, matIdIndexComponent, ListBoxes);
             }
             else if (calculationPhase == "AToC")
             {
-                //componentPENRT = buildComponent.GetPENRTAToC(matDatabase, ListBoxes, Component);
-                //componentGWP = buildComponent.GetGWPAToC(matDatabase, ListBoxes, buildComponent);
+                GH_Structure<GH_Number> componentPenrtA1ToA3 = buildComponent.GetMaterialData(matDatabase, indexMatIdDatabase, indexPenrtA1ToA3, indexUmrechnungsfaktor, buildingComponent, matIdIndexComponent, ListBoxes);
+                GH_Structure<GH_Number> componentPenrtC3 = buildComponent.GetMaterialData(matDatabase, indexMatIdDatabase, indexPenrtC3, indexUmrechnungsfaktor, buildingComponent, matIdIndexComponent, ListBoxes);
+                GH_Structure<GH_Number> componentPenrtC4 = buildComponent.GetMaterialData(matDatabase, indexMatIdDatabase, indexPenrtC4, indexUmrechnungsfaktor, buildingComponent, matIdIndexComponent, ListBoxes);
+                
+                GH_Structure<GH_Number> componentGwpA1ToA3 = buildComponent.GetMaterialData(matDatabase, indexMatIdDatabase, indexGwpA1ToA3, indexUmrechnungsfaktor, buildingComponent, matIdIndexComponent, ListBoxes);
+                GH_Structure<GH_Number> componentGwpC3 = buildComponent.GetMaterialData(matDatabase, indexMatIdDatabase, indexGwpC3, indexUmrechnungsfaktor, buildingComponent, matIdIndexComponent, ListBoxes);
+                GH_Structure<GH_Number> componentGwpC4 = buildComponent.GetMaterialData(matDatabase, indexMatIdDatabase, indexGwpC4, indexUmrechnungsfaktor, buildingComponent, matIdIndexComponent, ListBoxes);
+                foreach (GH_Path path in componentPenrtA1ToA3.Paths)
+                {
+                    for (int i = 0; i < componentPenrtA1ToA3.get_Branch(path).Count; i++)
+                    {
+                        double gH_tempPenrtA1ToA3 = 0;
+                        GH_Convert.ToDouble(componentPenrtA1ToA3.get_Branch(path)[i], out gH_tempPenrtA1ToA3, GH_Conversion.Primary);
+                        double gH_tempPenrtC3 = 0;
+                        GH_Convert.ToDouble(componentPenrtC3.get_Branch(path)[i], out gH_tempPenrtC3, GH_Conversion.Primary);
+                        double gH_tempPenrtC4 = 0;
+                        GH_Convert.ToDouble(componentPenrtC4.get_Branch(path)[i], out gH_tempPenrtC4, GH_Conversion.Primary);
+                        double totalSum = gH_tempPenrtA1ToA3 + gH_tempPenrtC3 + gH_tempPenrtC4;
+                        GH_Number gH_totalSum = new GH_Number(totalSum);
+                        componentPenrt.Append(gH_totalSum, path);
+                    }
+                    for (int i = 0; i < componentGwpA1ToA3.get_Branch(path).Count; i++)
+                    {
+                        double gH_tempGwpA1ToA3 = 0;
+                        GH_Convert.ToDouble(componentGwpA1ToA3.get_Branch(path)[i], out gH_tempGwpA1ToA3, GH_Conversion.Primary);
+                        double gH_tempGwpC3 = 0;
+                        GH_Convert.ToDouble(componentGwpC3.get_Branch(path)[i], out gH_tempGwpC3, GH_Conversion.Primary);
+                        double gH_tempGwpC4 = 0;
+                        GH_Convert.ToDouble(componentGwpC4.get_Branch(path)[i], out gH_tempGwpC4, GH_Conversion.Primary);
+                        double totalSum = gH_tempGwpA1ToA3 + gH_tempGwpC3 + gH_tempGwpC4;
+                        GH_Number gH_totalSum = new GH_Number(totalSum);
+                        componentGwp.Append(gH_totalSum, path);
+                    }
+                }
             }
             else if (calculationPhase == "AToD")
             {
+                GH_Structure<GH_Number> componentPenrtA1ToA3 = buildComponent.GetMaterialData(matDatabase, indexMatIdDatabase, indexPenrtA1ToA3, indexUmrechnungsfaktor, buildingComponent, matIdIndexComponent, ListBoxes);
+                GH_Structure<GH_Number> componentPenrtC3 = buildComponent.GetMaterialData(matDatabase, indexMatIdDatabase, indexPenrtC3, indexUmrechnungsfaktor, buildingComponent, matIdIndexComponent, ListBoxes);
+                GH_Structure<GH_Number> componentPenrtC4 = buildComponent.GetMaterialData(matDatabase, indexMatIdDatabase, indexPenrtC4, indexUmrechnungsfaktor, buildingComponent, matIdIndexComponent, ListBoxes);
+                GH_Structure<GH_Number> componentPenrtD1 = buildComponent.GetMaterialData(matDatabase, indexMatIdDatabase, indexPenrtD1, indexUmrechnungsfaktor, buildingComponent, matIdIndexComponent, ListBoxes);
 
-                //componentPENRT = buildComponent.GetPENRTAToD(matDatabase, ListBoxes, Component);
-                //componentGWP = buildComponent.GetGWPAToD(matDatabase, ListBoxes, buildComponent);
+                GH_Structure<GH_Number> componentGwpA1ToA3 = buildComponent.GetMaterialData(matDatabase, indexMatIdDatabase, indexGwpA1ToA3, indexUmrechnungsfaktor, buildingComponent, matIdIndexComponent, ListBoxes);
+                GH_Structure<GH_Number> componentGwpC3 = buildComponent.GetMaterialData(matDatabase, indexMatIdDatabase, indexGwpC3, indexUmrechnungsfaktor, buildingComponent, matIdIndexComponent, ListBoxes);
+                GH_Structure<GH_Number> componentGwpC4 = buildComponent.GetMaterialData(matDatabase, indexMatIdDatabase, indexGwpC4, indexUmrechnungsfaktor, buildingComponent, matIdIndexComponent, ListBoxes);
+                GH_Structure<GH_Number> componentGwpD1 = buildComponent.GetMaterialData(matDatabase, indexMatIdDatabase, indexGwpD1, indexUmrechnungsfaktor, buildingComponent, matIdIndexComponent, ListBoxes);
+                foreach (GH_Path path in componentPenrtA1ToA3.Paths)
+                {
+                    for (int i = 0; i < componentPenrtA1ToA3.get_Branch(path).Count; i++)
+                    {
+                        double gH_tempPenrtA1ToA3 = 0;
+                        GH_Convert.ToDouble(componentPenrtA1ToA3.get_Branch(path)[i], out gH_tempPenrtA1ToA3, GH_Conversion.Primary);
+                        double gH_tempPenrtC3 = 0;
+                        GH_Convert.ToDouble(componentPenrtC3.get_Branch(path)[i], out gH_tempPenrtC3, GH_Conversion.Primary);
+                        double gH_tempPenrtC4 = 0;
+                        GH_Convert.ToDouble(componentPenrtC4.get_Branch(path)[i], out gH_tempPenrtC4, GH_Conversion.Primary);
+                        double gH_tempPenrtD1 = 0;
+                        GH_Convert.ToDouble(componentPenrtD1.get_Branch(path)[i], out gH_tempPenrtD1, GH_Conversion.Primary);
+                        double totalSum = gH_tempPenrtA1ToA3 + gH_tempPenrtC3 + gH_tempPenrtC4 + gH_tempPenrtD1;
+                        GH_Number gH_totalSum = new GH_Number(totalSum);
+                        componentPenrt.Append(gH_totalSum, path);
+                    }
+                    for (int i = 0; i < componentGwpA1ToA3.get_Branch(path).Count; i++)
+                    {
+                        double gH_tempGwpA1ToA3 = 0;
+                        GH_Convert.ToDouble(componentGwpA1ToA3.get_Branch(path)[i], out gH_tempGwpA1ToA3, GH_Conversion.Primary);
+                        double gH_tempGwpC3 = 0;
+                        GH_Convert.ToDouble(componentGwpC3.get_Branch(path)[i], out gH_tempGwpC3, GH_Conversion.Primary);
+                        double gH_tempGwpC4 = 0;
+                        GH_Convert.ToDouble(componentGwpC4.get_Branch(path)[i], out gH_tempGwpC4, GH_Conversion.Primary);
+                        double gH_tempGwpD1 = 0;
+                        GH_Convert.ToDouble(componentGwpD1.get_Branch(path)[i], out gH_tempGwpD1, GH_Conversion.Primary);
+                        double totalSum = gH_tempGwpA1ToA3 + gH_tempGwpC3 + gH_tempGwpC4 + gH_tempGwpD1;
+                        GH_Number gH_totalSum = new GH_Number(totalSum);
+                        componentGwp.Append(gH_totalSum, path);
+                    }
+                }
             }
             else
             {
@@ -553,13 +782,56 @@ namespace BuildSystemsGH.Components
             }
 
             DA.SetDataTree(0, ListBoxes);
-            DA.SetDataTree(1, componentColours);
-            DA.SetDataTree(2, componentPENRT);
-            DA.SetDataTree(3, componentGWP);
+            DA.SetDataTree(1, componentPenrt);
+            DA.SetDataTree(2, componentGwp);
 
             //Add a message to the bottom of the component
             //this.Component.Message = Surfaces.Count + " surfaces";
 
+        }
+
+
+        public override void AddedToDocument(GH_Document document)
+        {
+            base.AddedToDocument(document);
+
+            //Add Value List
+            int[] stringID = new int[] { 3 };
+
+            for (int i = 0; i < stringID.Length; i++)
+            {
+                Grasshopper.Kernel.Parameters.Param_String in0str = Params.Input[stringID[i]] as Grasshopper.Kernel.Parameters.Param_String;
+                if (in0str == null || in0str.SourceCount > 0 || in0str.PersistentDataCount > 0) return;
+                Attributes.PerformLayout();
+                int x = (int)in0str.Attributes.Pivot.X - 200;
+                int y = (int)in0str.Attributes.Pivot.Y - 11;
+                Grasshopper.Kernel.Special.GH_ValueList valList = new Grasshopper.Kernel.Special.GH_ValueList();
+                valList.CreateAttributes();
+                valList.Attributes.Pivot = new PointF(x, y);
+                valList.Attributes.ExpireLayout();
+                valList.ListItems.Clear();
+
+                List<string> maualList = new List<string>
+                {
+                    "A1ToA3",
+                    "C3",
+                    "C4",
+                    "D1",
+                    "AToC",
+                    "AToD"
+                };
+
+                List<Grasshopper.Kernel.Special.GH_ValueListItem> componentsAvailable = new List<Grasshopper.Kernel.Special.GH_ValueListItem>();
+                foreach (string component in maualList)
+                {
+                    Grasshopper.Kernel.Special.GH_ValueListItem valueItem = new Grasshopper.Kernel.Special.GH_ValueListItem(component, '"' + component + '"');
+                    componentsAvailable.Add(valueItem);
+                }
+
+                valList.ListItems.AddRange(componentsAvailable);
+                document.AddObject(valList, false);
+                in0str.AddSource(valList);
+            }
         }
 
         /// <summary>
