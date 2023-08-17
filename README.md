@@ -61,8 +61,11 @@ Output
 </details>
 
 
-## Surface Properties Tool
-We feed this parametric model with data from our building component library. For each component in this library there is information about amount of material, the carbon footprint and prices for each square meter of construction.
+## Building Component Tool
+Our LCA tool - Life Cycle Assessment.
+
+We have a component with our own in-house developed library assembled on top of [Oköbaudat](https://www.oekobaudat.de/)
+And a component that calculates the amount of material and its 
 
 ### Components
 <details>
@@ -70,12 +73,12 @@ We feed this parametric model with data from our building component library. For
 
 Input
 
-* componentDatabase (string: a excel table converted to csv and then commas replaced by ";")
-* name (enumerator: a list that is generated automatically)
+* Path (string: root folder containing the three sub-folders with JSON libraries).
+* Component (string, component name).
 
 Output
 
-* Component (data tree with material information for one build component)
+* Component (data tree, material information for one build component).
 </details>
 
 <details>
@@ -83,13 +86,14 @@ Output
 
 Input
 
-* materialDatabase (string: a excel table converted to csv and then commas replaced by ";")
-* surfaces (surfaces, list)
-* component (strings, data tree: coming from the Build Library)
+* Path (string: root folder containing the three sub-folders with JSON libraries).
+* Surfaces (surfaces, building surfaces to generate the bateil).
+* Component (strings, component layers in the format of GH Data Tree).
+* Phase (string, phases to calculate the GWP and PENRT).
 
 Output
 
-* Boxes (box, data tree)
-* GWP_A1ToA3 (numbers, data tree: KG of CO2 / each material in phases A1 to A3)
-* GWP_AToD (numbers, data tree: KG of CO2 / each material in phases A to D)
+* Boxes (box, representation of materials as Boxes.)
+* PENRT (number, PENRT calculated using the material volumes from the Boxes [MJ]).
+* GWP (number, GWP calculated using the material volumes from the Boxes [kg CO2-eq]).
 </details>
