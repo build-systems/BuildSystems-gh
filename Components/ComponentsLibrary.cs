@@ -107,7 +107,7 @@ namespace BuildSystemsGH.Components
         public ComponentsLibrary()
           : base("B-S Components Library", "BSL",
               "Library of selected components.",
-              "Build Systems", "Components")
+              "BuildSystems", "LCA")
         {
         }
         /// <summary>
@@ -120,7 +120,7 @@ namespace BuildSystemsGH.Components
             // Get the directory name from the original path.
             string directoryPath = Path.GetDirectoryName(filePath);
             // Combine with the new directory.
-            string libPath = Path.Combine(directoryPath, "Build Systems");
+            string libPath = Path.Combine(directoryPath, "BuildSystems");
             pManager.AddTextParameter("Folder Path", "Path", "Root folder containing the three other folders with the JSON libraries.", GH_ParamAccess.item, libPath);
             pManager.AddTextParameter("Building Component ID", "ID", "ID of the building component (Bauteil)", GH_ParamAccess.item);
         }

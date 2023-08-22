@@ -176,7 +176,7 @@ namespace BuildSystemsGH
         public BuildingByHeight()
           : base("Building by Height", "BBH",
             "Creates a building volume defined by the total height.",
-            "Build Systems", "Urban")
+            "BuildSystems", "Urban")
         {
         }
 

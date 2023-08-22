@@ -156,7 +156,7 @@ namespace BuildSystemsGH.Urban
         public BuildingByFloorNumber()
           : base("Building by Floor Number", "BBF",
               "Creates a building volume defined by the number of floors.",
-              "Build Systems", "Urban")
+              "BuildSystems", "Urban")
         {
         }
 

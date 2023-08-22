@@ -133,7 +133,7 @@ namespace BuildSystemsGH.Urban
         public GetBuildingsProperties()
           : base("Get Buildings Properties", "GBP",
               "Calculate the urban ratios for all buildings.",
-              "Build Systems", "Urban")
+              "BuildSystems", "Urban")
         {
         }
 

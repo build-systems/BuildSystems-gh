@@ -565,7 +565,7 @@ namespace BuildSystemsGH.Components
         public AssembleComponent()
           : base("Assemble Component", "AC",
               "Assemble the component layers.",
-              "Build Systems", "Components")
+              "BuildSystems", "LCA")
         {
         }
 
@@ -579,12 +579,12 @@ namespace BuildSystemsGH.Components
             // Get the directory name from the original path.
             string directoryPath = Path.GetDirectoryName(filePath);
             // Combine with the new directory.
-            string libPath = Path.Combine(directoryPath, "Build Systems");
+            string libPath = Path.Combine(directoryPath, "BuildSystems");
             pManager.AddTextParameter("Folder Path", "Path", "Root folder containing the three sub-folders with JSON libraries.", GH_ParamAccess.item, libPath);
             pManager.AddSurfaceParameter("Building Surfaces", "Surfaces", "Building surfaces to generate the bateil.", GH_ParamAccess.list);
             pManager.AddTextParameter("Component Layers Tree", "Component", "Component layers in the format of GH Data Tree.", GH_ParamAccess.tree);
             // Here could be a value list that is filled automatically
-            pManager.AddTextParameter("Calculation Phase", "Phase", "Phases to calculate the GWP (A1ToA3, C3, C4, D1, AToC, AToD). Default is A1ToA3.", GH_ParamAccess.item);
+            pManager.AddTextParameter("Calculation Phase", "Phase", "Phases to calculate the GWP and PENRT (A1ToA3, C3, C4, D1, AToC, AToD). Default is A1ToA3.", GH_ParamAccess.item);
         }
 
         /// <summary>
