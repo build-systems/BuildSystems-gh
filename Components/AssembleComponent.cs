@@ -834,6 +834,8 @@ namespace BuildSystemsGH.Components
             }
         }
 
+        public override GH_Exposure Exposure => GH_Exposure.primary;
+
         /// <summary>
         /// Provides an Icon for the component.
         /// </summary>

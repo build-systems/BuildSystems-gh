@@ -325,6 +325,8 @@ namespace BuildSystemsGH.Components
             base.AddedToDocument(document);
         }
 
+        public override GH_Exposure Exposure => GH_Exposure.primary;
+
         /// <summary>
         /// Provides an Icon for the component.
         /// </summary>
