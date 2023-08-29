@@ -11,6 +11,8 @@ using System.Linq;
 using Grasshopper.Kernel.Types;
 using Grasshopper.Kernel.Data;
 using Newtonsoft.Json.Linq;
+using BSoM;
+using Eto.Forms;
 
 namespace BuildSystemsGH.Components
 {
@@ -20,6 +22,21 @@ namespace BuildSystemsGH.Components
         /// Initializes a new instance of the MyComponent1 class.
         /// </summary>
         /// 
+
+        public class BuildingComponent
+        {             
+            public string Name { get; set; }
+            public string RhinoLayerIndex { get; set; }
+            public string RhinoLayer { get; set; }
+            public string Component { get; set; }
+            public List<Brep> ComponentSurfaces { get; set; }
+            public double Area { get; set; }
+            public double PENRT { get; set; }
+            public double GWP { get; set; }
+
+
+        }
+
 
         public class BuildingLayer
         {
@@ -60,7 +77,7 @@ namespace BuildSystemsGH.Components
             return twoLargestFaces[0];
         }
 
-        public List<BuildingLayer> CalculateLCA(RhinoDoc doc, string libPath, GH_Structure<GH_String> treeIds, List<GH_Brep> ghBreps)
+        public List<BuildingLayer> CalculateLCA(string libPath, GH_Structure<GH_String> treeIds, List<GH_Brep> ghBreps)
         {
             // Building layers
             BuildingLayer außenwandNt = new BuildingLayer();
@@ -68,8 +85,8 @@ namespace BuildSystemsGH.Components
             BuildingLayer balkon = new BuildingLayer();
             BuildingLayer dachdecke = new BuildingLayer();
             BuildingLayer innenwandNt = new BuildingLayer();
-            BuildingLayer trenndecke = new BuildingLayer();
-            BuildingLayer trennwand = new BuildingLayer();
+            BuildingLayer trenndeckeOG = new BuildingLayer();
+            BuildingLayer trennwandOG = new BuildingLayer();
             BuildingLayer deckeEG = new BuildingLayer();
             BuildingLayer außenwandEG = new BuildingLayer();
             BuildingLayer trennwandEG = new BuildingLayer();
@@ -78,106 +95,6 @@ namespace BuildSystemsGH.Components
             BuildingLayer bodenplatte = new BuildingLayer();
             BuildingLayer wandKeller = new BuildingLayer();
 
-            //// First get the layer id, layer, and area ////
-            // List to store Layer index information
-            List<int> layerIndexes = new List<int>();
-
-            // List to store surfaces
-            List<Brep> surfaces = new List<Brep>();
-
-            foreach (GH_Brep ghBrep in ghBreps)
-            {
-                // Get layer index
-                Guid id = ghBrep.ReferenceID;
-                int layerIndex = doc.Objects.Find(id).Attributes.LayerIndex;
-                layerIndexes.Add(layerIndex);
-            }
-
-            IEnumerable<int> uniqueLayerIndexes = layerIndexes.Distinct().OrderBy(n => n);
-
-            foreach (int layerIndex in uniqueLayerIndexes)
-            {
-                Layer layer = doc.Layers[layerIndex];
-
-                string layerName = layer.Name;
-
-                if (layerName.Contains("Außenwand nt"))
-                {
-                    außenwandNt.LayerIndex = layerIndex;
-                    außenwandNt.Layer = layerName;
-                }
-                else if (layerName.Contains("Außenwand tr"))
-                {
-                    außenwandTr.LayerIndex = layerIndex;
-                    außenwandTr.Layer = layerName;
-                }
-                else if (layerName.Contains("Balkon"))
-                {
-                    balkon.LayerIndex = layerIndex;
-                    balkon.Layer = layerName;
-                }
-                else if (layerName.Contains("Dachdecke"))
-                {
-                    dachdecke.LayerIndex = layerIndex;
-                    dachdecke.Layer = layerName;
-                }
-                else if (layerName.Contains("Innenwand nt"))
-                {
-                    innenwandNt.LayerIndex = layerIndex;
-                    innenwandNt.Layer = layerName;
-                }
-                else if (layerName.Contains("Trenndecke"))
-                {
-                    trenndecke.LayerIndex = layerIndex;
-                    trenndecke.Layer = layerName;
-                }
-                else if (layerName.Contains("Trennwand"))
-                {
-                    trennwand.LayerIndex = layerIndex;
-                    trennwand.Layer = layerName;
-                }
-                else if (layerName.Contains("Decke EG"))
-                {
-                    deckeEG.LayerIndex = layerIndex;
-                    deckeEG.Layer = layerName;
-                }
-                else if (layerName.Contains("Außenwand EG"))
-                {
-                    außenwandEG.LayerIndex = layerIndex;
-                    außenwandEG.Layer = layerName;
-                }
-                else if (layerName.Contains("Trennwand EG"))
-                {
-                    trennwandEG.LayerIndex = layerIndex;
-                    trennwandEG.Layer = layerName;
-                }
-                else if (layerName.Contains("Wand E"))
-                {
-                    wandE.LayerIndex = layerIndex;
-                    wandE.Layer = layerName;
-                }
-                else if (layerName.Contains("Decke E"))
-                {
-                    deckeE.LayerIndex = layerIndex;
-                    deckeE.Layer = layerName;
-                }
-                else if (layerName.Contains("Bodenplatte"))
-                {
-                    bodenplatte.LayerIndex = layerIndex;
-                    bodenplatte.Layer = layerName;
-                }
-                else if (layerName.Contains("Wand Keller"))
-                {
-                    wandKeller.LayerIndex = layerIndex;
-                    wandKeller.Layer = layerName;
-                }
-                // Return grasshopper error "unknown layer"
-                else
-                {
-                    this.AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "Input geometry with unknow layer");
-                }
-
-            }
 
             // Get surfaces
             //foreach (GH_Brep ghBrep in ghBreps)
@@ -186,16 +103,18 @@ namespace BuildSystemsGH.Components
                 // Convert GH_Brep to Brep
                 Brep brep = new Brep();
                 GH_Convert.ToBrep(ghBreps[i], ref brep, GH_Conversion.Both);
+                Brep surface = new Brep();
 
                 // If brep is solid, then use GetSurface to get the largest surface
                 if (brep.IsSolid)
                 {
-                    Brep surface = GetSurface(brep);
+                    surface = GetSurface(brep);
                     surfaces.Add(surface);
                 }
                 // If brep is not solid, then add the brep to the list of surfaces
                 else
                 {
+                    surface = brep;
                     surfaces.Add(brep);
                 }
 
@@ -203,59 +122,59 @@ namespace BuildSystemsGH.Components
 
                 if (layerIndex == außenwandNt.LayerIndex)
                 {
-                    außenwandNt.Area += brep.GetArea();
+                    außenwandNt.Area += surface.GetArea();
                 }
                 else if (layerIndex == außenwandTr.LayerIndex)
                 {
-                    außenwandTr.Area += brep.GetArea();
+                    außenwandTr.Area += surface.GetArea();
                 }
                 else if (layerIndex == balkon.LayerIndex)
                 {
-                    balkon.Area += brep.GetArea();
+                    balkon.Area += surface.GetArea();
                 }
                 else if (layerIndex == dachdecke.LayerIndex)
                 {
-                    dachdecke.Area += brep.GetArea();
+                    dachdecke.Area += surface.GetArea();
                 }
                 else if (layerIndex == innenwandNt.LayerIndex)
                 {
-                    innenwandNt.Area += brep.GetArea();
+                    innenwandNt.Area += surface.GetArea();
                 }
-                else if (layerIndex == trenndecke.LayerIndex)
+                else if (layerIndex == trenndeckeOG.LayerIndex)
                 {
-                    trenndecke.Area += brep.GetArea();
+                    trenndeckeOG.Area += surface.GetArea();
                 }
-                else if (layerIndex == trennwand.LayerIndex)
+                else if (layerIndex == trennwandOG.LayerIndex)
                 {
-                    trennwand.Area += brep.GetArea();
+                    trennwandOG.Area += surface.GetArea();
                 }
                 else if (layerIndex == deckeEG.LayerIndex)
                 {
-                    deckeEG.Area += brep.GetArea();
+                    deckeEG.Area += surface.GetArea();
                 }
                 else if (layerIndex == außenwandEG.LayerIndex)
                 {
-                    außenwandEG.Area += brep.GetArea();
+                    außenwandEG.Area += surface.GetArea();
                 }
                 else if (layerIndex == trennwandEG.LayerIndex)
                 {
-                    trennwandEG.Area += brep.GetArea();
+                    trennwandEG.Area += surface.GetArea();
                 }
                 else if (layerIndex == wandE.LayerIndex)
                 {
-                    wandE.Area += brep.GetArea();
+                    wandE.Area += surface.GetArea();
                 }
                 else if (layerIndex == deckeE.LayerIndex)
                 {
-                    deckeE.Area += brep.GetArea();
+                    deckeE.Area += surface.GetArea();
                 }
                 else if (layerIndex == bodenplatte.LayerIndex)
                 {
-                    bodenplatte.Area += brep.GetArea();
+                    bodenplatte.Area += surface.GetArea();
                 }
                 else if (layerIndex == wandKeller.LayerIndex)
                 {
-                    wandKeller.Area += brep.GetArea();
+                    wandKeller.Area += surface.GetArea();
                 }
             }
 
@@ -374,15 +293,15 @@ namespace BuildSystemsGH.Components
                 }
                 else if (i == 5)
                 {
-                    trenndecke.Component = componentName;
-                    trenndecke.PENRT = doublePENRTAToD * trenndecke.Area;
-                    trenndecke.GWP = doubleGWPAToD * trenndecke.Area;
+                    trenndeckeOG.Component = componentName;
+                    trenndeckeOG.PENRT = doublePENRTAToD * trenndeckeOG.Area;
+                    trenndeckeOG.GWP = doubleGWPAToD * trenndeckeOG.Area;
                 }
                 else if (i == 6)
                 {
-                    trennwand.Component = componentName;
-                    trennwand.PENRT = doublePENRTAToD * trennwand.Area;
-                    trennwand.GWP = doubleGWPAToD * trennwand.Area;
+                    trennwandOG.Component = componentName;
+                    trennwandOG.PENRT = doublePENRTAToD * trennwandOG.Area;
+                    trennwandOG.GWP = doubleGWPAToD * trennwandOG.Area;
                 }
                 else if (i == 7)
                 {
@@ -429,14 +348,15 @@ namespace BuildSystemsGH.Components
             }
 
             List<BuildingLayer> layers = new List<BuildingLayer>();
+
             // Add non-empty layers to the list
             if (außenwandNt.Area > 0) layers.Add(außenwandNt);
             if (außenwandTr.Area > 0) layers.Add(außenwandTr);
             if (balkon.Area > 0) layers.Add(balkon);
             if (dachdecke.Area > 0) layers.Add(dachdecke);
             if (innenwandNt.Area > 0) layers.Add(innenwandNt);
-            if (trenndecke.Area > 0) layers.Add(trenndecke);
-            if (trennwand.Area > 0) layers.Add(trennwand);
+            if (trenndeckeOG.Area > 0) layers.Add(trenndeckeOG);
+            if (trennwandOG.Area > 0) layers.Add(trennwandOG);
             if (deckeEG.Area > 0) layers.Add(deckeEG);
             if (außenwandEG.Area > 0) layers.Add(außenwandEG);
             if (trennwandEG.Area > 0) layers.Add(trennwandEG);
@@ -462,7 +382,6 @@ namespace BuildSystemsGH.Components
         {
             pManager.AddBrepParameter("Building Geometry", "Geometry", "Either a list of surfaces or list of closed breps.", GH_ParamAccess.list);
             pManager.AddTextParameter("Building Components IDs", "IDs", "IDs of building components.", GH_ParamAccess.tree);
-            pManager.AddTextParameter("Building Layer Names", "Layers", "Names of building layers.", GH_ParamAccess.tree);
         }
 
         /// <summary>
@@ -470,9 +389,11 @@ namespace BuildSystemsGH.Components
         /// </summary>
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
+            pManager.AddTextParameter("Layers", "Layers", "Names of rhino layers.", GH_ParamAccess.tree);
+            pManager.AddTextParameter("Components", "Components", "Names of building components.", GH_ParamAccess.tree);
+            pManager.AddNumberParameter("Areas", "Areas", "Areas of building layers.", GH_ParamAccess.tree);
             pManager.AddNumberParameter("PENRT", "PENRT", "Primary energy non-renewable total.", GH_ParamAccess.tree);
             pManager.AddNumberParameter("GWP", "GWP", "Global warming potential.", GH_ParamAccess.tree);
-            //pManager.AddTextParameter("Layers", "Layers", "Names of geometries layers.", GH_ParamAccess.list);
             //pManager.AddBrepParameter("brep", "brep", "brep", GH_ParamAccess.list);
         }
 
@@ -490,27 +411,180 @@ namespace BuildSystemsGH.Components
             // Combine with the new directory.
             string libPath = Path.Combine(directoryPath, "BuildSystems");
 
-            // Get Rhino document
-            RhinoDoc doc = Rhino.RhinoDoc.ActiveDoc;
-
-            // Get building geometry
+            // Get inputs
             List<GH_Brep> ghBreps = new List<GH_Brep>();
             if (!DA.GetDataList(0, ghBreps)) return;
             if(!DA.GetDataTree(1, out GH_Structure<GH_String> componentIDs)) return;
 
-            List<BuildingLayer> buildings = CalculateLCA(doc, libPath, componentIDs, ghBreps);
+            // Get Rhino document
+            RhinoDoc doc = Rhino.RhinoDoc.ActiveDoc;
 
+            //// First get the layer id, layer, and area ////
+            // List to store Layer index information
+            List<int> layerIndexes = new List<int>();
+
+            // List to store surfaces
+            List<Brep> surfaces = new List<Brep>();
+
+            foreach (GH_Brep ghBrep in ghBreps)
+            {
+                // Get layer index
+                Guid id = new Guid();
+                try
+                {
+                    id = ghBrep.ReferenceID;
+                }
+                catch
+                {
+                    AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "Please check the input geometry.");
+                    return;
+                }
+                int layerIndex = doc.Objects.Find(id).Attributes.LayerIndex;
+                layerIndexes.Add(layerIndex);
+            }
+
+            // Get unique layer indexes
+            IEnumerable<int> uniqueLayerIndexes = layerIndexes.Distinct().OrderBy(n => n);
+
+            // All building components to be considered. Should have a layer pair in Rhino.
+            string[] buildingComponentsList =
+                { "Außenwand nt",
+                "Außenwand tr",
+                "Balkon", "Dachdecke",
+                "Innenwand nt",
+                "Trenndecke OG",
+                "Trennwand OG",
+                "Decke EG",
+                "Außenwand EG",
+                "Trennwand EG",
+                "Wand E",
+                "Decke E",
+                "Bodenplatte",
+                "Wand Keller"
+                };
+
+            foreach (int layerIndex in uniqueLayerIndexes)
+            {
+                Layer layer = doc.Layers[layerIndex];
+
+                string layerName = layer.Name;
+
+                if (layerName.Contains("Außenwand nt"))
+                {
+                    außenwandNt.LayerIndex = layerIndex;
+                    außenwandNt.Layer = layerName;
+                }
+                else if (layerName.Contains("Außenwand tr"))
+                {
+                    außenwandTr.LayerIndex = layerIndex;
+                    außenwandTr.Layer = layerName;
+                }
+                else if (layerName.Contains("Balkon"))
+                {
+                    balkon.LayerIndex = layerIndex;
+                    balkon.Layer = layerName;
+                }
+                else if (layerName.Contains("Dachdecke"))
+                {
+                    dachdecke.LayerIndex = layerIndex;
+                    dachdecke.Layer = layerName;
+                }
+                else if (layerName.Contains("Innenwand nt"))
+                {
+                    innenwandNt.LayerIndex = layerIndex;
+                    innenwandNt.Layer = layerName;
+                }
+                else if (layerName.Contains("Trenndecke OG"))
+                {
+                    trenndeckeOG.LayerIndex = layerIndex;
+                    trenndeckeOG.Layer = layerName;
+                }
+                else if (layerName.Contains("Trennwand OG"))
+                {
+                    trennwandOG.LayerIndex = layerIndex;
+                    trennwandOG.Layer = layerName;
+                }
+                else if (layerName.Contains("Decke über EG"))
+                {
+                    deckeEG.LayerIndex = layerIndex;
+                    deckeEG.Layer = layerName;
+                }
+                else if (layerName.Contains("Außenwand EG"))
+                {
+                    außenwandEG.LayerIndex = layerIndex;
+                    außenwandEG.Layer = layerName;
+                }
+                else if (layerName.Contains("Trennwand EG"))
+                {
+                    trennwandEG.LayerIndex = layerIndex;
+                    trennwandEG.Layer = layerName;
+                }
+                else if (layerName.Contains("Wand E"))
+                {
+                    wandE.LayerIndex = layerIndex;
+                    wandE.Layer = layerName;
+                }
+                else if (layerName.Contains("Decke E"))
+                {
+                    deckeE.LayerIndex = layerIndex;
+                    deckeE.Layer = layerName;
+                }
+                else if (layerName.Contains("Bodenplatte"))
+                {
+                    bodenplatte.LayerIndex = layerIndex;
+                    bodenplatte.Layer = layerName;
+                }
+                else if (layerName.Contains("Wand Keller"))
+                {
+                    wandKeller.LayerIndex = layerIndex;
+                    wandKeller.Layer = layerName;
+                }
+                // Return grasshopper error "unknown layer"
+                else
+                {
+                    this.AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "Input geometry with unknow layer: " + layerName);
+                }
+
+            }
+
+
+
+            //// OLD CODE ////
+
+            List<BuildingLayer> buildingLayers = CalculateLCA(libPath, componentIDs, ghBreps);
+
+            // If there is a null on layers, then throw an exception
+
+            if (buildingLayers == null)
+            {
+                this.AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "Could not assign a property of BuildingLayer.");
+                return;
+            }
+
+            GH_Structure<GH_String> layers = new GH_Structure<GH_String>();
+            GH_Structure<GH_String> components = new GH_Structure<GH_String>();
+            GH_Structure<GH_Number> areas = new GH_Structure<GH_Number>();
             GH_Structure<GH_Number> PENRT = new GH_Structure<GH_Number>();
             GH_Structure<GH_Number> GWP = new GH_Structure<GH_Number>();
 
-            for (int i = 0; i < buildings.Count; i++)
+            for (int i = 0; i < buildingLayers.Count; i++)
             {
-                PENRT.Append(new GH_Number(buildings[i].PENRT), new GH_Path(i));
-                GWP.Append(new GH_Number(buildings[i].GWP), new GH_Path(i));
+                BuildingLayer building = buildingLayers[i];
+                GH_Path path = new GH_Path(building.LayerIndex);
+
+                layers.Append(new GH_String(building.Layer), path);
+                components.Append(new GH_String(building.Component), path);
+                areas.Append(new GH_Number(building.Area), path);
+                PENRT.Append(new GH_Number(building.PENRT), path);
+                GWP.Append(new GH_Number(building.GWP), path);
+
             }
 
-            DA.SetDataTree(0, PENRT);
-            DA.SetDataTree(1, GWP);
+            DA.SetDataTree(0, layers);
+            DA.SetDataTree(1, components);
+            DA.SetDataTree(2, areas);
+            DA.SetDataTree(3, PENRT);
+            DA.SetDataTree(4, GWP);
         }
 
         public override GH_Exposure Exposure => GH_Exposure.secondary;

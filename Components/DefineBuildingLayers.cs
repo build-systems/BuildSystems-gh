@@ -63,8 +63,8 @@ namespace BuildSystemsGH.Components
             pManager.AddTextParameter("Balkon", "Balkon", "Balkon (balcony).", GH_ParamAccess.item);
             pManager.AddTextParameter("Dachdecke", "Dachdecke", "Dachdecke (roofing).", GH_ParamAccess.item);
             pManager.AddTextParameter("Innenwand nicht tragend", "Innenwand nt", "Innenwand nicht tragend (internal wall non-structural).", GH_ParamAccess.item);
-            pManager.AddTextParameter("Trenndecke", "Trenndecke", "Trenndecke (partition floor).", GH_ParamAccess.item);
-            pManager.AddTextParameter("Trennwand", "Trennwand", "Trennwand (partition wall).", GH_ParamAccess.item);
+            pManager.AddTextParameter("Trenndecke OG", "Trenndecke", "Trenndecke (partition floor).", GH_ParamAccess.item);
+            pManager.AddTextParameter("Trennwand OG", "Trennwand", "Trennwand (partition wall).", GH_ParamAccess.item);
             pManager.AddTextParameter("Decke über EG", "Decke EG", "Decke über Erdgeschoss (floor above the first floor).", GH_ParamAccess.item);
             pManager.AddTextParameter("Außenwand EG", "Außenwand EG", "Außenwand Erdgeschoss (external wall on the first floor).", GH_ParamAccess.item);
             pManager.AddTextParameter("Trennwand EG", "Trennwand EG", "Trennwand Erdgeschoss (partition wall on the first floor).", GH_ParamAccess.item);
@@ -93,8 +93,8 @@ namespace BuildSystemsGH.Components
             string balkon = null;
             string dachdecke = null;
             string innenwandNt = null;
-            string trenndecke = null;
-            string trennwand = null;
+            string trenndeckeOG = null;
+            string trennwandOG = null;
             string deckeEG = null;
             string außenwandEG = null;
             string trennwandEG = null;
@@ -107,8 +107,8 @@ namespace BuildSystemsGH.Components
             DA.GetData(2, ref balkon);
             DA.GetData(3, ref dachdecke);
             DA.GetData(4, ref innenwandNt);
-            DA.GetData(5, ref trenndecke);
-            DA.GetData(6, ref trennwand);
+            DA.GetData(5, ref trenndeckeOG);
+            DA.GetData(6, ref trennwandOG);
             DA.GetData(7, ref deckeEG);
             DA.GetData(8, ref außenwandEG);
             DA.GetData(9, ref trennwandEG);
@@ -123,8 +123,8 @@ namespace BuildSystemsGH.Components
             buildingLayers.Add(balkon);
             buildingLayers.Add(dachdecke);
             buildingLayers.Add(innenwandNt);
-            buildingLayers.Add(trenndecke);
-            buildingLayers.Add(trennwand);
+            buildingLayers.Add(trenndeckeOG);
+            buildingLayers.Add(trennwandOG);
             buildingLayers.Add(deckeEG);
             buildingLayers.Add(außenwandEG);
             buildingLayers.Add(trennwandEG);
