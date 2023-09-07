@@ -11,7 +11,7 @@ using System.Linq;
 
 using BSoM;
 
-namespace BuildSystemsGH.Components
+namespace BuildSystemsGH.Components.Libraries
 {
     public class ComponentsLibrary : GH_Component
     {
@@ -105,7 +105,7 @@ namespace BuildSystemsGH.Components
         }
 
         public ComponentsLibrary()
-          : base("B-S Components Library", "BSL",
+          : base("B-S Components Library", "BSCL",
               "Library of selected components.",
               "BuildSystems", "LCA")
         {
@@ -113,7 +113,7 @@ namespace BuildSystemsGH.Components
         /// <summary>
         /// Registers all the input parameters for this component.
         /// </summary>
-        protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
+        protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
             GH_AssemblyInfo info = Grasshopper.Instances.ComponentServer.FindAssembly(new Guid("36538369-6017-4b4c-9973-aee8f072399a"));
             string filePath = info.Location;
@@ -128,7 +128,7 @@ namespace BuildSystemsGH.Components
         /// <summary>
         /// Registers all the output parameters for this component.
         /// </summary>
-        protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
+        protected override void RegisterOutputParams(GH_OutputParamManager pManager)
         {
             pManager.AddTextParameter("Assembled Component", "Component", "The resulting data representing the layers of the building component", GH_ParamAccess.tree);
         }
@@ -172,18 +172,18 @@ namespace BuildSystemsGH.Components
 
                 // Make a list of json files in the database directory
                 string databaseComponent = libPath + "\\" + "Component";
-                jsonComponentPathArray = System.IO.Directory.GetFiles(databaseComponent, "*.json");
+                jsonComponentPathArray = Directory.GetFiles(databaseComponent, "*.json");
                 string databaseAssembly = libPath + "\\" + "Assembly";
-                jsonAssemblyPathArray = System.IO.Directory.GetFiles(databaseAssembly, "*.json");
+                jsonAssemblyPathArray = Directory.GetFiles(databaseAssembly, "*.json");
                 string databaseMaterial = libPath + "\\" + "Material";
-                jsonMaterialPathArray = System.IO.Directory.GetFiles(databaseMaterial, "*.json");
+                jsonMaterialPathArray = Directory.GetFiles(databaseMaterial, "*.json");
 
                 // Convert to list
                 buildingComponets = jsonComponentPathArray.ToList();
 
                 // Filter the jsonBauteil list to find the selected component
                 List<string> selComponentPath = jsonComponentPathArray.Where(s => s.Contains(componentName)).ToList();
-                
+
                 // Get the name of file without the path
                 for (int i = 0; i < buildingComponets.Count; i++)
                 {
@@ -312,11 +312,11 @@ namespace BuildSystemsGH.Components
                 };
 
                 List<Grasshopper.Kernel.Special.GH_ValueListItem> componentsAvailable = new List<Grasshopper.Kernel.Special.GH_ValueListItem>();
-                    foreach (string component in maualList)
-                    {
+                foreach (string component in maualList)
+                {
                     Grasshopper.Kernel.Special.GH_ValueListItem valueItem = new Grasshopper.Kernel.Special.GH_ValueListItem(component, '"' + component + '"');
-                        componentsAvailable.Add(valueItem);
-                    }
+                    componentsAvailable.Add(valueItem);
+                }
 
                 valList.ListItems.AddRange(componentsAvailable);
                 document.AddObject(valList, false);
@@ -336,7 +336,7 @@ namespace BuildSystemsGH.Components
             {
                 //You can add image files to your project resources and access them like this:
                 // return Resources.IconForThisComponent;
-                return null;
+                return Properties.Resources.ComponentsLibrary;
             }
         }
 

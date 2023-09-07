@@ -7,7 +7,7 @@ using Grasshopper.Kernel.Special;
 using Rhino.DocObjects;
 using Rhino.Geometry;
 
-namespace BuildSystemsGH.Components
+namespace BuildSystemsGH.Components.Building.Define
 {
     public class DefineBuildingLayers : GH_Component
     {
@@ -26,16 +26,16 @@ namespace BuildSystemsGH.Components
                 Attributes.PerformLayout();
                 int x = (int)in0str.Attributes.Pivot.X - 500;
                 int y = (int)in0str.Attributes.Pivot.Y - 11;
-                Grasshopper.Kernel.Special.GH_ValueList valList = new Grasshopper.Kernel.Special.GH_ValueList();
+                GH_ValueList valList = new GH_ValueList();
                 valList.CreateAttributes();
                 valList.Attributes.Pivot = new PointF(x, y);
                 valList.Attributes.ExpireLayout();
                 valList.ListItems.Clear();
 
-                List<Grasshopper.Kernel.Special.GH_ValueListItem> componentsAvailable = new List<Grasshopper.Kernel.Special.GH_ValueListItem>();
+                List<GH_ValueListItem> componentsAvailable = new List<GH_ValueListItem>();
                 foreach (string component in maualList)
                 {
-                    Grasshopper.Kernel.Special.GH_ValueListItem valueItem = new Grasshopper.Kernel.Special.GH_ValueListItem(component, '"' + component + '"');
+                    GH_ValueListItem valueItem = new GH_ValueListItem(component, '"' + component + '"');
                     componentsAvailable.Add(valueItem);
                 }
 
@@ -56,7 +56,7 @@ namespace BuildSystemsGH.Components
         /// <summary>
         /// Registers all the input parameters for this component.
         /// </summary>
-        protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
+        protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
             pManager.AddTextParameter("Außenwant nicht tragent", "Außenwant nt", "Außenwand nicht tragend (external wall non-structural).", GH_ParamAccess.item);
             pManager.AddTextParameter("Außenwand tragend", "Außenwand tr", "Außenwand tragend (external wall structural).", GH_ParamAccess.item);
@@ -77,7 +77,7 @@ namespace BuildSystemsGH.Components
         /// <summary>
         /// Registers all the output parameters for this component.
         /// </summary>
-        protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
+        protected override void RegisterOutputParams(GH_OutputParamManager pManager)
         {
             pManager.AddTextParameter("Building Layers", "Layers", "Layers grouping building components.", GH_ParamAccess.list);
         }
@@ -163,7 +163,7 @@ namespace BuildSystemsGH.Components
         }
 
 
-        public override GH_Exposure Exposure => GH_Exposure.secondary;
+        public override GH_Exposure Exposure => GH_Exposure.tertiary;
 
         /// <summary>
         /// Provides an Icon for the component.
@@ -174,7 +174,7 @@ namespace BuildSystemsGH.Components
             {
                 //You can add image files to your project resources and access them like this:
                 // return Resources.IconForThisComponent;
-                return null;
+                return Properties.Resources.DefineBuildingLayers;
             }
         }
 

@@ -174,6 +174,8 @@ namespace BuildSystemsGH.Urban
             DA.SetDataList(0, gProperties.AllProperties);
         }
 
+        public override GH_Exposure Exposure => GH_Exposure.secondary;
+
         /// <summary>
         /// Provides an Icon for the component.
         /// </summary>
@@ -183,7 +185,7 @@ namespace BuildSystemsGH.Urban
             {
                 //You can add image files to your project resources and access them like this:
                 // return Resources.IconForThisComponent;
-                return null;
+                return Properties.Resources.GetBuildingsProperties;
             }
         }
 

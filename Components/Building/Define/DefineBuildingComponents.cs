@@ -7,8 +7,13 @@ using Grasshopper.Kernel.Data;
 using Grasshopper.Kernel.Types;
 using Rhino.Geometry;
 
-namespace BuildSystemsGH.Components
+namespace BuildSystemsGH.Components.Building.Define
 {
+    // This GH_Component has a hard coded list of building components separated by the BuildSystems template layers.
+    // You can find the Rhino file with the layers in the repos/templates folder on Google Drive.
+    // This is not optimal, but this is how the final component should work.
+    // Ideally it would consider new layers in the open Rhino file and new components in the library.
+
     public class DefineBuildingComponents : GH_Component
     {
         /// <summary>
@@ -45,17 +50,17 @@ namespace BuildSystemsGH.Components
         }
 
 
-public DefineBuildingComponents()
-          : base("Define Building Components", "DBC",
-              "Defines a component for each building layer.",
-              "BuildSystems", "LCA")
+        public DefineBuildingComponents()
+                  : base("Define Building Components", "DBC",
+                      "Defines a component for each building layer.",
+                      "BuildSystems", "LCA")
         {
         }
 
         /// <summary>
         /// Registers all the input parameters for this component.
         /// </summary>
-        protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
+        protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
             pManager.AddTextParameter("Außenwand nicht tragent", "Außenwand nt", "Außenwand nicht tragend (external wall non-structural).", GH_ParamAccess.item);
             pManager.AddTextParameter("Außenwand tragend", "Außenwand tr", "Außenwand tragend (external wall structural).", GH_ParamAccess.item);
@@ -76,7 +81,7 @@ public DefineBuildingComponents()
         /// <summary>
         /// Registers all the output parameters for this component.
         /// </summary>
-        protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
+        protected override void RegisterOutputParams(GH_OutputParamManager pManager)
         {
             pManager.AddTextParameter("Building Components IDs", "IDs", "IDs of building components.", GH_ParamAccess.tree);
         }
@@ -120,43 +125,43 @@ public DefineBuildingComponents()
 
             GH_String gH_außenwandNt = new GH_String(außenwandNt);
             buildingComponents.Append(gH_außenwandNt, new GH_Path(0));
-            
+
             GH_String gH_außenwandTr = new GH_String(außenwandTr);
             buildingComponents.Append(gH_außenwandTr, new GH_Path(1));
-            
+
             GH_String gH_balkon = new GH_String(balkon);
             buildingComponents.Append(gH_balkon, new GH_Path(2));
-            
+
             GH_String gH_dachdecke = new GH_String(dachdecke);
             buildingComponents.Append(gH_dachdecke, new GH_Path(3));
-            
+
             GH_String gH_innenwandNt = new GH_String(innenwandNt);
             buildingComponents.Append(gH_innenwandNt, new GH_Path(4));
-            
+
             GH_String gH_trenndecke = new GH_String(trenndecke);
             buildingComponents.Append(gH_trenndecke, new GH_Path(5));
-            
+
             GH_String gH_trennwand = new GH_String(trennwand);
             buildingComponents.Append(gH_trennwand, new GH_Path(6));
-            
+
             GH_String gH_deckeEG = new GH_String(deckeEG);
             buildingComponents.Append(gH_deckeEG, new GH_Path(7));
-            
+
             GH_String gH_außenwandEG = new GH_String(außenwandEG);
             buildingComponents.Append(gH_außenwandEG, new GH_Path(8));
-            
+
             GH_String gH_trennwandEG = new GH_String(trennwandEG);
             buildingComponents.Append(gH_trennwandEG, new GH_Path(9));
-            
+
             GH_String gH_wandE = new GH_String(wandE);
             buildingComponents.Append(gH_wandE, new GH_Path(10));
-            
+
             GH_String gH_deckeE = new GH_String(deckeE);
             buildingComponents.Append(gH_deckeE, new GH_Path(11));
-            
+
             GH_String gH_bodenplatte = new GH_String(bodenplatte);
             buildingComponents.Append(gH_bodenplatte, new GH_Path(12));
-            
+
             GH_String gH_wandKeller = new GH_String(wandKeller);
             buildingComponents.Append(gH_wandKeller, new GH_Path(13));
 
@@ -196,7 +201,7 @@ public DefineBuildingComponents()
                 };
 
             int[] außenwandTrID = new int[] { 1 };
-            string[] außenwandTrList = 
+            string[] außenwandTrList =
                 {
                 "AW-tr-HM-A",
                 "AW-tr-HM-B",
@@ -237,8 +242,8 @@ public DefineBuildingComponents()
             };
 
             int[] innenwandNtID = new int[] { 4 };
-            string[] innenwandNtList = 
-                {                     
+            string[] innenwandNtList =
+                {
                 "IW-tr-HM-A",
                 "IW-nt-HT-A",
                 "IW-nt-HT-B",
@@ -265,7 +270,7 @@ public DefineBuildingComponents()
                 };
 
             int[] trennwandID = new int[] { 6 };
-            string[] trennwandList = 
+            string[] trennwandList =
                 {
                 "TW-tr-HM-A",
                 "TW-tr-HM-B",
@@ -334,7 +339,7 @@ public DefineBuildingComponents()
             base.AddedToDocument(document);
         }
 
-        public override GH_Exposure Exposure => GH_Exposure.secondary;
+        public override GH_Exposure Exposure => GH_Exposure.tertiary;
 
         /// <summary>
         /// Provides an Icon for the component.
@@ -345,7 +350,7 @@ public DefineBuildingComponents()
             {
                 //You can add image files to your project resources and access them like this:
                 // return Resources.IconForThisComponent;
-                return null;
+                return Properties.Resources.DefineBuildingComponents;
             }
         }
 

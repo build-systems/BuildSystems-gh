@@ -231,14 +231,21 @@ namespace BuildSystemsGH
 
         }
 
+        public override GH_Exposure Exposure => GH_Exposure.primary;
+
 
         /// <summary>
-        /// Provides an Icon for every component that will be visible in the User Interface.
-        /// Icons need to be 24x24 pixels.
-        /// You can add image files to your project resources and access them like this:
-        /// return Resources.IconForThisComponent;
+        /// Provides an Icon for the component.
         /// </summary>
-        protected override System.Drawing.Bitmap Icon => null;
+        protected override System.Drawing.Bitmap Icon
+        {
+            get
+            {
+                //You can add image files to your project resources and access them like this:
+                // return Resources.IconForThisComponent;
+                return Properties.Resources.BuildingByHeight;
+            }
+        }
 
         /// <summary>
         /// Each component must have a unique Guid to identify it. 

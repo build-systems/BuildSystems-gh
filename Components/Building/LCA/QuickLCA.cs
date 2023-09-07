@@ -14,7 +14,7 @@ using Newtonsoft.Json.Linq;
 using BSoM;
 using Eto.Forms;
 
-namespace BuildSystemsGH.Components
+namespace BuildSystemsGH.Components.Building.LCA
 {
     public class QuickLCA : GH_Component
     {
@@ -24,7 +24,7 @@ namespace BuildSystemsGH.Components
         /// 
 
         public class BuildingComponent
-        {             
+        {
             public string Name { get; set; }
             public string RhinoLayerIndex { get; set; }
             public string RhinoLayer { get; set; }
@@ -70,7 +70,7 @@ namespace BuildSystemsGH.Components
             Point3d center = twoLargestFaces[0].GetBoundingBox(false).Center;
             Point3d closestPoint = twoLargestFaces[1].ClosestPoint(center);
             // Move largest face to the middle in between the two largest faces
-            Vector3d vector = new Vector3d((closestPoint - center));
+            Vector3d vector = new Vector3d(closestPoint - center);
             twoLargestFaces[0].Translate(vector);
 
             // Return the moved face
@@ -109,73 +109,73 @@ namespace BuildSystemsGH.Components
                 if (brep.IsSolid)
                 {
                     surface = GetSurface(brep);
-                    surfaces.Add(surface);
+                    //surfaces.Add(surface);
                 }
                 // If brep is not solid, then add the brep to the list of surfaces
                 else
                 {
                     surface = brep;
-                    surfaces.Add(brep);
+                    //surfaces.Add(brep);
                 }
 
-                int layerIndex = layerIndexes[i];
+                //int layerIndex = layerIndexes[i];
 
-                if (layerIndex == außenwandNt.LayerIndex)
-                {
-                    außenwandNt.Area += surface.GetArea();
-                }
-                else if (layerIndex == außenwandTr.LayerIndex)
-                {
-                    außenwandTr.Area += surface.GetArea();
-                }
-                else if (layerIndex == balkon.LayerIndex)
-                {
-                    balkon.Area += surface.GetArea();
-                }
-                else if (layerIndex == dachdecke.LayerIndex)
-                {
-                    dachdecke.Area += surface.GetArea();
-                }
-                else if (layerIndex == innenwandNt.LayerIndex)
-                {
-                    innenwandNt.Area += surface.GetArea();
-                }
-                else if (layerIndex == trenndeckeOG.LayerIndex)
-                {
-                    trenndeckeOG.Area += surface.GetArea();
-                }
-                else if (layerIndex == trennwandOG.LayerIndex)
-                {
-                    trennwandOG.Area += surface.GetArea();
-                }
-                else if (layerIndex == deckeEG.LayerIndex)
-                {
-                    deckeEG.Area += surface.GetArea();
-                }
-                else if (layerIndex == außenwandEG.LayerIndex)
-                {
-                    außenwandEG.Area += surface.GetArea();
-                }
-                else if (layerIndex == trennwandEG.LayerIndex)
-                {
-                    trennwandEG.Area += surface.GetArea();
-                }
-                else if (layerIndex == wandE.LayerIndex)
-                {
-                    wandE.Area += surface.GetArea();
-                }
-                else if (layerIndex == deckeE.LayerIndex)
-                {
-                    deckeE.Area += surface.GetArea();
-                }
-                else if (layerIndex == bodenplatte.LayerIndex)
-                {
-                    bodenplatte.Area += surface.GetArea();
-                }
-                else if (layerIndex == wandKeller.LayerIndex)
-                {
-                    wandKeller.Area += surface.GetArea();
-                }
+                //    if (layerIndex == außenwandNt.LayerIndex)
+                //    {
+                //        außenwandNt.Area += surface.GetArea();
+                //    }
+                //    else if (layerIndex == außenwandTr.LayerIndex)
+                //    {
+                //        außenwandTr.Area += surface.GetArea();
+                //    }
+                //    else if (layerIndex == balkon.LayerIndex)
+                //    {
+                //        balkon.Area += surface.GetArea();
+                //    }
+                //    else if (layerIndex == dachdecke.LayerIndex)
+                //    {
+                //        dachdecke.Area += surface.GetArea();
+                //    }
+                //    else if (layerIndex == innenwandNt.LayerIndex)
+                //    {
+                //        innenwandNt.Area += surface.GetArea();
+                //    }
+                //    else if (layerIndex == trenndeckeOG.LayerIndex)
+                //    {
+                //        trenndeckeOG.Area += surface.GetArea();
+                //    }
+                //    else if (layerIndex == trennwandOG.LayerIndex)
+                //    {
+                //        trennwandOG.Area += surface.GetArea();
+                //    }
+                //    else if (layerIndex == deckeEG.LayerIndex)
+                //    {
+                //        deckeEG.Area += surface.GetArea();
+                //    }
+                //    else if (layerIndex == außenwandEG.LayerIndex)
+                //    {
+                //        außenwandEG.Area += surface.GetArea();
+                //    }
+                //    else if (layerIndex == trennwandEG.LayerIndex)
+                //    {
+                //        trennwandEG.Area += surface.GetArea();
+                //    }
+                //    else if (layerIndex == wandE.LayerIndex)
+                //    {
+                //        wandE.Area += surface.GetArea();
+                //    }
+                //    else if (layerIndex == deckeE.LayerIndex)
+                //    {
+                //        deckeE.Area += surface.GetArea();
+                //    }
+                //    else if (layerIndex == bodenplatte.LayerIndex)
+                //    {
+                //        bodenplatte.Area += surface.GetArea();
+                //    }
+                //    else if (layerIndex == wandKeller.LayerIndex)
+                //    {
+                //        wandKeller.Area += surface.GetArea();
+                //    }
             }
 
             //// Now get the building component, GWP and PENRT ////
@@ -184,7 +184,7 @@ namespace BuildSystemsGH.Components
             string[] jsonComponentPathArray;
 
             string databaseComponent = libPath + "\\" + "Component";
-            jsonComponentPathArray = System.IO.Directory.GetFiles(databaseComponent, "*.json");
+            jsonComponentPathArray = Directory.GetFiles(databaseComponent, "*.json");
 
             // Convert to list
             List<string> buildingComponets = new List<string>();
@@ -378,7 +378,7 @@ namespace BuildSystemsGH.Components
         /// <summary>
         /// Registers all the input parameters for this component.
         /// </summary>
-        protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
+        protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
             pManager.AddBrepParameter("Building Geometry", "Geometry", "Either a list of surfaces or list of closed breps.", GH_ParamAccess.list);
             pManager.AddTextParameter("Building Components IDs", "IDs", "IDs of building components.", GH_ParamAccess.tree);
@@ -387,7 +387,7 @@ namespace BuildSystemsGH.Components
         /// <summary>
         /// Registers all the output parameters for this component.
         /// </summary>
-        protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
+        protected override void RegisterOutputParams(GH_OutputParamManager pManager)
         {
             pManager.AddTextParameter("Layers", "Layers", "Names of rhino layers.", GH_ParamAccess.tree);
             pManager.AddTextParameter("Components", "Components", "Names of building components.", GH_ParamAccess.tree);
@@ -414,10 +414,10 @@ namespace BuildSystemsGH.Components
             // Get inputs
             List<GH_Brep> ghBreps = new List<GH_Brep>();
             if (!DA.GetDataList(0, ghBreps)) return;
-            if(!DA.GetDataTree(1, out GH_Structure<GH_String> componentIDs)) return;
+            if (!DA.GetDataTree(1, out GH_Structure<GH_String> componentIDs)) return;
 
             // Get Rhino document
-            RhinoDoc doc = Rhino.RhinoDoc.ActiveDoc;
+            RhinoDoc doc = RhinoDoc.ActiveDoc;
 
             //// First get the layer id, layer, and area ////
             // List to store Layer index information
@@ -463,89 +463,89 @@ namespace BuildSystemsGH.Components
                 "Wand Keller"
                 };
 
-            foreach (int layerIndex in uniqueLayerIndexes)
-            {
-                Layer layer = doc.Layers[layerIndex];
+            //foreach (int layerIndex in uniqueLayerIndexes)
+            //{
+            //    Layer layer = doc.Layers[layerIndex];
 
-                string layerName = layer.Name;
+            //    string layerName = layer.Name;
 
-                if (layerName.Contains("Außenwand nt"))
-                {
-                    außenwandNt.LayerIndex = layerIndex;
-                    außenwandNt.Layer = layerName;
-                }
-                else if (layerName.Contains("Außenwand tr"))
-                {
-                    außenwandTr.LayerIndex = layerIndex;
-                    außenwandTr.Layer = layerName;
-                }
-                else if (layerName.Contains("Balkon"))
-                {
-                    balkon.LayerIndex = layerIndex;
-                    balkon.Layer = layerName;
-                }
-                else if (layerName.Contains("Dachdecke"))
-                {
-                    dachdecke.LayerIndex = layerIndex;
-                    dachdecke.Layer = layerName;
-                }
-                else if (layerName.Contains("Innenwand nt"))
-                {
-                    innenwandNt.LayerIndex = layerIndex;
-                    innenwandNt.Layer = layerName;
-                }
-                else if (layerName.Contains("Trenndecke OG"))
-                {
-                    trenndeckeOG.LayerIndex = layerIndex;
-                    trenndeckeOG.Layer = layerName;
-                }
-                else if (layerName.Contains("Trennwand OG"))
-                {
-                    trennwandOG.LayerIndex = layerIndex;
-                    trennwandOG.Layer = layerName;
-                }
-                else if (layerName.Contains("Decke über EG"))
-                {
-                    deckeEG.LayerIndex = layerIndex;
-                    deckeEG.Layer = layerName;
-                }
-                else if (layerName.Contains("Außenwand EG"))
-                {
-                    außenwandEG.LayerIndex = layerIndex;
-                    außenwandEG.Layer = layerName;
-                }
-                else if (layerName.Contains("Trennwand EG"))
-                {
-                    trennwandEG.LayerIndex = layerIndex;
-                    trennwandEG.Layer = layerName;
-                }
-                else if (layerName.Contains("Wand E"))
-                {
-                    wandE.LayerIndex = layerIndex;
-                    wandE.Layer = layerName;
-                }
-                else if (layerName.Contains("Decke E"))
-                {
-                    deckeE.LayerIndex = layerIndex;
-                    deckeE.Layer = layerName;
-                }
-                else if (layerName.Contains("Bodenplatte"))
-                {
-                    bodenplatte.LayerIndex = layerIndex;
-                    bodenplatte.Layer = layerName;
-                }
-                else if (layerName.Contains("Wand Keller"))
-                {
-                    wandKeller.LayerIndex = layerIndex;
-                    wandKeller.Layer = layerName;
-                }
-                // Return grasshopper error "unknown layer"
-                else
-                {
-                    this.AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "Input geometry with unknow layer: " + layerName);
-                }
+            //    if (layerName.Contains("Außenwand nt"))
+            //    {
+            //        außenwandNt.LayerIndex = layerIndex;
+            //        außenwandNt.Layer = layerName;
+            //    }
+            //    else if (layerName.Contains("Außenwand tr"))
+            //    {
+            //        außenwandTr.LayerIndex = layerIndex;
+            //        außenwandTr.Layer = layerName;
+            //    }
+            //    else if (layerName.Contains("Balkon"))
+            //    {
+            //        balkon.LayerIndex = layerIndex;
+            //        balkon.Layer = layerName;
+            //    }
+            //    else if (layerName.Contains("Dachdecke"))
+            //    {
+            //        dachdecke.LayerIndex = layerIndex;
+            //        dachdecke.Layer = layerName;
+            //    }
+            //    else if (layerName.Contains("Innenwand nt"))
+            //    {
+            //        innenwandNt.LayerIndex = layerIndex;
+            //        innenwandNt.Layer = layerName;
+            //    }
+            //    else if (layerName.Contains("Trenndecke OG"))
+            //    {
+            //        trenndeckeOG.LayerIndex = layerIndex;
+            //        trenndeckeOG.Layer = layerName;
+            //    }
+            //    else if (layerName.Contains("Trennwand OG"))
+            //    {
+            //        trennwandOG.LayerIndex = layerIndex;
+            //        trennwandOG.Layer = layerName;
+            //    }
+            //    else if (layerName.Contains("Decke über EG"))
+            //    {
+            //        deckeEG.LayerIndex = layerIndex;
+            //        deckeEG.Layer = layerName;
+            //    }
+            //    else if (layerName.Contains("Außenwand EG"))
+            //    {
+            //        außenwandEG.LayerIndex = layerIndex;
+            //        außenwandEG.Layer = layerName;
+            //    }
+            //    else if (layerName.Contains("Trennwand EG"))
+            //    {
+            //        trennwandEG.LayerIndex = layerIndex;
+            //        trennwandEG.Layer = layerName;
+            //    }
+            //    else if (layerName.Contains("Wand E"))
+            //    {
+            //        wandE.LayerIndex = layerIndex;
+            //        wandE.Layer = layerName;
+            //    }
+            //    else if (layerName.Contains("Decke E"))
+            //    {
+            //        deckeE.LayerIndex = layerIndex;
+            //        deckeE.Layer = layerName;
+            //    }
+            //    else if (layerName.Contains("Bodenplatte"))
+            //    {
+            //        bodenplatte.LayerIndex = layerIndex;
+            //        bodenplatte.Layer = layerName;
+            //    }
+            //    else if (layerName.Contains("Wand Keller"))
+            //    {
+            //        wandKeller.LayerIndex = layerIndex;
+            //        wandKeller.Layer = layerName;
+            //    }
+            //    // Return grasshopper error "unknown layer"
+            //    else
+            //    {
+            //        this.AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "Input geometry with unknow layer: " + layerName);
+            //    }
 
-            }
+            //}
 
 
 
@@ -557,7 +557,7 @@ namespace BuildSystemsGH.Components
 
             if (buildingLayers == null)
             {
-                this.AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "Could not assign a property of BuildingLayer.");
+                AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "Could not assign a property of BuildingLayer.");
                 return;
             }
 
@@ -587,7 +587,7 @@ namespace BuildSystemsGH.Components
             DA.SetDataTree(4, GWP);
         }
 
-        public override GH_Exposure Exposure => GH_Exposure.secondary;
+        public override GH_Exposure Exposure => GH_Exposure.quarternary;
 
         /// <summary>
         /// Provides an Icon for the component.
@@ -598,7 +598,7 @@ namespace BuildSystemsGH.Components
             {
                 //You can add image files to your project resources and access them like this:
                 // return Resources.IconForThisComponent;
-                return null;
+                return Properties.Resources.QuickLCA;
             }
         }
 

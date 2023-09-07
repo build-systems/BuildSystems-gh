@@ -7,7 +7,7 @@ using Rhino.DocObjects;
 using Rhino.Collections;
 using Rhino.Geometry.Collections;
 
-namespace BuildSystemsGH.Utilities
+namespace BuildSystemsGH.Components.Building.Utilities
 {
     public class GetMainSurface : GH_Component
     {
@@ -42,7 +42,7 @@ namespace BuildSystemsGH.Utilities
             Point3d center = twoLargestFaces[0].GetBoundingBox(false).Center;
             Point3d closestPoint = twoLargestFaces[1].ClosestPoint(center);
             // Move largest face to the middle in between the two largest faces
-            Vector3d vector = new Vector3d((closestPoint - center));
+            Vector3d vector = new Vector3d(closestPoint - center);
             twoLargestFaces[0].Translate(vector);
 
 
@@ -53,14 +53,14 @@ namespace BuildSystemsGH.Utilities
         public GetMainSurface()
           : base("Get Main Surface", "GMS",
               "Gets the main surfarce from a brep.",
-              "BuildSystems", "Utilities")
+              "BuildSystems", "LCA")
         {
         }
 
         /// <summary>
         /// Registers all the input parameters for this component.
         /// </summary>
-        protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
+        protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
             pManager.AddBrepParameter("Breps", "Brep", "Brep to get the main surface from.", GH_ParamAccess.list);
         }
@@ -68,7 +68,7 @@ namespace BuildSystemsGH.Utilities
         /// <summary>
         /// Registers all the output parameters for this component.
         /// </summary>
-        protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
+        protected override void RegisterOutputParams(GH_OutputParamManager pManager)
         {
             pManager.AddBrepParameter("Surface", "Surface", "Main surface from the brep.", GH_ParamAccess.list);
         }
@@ -80,18 +80,20 @@ namespace BuildSystemsGH.Utilities
         protected override void SolveInstance(IGH_DataAccess DA)
         {
             List<Brep> breps = new List<Brep>();
-    
+
             if (!DA.GetDataList(0, breps)) return;
-    
+
             List<Brep> surfaces = new List<Brep>();
-    
+
             foreach (Brep brep in breps)
-                {
-                    surfaces.Add(GetMiddleSurface(brep));
-                }
-    
-             DA.SetDataList(0, surfaces);
+            {
+                surfaces.Add(GetMiddleSurface(brep));
+            }
+
+            DA.SetDataList(0, surfaces);
         }
+
+        public override GH_Exposure Exposure => GH_Exposure.quinary;
 
         /// <summary>
         /// Provides an Icon for the component.
@@ -102,7 +104,7 @@ namespace BuildSystemsGH.Utilities
             {
                 //You can add image files to your project resources and access them like this:
                 // return Resources.IconForThisComponent;
-                return null;
+                return Properties.Resources.GetMainSurface;
             }
         }
 
