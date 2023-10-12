@@ -61,7 +61,7 @@ Output
 </details>
 
 
-## Building Component Tool
+## LCA Tools
 Our LCA tool - Life Cycle Assessment.
 
 We have a component with our own in-house developed library assembled on top of [Oköbaudat](https://www.oekobaudat.de/)
