@@ -24,6 +24,9 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 // note on versioning: following Semantic Versioning (SemVer), initial was 0.1.0-alpha currently on 0.3.0-alpha (22/08/2023)
 
+/* Changes:
+ * Folder for the libraries to plural ("Components", "Assemblies", "Materials")
+*/
 using Grasshopper;
 using Grasshopper.Kernel;
 using System;

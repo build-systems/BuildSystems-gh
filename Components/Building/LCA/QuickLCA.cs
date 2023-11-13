@@ -598,7 +598,8 @@ namespace BuildSystemsGH.Components.Building.LCA
             {
                 //You can add image files to your project resources and access them like this:
                 // return Resources.IconForThisComponent;
-                return Properties.Resources.QuickLCA;
+                //return Properties.Resources.QuickLCA;
+                return null;
             }
         }
 

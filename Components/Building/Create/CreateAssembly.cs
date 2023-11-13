@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 using Grasshopper.Kernel;
 using Rhino.Geometry;
+using System.Drawing;
 
 namespace BuildSystemsGH.Components.Building.Create
 {
@@ -47,13 +48,11 @@ namespace BuildSystemsGH.Components.Building.Create
         /// <summary>
         /// Provides an Icon for the component.
         /// </summary>
-        protected override System.Drawing.Bitmap Icon
+        protected override Bitmap Icon
         {
             get
             {
-                //You can add image files to your project resources and access them like this:
-                // return Resources.IconForThisComponent;
-                return Properties.Resources.CreateAssembly;
+                return Properties.Resources.CreateComponent;
             }
         }
 

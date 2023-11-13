@@ -8,6 +8,7 @@ using Grasshopper.Kernel.Types;
 using Newtonsoft.Json.Linq;
 using Rhino.Geometry;
 using System.Drawing;
+using System.Reflection;
 
 namespace BuildSystemsGH.Components.Building.LCA
 {
@@ -597,8 +598,10 @@ namespace BuildSystemsGH.Components.Building.LCA
         /// </summary>
         protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
-            GH_AssemblyInfo info = Grasshopper.Instances.ComponentServer.FindAssembly(new Guid("36538369-6017-4b4c-9973-aee8f072399a"));
-            string filePath = info.Location;
+            //GH_AssemblyInfo info = Grasshopper.Instances.ComponentServer.FindAssembly(new Guid("36538369-6017-4b4c-9973-aee8f072399a"));
+            //string filePath = info.Location;
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            string filePath = assembly.Location;
             // Get the directory name from the original path.
             string directoryPath = Path.GetDirectoryName(filePath);
             // Combine with the new directory.
@@ -749,7 +752,8 @@ namespace BuildSystemsGH.Components.Building.LCA
             {
                 //You can add image files to your project resources and access them like this:
                 // return Resources.IconForThisComponent;
-                return Properties.Resources.FullLCA;
+                //return Properties.Resources.FullLCA;
+                return null;
             }
         }
 

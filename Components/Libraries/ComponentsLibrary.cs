@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 
 using BSoM;
 
@@ -115,8 +116,10 @@ namespace BuildSystemsGH.Components.Libraries
         /// </summary>
         protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
-            GH_AssemblyInfo info = Grasshopper.Instances.ComponentServer.FindAssembly(new Guid("36538369-6017-4b4c-9973-aee8f072399a"));
-            string filePath = info.Location;
+            //GH_AssemblyInfo info = Grasshopper.Instances.ComponentServer.FindAssembly(new Guid("36538369-6017-4b4c-9973-aee8f072399a"));
+            //string filePath = info.Location;
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            string filePath = assembly.Location;
             // Get the directory name from the original path.
             string directoryPath = Path.GetDirectoryName(filePath);
             // Combine with the new directory.
@@ -145,12 +148,12 @@ namespace BuildSystemsGH.Components.Libraries
             if (!DA.GetData(1, ref componentName)) return;
 
             // Initialize
-
-            List<string> buildingComponets = new List<string>();
+            List<string> buildingComponetsList = new List<string>();
             GH_Structure<GH_String> MaterialList = new GH_Structure<GH_String>();
-            string[] jsonComponentPathArray;
-            string[] jsonAssemblyPathArray;
-            string[] jsonMaterialPathArray;
+            string[] jsonComponentsPathArray;
+            string[] jsonAssembliesPathArray;
+            string[] jsonMaterialsPathArray;
+
             // Sanity check
             // Check if the folder path is valid
             string[] requiredFolders = { "Component", "Assembly", "Material" };
@@ -171,28 +174,30 @@ namespace BuildSystemsGH.Components.Libraries
                 }
 
                 // Make a list of json files in the database directory
-                string databaseComponent = libPath + "\\" + "Component";
-                jsonComponentPathArray = Directory.GetFiles(databaseComponent, "*.json");
-                string databaseAssembly = libPath + "\\" + "Assembly";
-                jsonAssemblyPathArray = Directory.GetFiles(databaseAssembly, "*.json");
-                string databaseMaterial = libPath + "\\" + "Material";
-                jsonMaterialPathArray = Directory.GetFiles(databaseMaterial, "*.json");
+                string databaseComponents = libPath + "\\" + "Component";
+                jsonComponentsPathArray = Directory.GetFiles(databaseComponents, "*.json");
+                string databaseAssemblies = libPath + "\\" + "Assembly";
+                jsonAssembliesPathArray = Directory.GetFiles(databaseAssemblies, "*.json");
+                string databaseMaterials = libPath + "\\" + "Material";
+                jsonMaterialsPathArray = Directory.GetFiles(databaseMaterials, "*.json");
 
                 // Convert to list
-                buildingComponets = jsonComponentPathArray.ToList();
+                buildingComponetsList = jsonComponentsPathArray.ToList();
 
-                // Filter the jsonBauteil list to find the selected component
-                List<string> selComponentPath = jsonComponentPathArray.Where(s => s.Contains(componentName)).ToList();
+                // Filter the buildingComponetsList to find the selected component
+                List<string> selectedComponentPath = jsonComponentsPathArray.Where(s => s.Contains(componentName)).ToList();
 
                 // Get the name of file without the path
-                for (int i = 0; i < buildingComponets.Count; i++)
+                for (int i = 0; i < buildingComponetsList.Count; i++)
                 {
-                    buildingComponets[i] = buildingComponets[i].Substring(buildingComponets[i].LastIndexOf("\\") + 1);
-                    buildingComponets[i] = buildingComponets[i].Substring(0, buildingComponets[i].LastIndexOf("."));
+                    buildingComponetsList[i] = buildingComponetsList[i].Substring(buildingComponetsList[i].LastIndexOf("\\") + 1);
+                    buildingComponetsList[i] = buildingComponetsList[i].Substring(0, buildingComponetsList[i].LastIndexOf("."));
                 }
 
-                // Open the json file with path selBauteilPath[0]
-                string jsonComponent = File.ReadAllText(selComponentPath[0]);
+                // Read the json file
+                string jsonComponent = File.ReadAllText(selectedComponentPath[0]);
+
+
 
                 // Convert json string to a json object
                 JObject jObjectComponent = JObject.Parse(jsonComponent);
@@ -211,9 +216,9 @@ namespace BuildSystemsGH.Components.Libraries
                 GH_Structure<GH_String> componentDataTree = new GH_Structure<GH_String>();
 
                 int indexDataTree = 0;
-                AppendAssemblyToTree(componentDataTree, superAssembly, jsonAssemblyPathArray, keySuper, ref indexDataTree);
-                AppendAssemblyToTree(componentDataTree, mainAssembly, jsonAssemblyPathArray, keyMain, ref indexDataTree);
-                AppendAssemblyToTree(componentDataTree, subAssembly, jsonAssemblyPathArray, keySub, ref indexDataTree);
+                AppendAssemblyToTree(componentDataTree, superAssembly, jsonAssembliesPathArray, keySuper, ref indexDataTree);
+                AppendAssemblyToTree(componentDataTree, mainAssembly, jsonAssembliesPathArray, keyMain, ref indexDataTree);
+                AppendAssemblyToTree(componentDataTree, subAssembly, jsonAssembliesPathArray, keySub, ref indexDataTree);
 
                 DA.SetDataTree(0, componentDataTree);
             }
@@ -336,7 +341,8 @@ namespace BuildSystemsGH.Components.Libraries
             {
                 //You can add image files to your project resources and access them like this:
                 // return Resources.IconForThisComponent;
-                return Properties.Resources.ComponentsLibrary;
+                //return Properties.Resources.ComponentsLibrary;
+                return null;
             }
         }
 

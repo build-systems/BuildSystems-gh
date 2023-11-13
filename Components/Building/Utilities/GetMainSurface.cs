@@ -104,7 +104,8 @@ namespace BuildSystemsGH.Components.Building.Utilities
             {
                 //You can add image files to your project resources and access them like this:
                 // return Resources.IconForThisComponent;
-                return Properties.Resources.GetMainSurface;
+                //return Properties.Resources.GetMainSurface;
+                return null;
             }
         }
 

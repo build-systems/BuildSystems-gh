@@ -61,6 +61,6 @@ D:\repos\BuildSystems-gh\BuildSystemsGH\bin\Debug\net48\Resources\BuildingByFloo
 D:\repos\BuildSystems-gh\BuildSystemsGH\bin\Debug\net48\BuildSystemsGH.gha
 D:\repos\BuildSystems-gh\BuildSystemsGH\bin\Debug\net48\BuildSystemsGH.pdb
 D:\repos\BuildSystems-gh\BuildSystemsGH\bin\Debug\net48\Newtonsoft.Json.dll
-D:\repos\BuildSystems-gh\BuildSystemsGH\bin\Debug\net48\BuildSystemsStructure.dll
-D:\repos\BuildSystems-gh\BuildSystemsGH\bin\Debug\net48\BuildSystemsStructure.pdb
 D:\repos\BuildSystems-gh\BuildSystemsGH\obj\Debug\net48\BuildSystemsGH.csproj.CopyComplete
+D:\repos\BuildSystems-gh\BuildSystemsGH\bin\Debug\net48\BuildSystemsObjectModel.dll
+D:\repos\BuildSystems-gh\BuildSystemsGH\bin\Debug\net48\BuildSystemsObjectModel.pdb
