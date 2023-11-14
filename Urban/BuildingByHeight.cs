@@ -237,16 +237,7 @@ namespace BuildSystemsGH
         /// <summary>
         /// Provides an Icon for the component.
         /// </summary>
-        protected override System.Drawing.Bitmap Icon
-        {
-            get
-            {
-                //You can add image files to your project resources and access them like this:
-                // return Resources.IconForThisComponent;
-                //return Properties.Resources.BuildingByHeight;
-                return null;
-            }
-        }
+        protected override System.Drawing.Bitmap Icon => Properties.Resources.BuildingByHeight;
 
         /// <summary>
         /// Each component must have a unique Guid to identify it. 

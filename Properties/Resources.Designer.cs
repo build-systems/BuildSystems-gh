@@ -61,142 +61,142 @@ namespace BuildSystemsGH.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static byte[] AssembliesLibrary {
+        internal static System.Drawing.Bitmap AssembliesLibrary {
             get {
                 object obj = ResourceManager.GetObject("AssembliesLibrary", resourceCulture);
-                return ((byte[])(obj));
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static byte[] BuildingByFloorNumber {
+        internal static System.Drawing.Bitmap BuildingByFloorNumber {
             get {
                 object obj = ResourceManager.GetObject("BuildingByFloorNumber", resourceCulture);
-                return ((byte[])(obj));
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static byte[] BuildingByHeight {
+        internal static System.Drawing.Bitmap BuildingByHeight {
             get {
                 object obj = ResourceManager.GetObject("BuildingByHeight", resourceCulture);
-                return ((byte[])(obj));
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static byte[] ComponentsLibrary {
+        internal static System.Drawing.Bitmap ComponentsLibrary {
             get {
                 object obj = ResourceManager.GetObject("ComponentsLibrary", resourceCulture);
-                return ((byte[])(obj));
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static byte[] CreateAssembly {
+        internal static System.Drawing.Bitmap CreateAssembly {
             get {
                 object obj = ResourceManager.GetObject("CreateAssembly", resourceCulture);
-                return ((byte[])(obj));
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static byte[] CreateComponent {
+        internal static System.Drawing.Bitmap CreateComponent {
             get {
                 object obj = ResourceManager.GetObject("CreateComponent", resourceCulture);
-                return ((byte[])(obj));
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static byte[] CreateLayer {
+        internal static System.Drawing.Bitmap CreateLayer {
             get {
                 object obj = ResourceManager.GetObject("CreateLayer", resourceCulture);
-                return ((byte[])(obj));
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static byte[] CreateWindows {
+        internal static System.Drawing.Bitmap CreateWindows {
             get {
                 object obj = ResourceManager.GetObject("CreateWindows", resourceCulture);
-                return ((byte[])(obj));
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static byte[] DefineBuildingComponents {
+        internal static System.Drawing.Bitmap DefineBuildingComponents {
             get {
                 object obj = ResourceManager.GetObject("DefineBuildingComponents", resourceCulture);
-                return ((byte[])(obj));
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static byte[] DefineBuildingLayers {
+        internal static System.Drawing.Bitmap DefineBuildingLayers {
             get {
                 object obj = ResourceManager.GetObject("DefineBuildingLayers", resourceCulture);
-                return ((byte[])(obj));
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static byte[] FullLCA {
+        internal static System.Drawing.Bitmap FullLCA {
             get {
                 object obj = ResourceManager.GetObject("FullLCA", resourceCulture);
-                return ((byte[])(obj));
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static byte[] GetBuildingsProperties {
+        internal static System.Drawing.Bitmap GetBuildingsProperties {
             get {
                 object obj = ResourceManager.GetObject("GetBuildingsProperties", resourceCulture);
-                return ((byte[])(obj));
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static byte[] GetMainSurface {
+        internal static System.Drawing.Bitmap GetMainSurface {
             get {
                 object obj = ResourceManager.GetObject("GetMainSurface", resourceCulture);
-                return ((byte[])(obj));
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static byte[] MaterialsLibrary {
+        internal static System.Drawing.Bitmap MaterialsLibrary {
             get {
                 object obj = ResourceManager.GetObject("MaterialsLibrary", resourceCulture);
-                return ((byte[])(obj));
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -211,12 +211,12 @@ namespace BuildSystemsGH.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static byte[] QuickLCA {
+        internal static System.Drawing.Bitmap QuickLCA {
             get {
                 object obj = ResourceManager.GetObject("QuickLCA", resourceCulture);
-                return ((byte[])(obj));
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }

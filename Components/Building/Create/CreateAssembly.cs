@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 using Grasshopper.Kernel;
 using Rhino.Geometry;
-using System.Drawing;
 
 namespace BuildSystemsGH.Components.Building.Create
 {
@@ -48,13 +47,7 @@ namespace BuildSystemsGH.Components.Building.Create
         /// <summary>
         /// Provides an Icon for the component.
         /// </summary>
-        protected override Bitmap Icon
-        {
-            get
-            {
-                return Properties.Resources.CreateComponent;
-            }
-        }
+        protected override System.Drawing.Bitmap Icon => Properties.Resources.CreateComponent;
 
         /// <summary>
         /// Gets the unique ID for this component. Do not change this ID after release.
