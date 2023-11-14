@@ -1,22 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-
 using Grasshopper.Kernel;
 using Rhino.Geometry;
 
-namespace BuildSystemsGH.Components.Libraries
+namespace BuildSystemsGH.Building.Create
 {
     // This GH_Component is a placeholder.
-    // It will list the materials in the json library.
-    // Should have filters for material type, like wood, metal, glass, etc.
-
-    public class MaterialsLibrary : GH_Component
+    // It will take layer properties and add assembly information to it.
+    public class CreateAssembly : GH_Component
     {
         /// <summary>
         /// Initializes a new instance of the MyComponent1 class.
         /// </summary>
-        public MaterialsLibrary()
-          : base("B-S Materials Library", "BSML",
+        public CreateAssembly()
+          : base("Create Assembly", "CA",
               "Description",
               "BuildSystems", "LCA")
         {
@@ -44,19 +41,19 @@ namespace BuildSystemsGH.Components.Libraries
         {
         }
 
-        public override GH_Exposure Exposure => GH_Exposure.primary;
+        public override GH_Exposure Exposure => GH_Exposure.secondary;
 
         /// <summary>
         /// Provides an Icon for the component.
         /// </summary>
-        protected override System.Drawing.Bitmap Icon => Properties.Resources.MaterialsLibrary;
+        protected override System.Drawing.Bitmap Icon => Properties.Resources.CreateComponent;
 
         /// <summary>
         /// Gets the unique ID for this component. Do not change this ID after release.
         /// </summary>
         public override Guid ComponentGuid
         {
-            get { return new Guid("019919CD-53B5-4BBE-B3CB-E68EAE7F1351"); }
+            get { return new Guid("B9E55F23-72F3-49A7-BB63-BA6A06C5425A"); }
         }
     }
 }

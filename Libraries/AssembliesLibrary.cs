@@ -1,23 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-
 using Grasshopper.Kernel;
 using Rhino.Geometry;
 
-namespace BuildSystemsGH.Components.Building.Create
+namespace BuildSystemsGH.Libraries
 {
 
     // This GH_Component is a placeholder.
-    // It will get a super, main and sub assembly values and simply merging them and adding specific component values.
-    // It can use iputs from the json library or from the user.
+    // It will take a super, main and sub assembly names and spit out a component.
+    // It will use the json assembly library to find the correct assembly.
 
-    public class CreateComponent : GH_Component
+    public class AssembliesLibrary : GH_Component
     {
         /// <summary>
-        /// Initializes a new instance of the CreateComponent class.
+        /// Initializes a new instance of the MyComponent1 class.
         /// </summary>
-        public CreateComponent()
-          : base("Create Component", "CC",
+        public AssembliesLibrary()
+          : base("B-S Assemblies Library", "BSAL",
               "Description",
               "BuildSystems", "LCA")
         {
@@ -45,19 +44,19 @@ namespace BuildSystemsGH.Components.Building.Create
         {
         }
 
-        public override GH_Exposure Exposure => GH_Exposure.secondary;
+        public override GH_Exposure Exposure => GH_Exposure.primary;
 
         /// <summary>
         /// Provides an Icon for the component.
         /// </summary>
-        protected override System.Drawing.Bitmap Icon => Properties.Resources.CreateComponent;
+        protected override System.Drawing.Bitmap Icon => Properties.Resources.AssembliesLibrary;
 
         /// <summary>
         /// Gets the unique ID for this component. Do not change this ID after release.
         /// </summary>
         public override Guid ComponentGuid
         {
-            get { return new Guid("A800D633-13C6-414A-88B3-DD55282A5D46"); }
+            get { return new Guid("B4553E3A-4684-40F9-AC17-82BCC91EB82E"); }
         }
     }
 }

@@ -1,39 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
+
 using Grasshopper.Kernel;
 using Rhino.Geometry;
 
-namespace BuildSystemsGH.Components.Libraries
+namespace BuildSystemsGH.Info
 {
-
-    // This GH_Component is a placeholder.
-    // It will take a super, main and sub assembly names and spit out a component.
-    // It will use the json assembly library to find the correct assembly.
-
-    public class AssembliesLibrary : GH_Component
+    public class PluginVersion : GH_Component
     {
         /// <summary>
         /// Initializes a new instance of the MyComponent1 class.
         /// </summary>
-        public AssembliesLibrary()
-          : base("B-S Assemblies Library", "BSAL",
-              "Description",
-              "BuildSystems", "LCA")
+        public PluginVersion()
+          : base("Plugin Version", "Version",
+              "Current BuildSystems plugin version",
+              "BuildSystems", "Info")
         {
         }
 
         /// <summary>
         /// Registers all the input parameters for this component.
         /// </summary>
-        protected override void RegisterInputParams(GH_InputParamManager pManager)
+        protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
         }
 
         /// <summary>
         /// Registers all the output parameters for this component.
         /// </summary>
-        protected override void RegisterOutputParams(GH_OutputParamManager pManager)
+        protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
+            pManager.AddTextParameter("Version", "V", "Plugin version.", GH_ParamAccess.item);
         }
 
         /// <summary>
@@ -42,21 +39,29 @@ namespace BuildSystemsGH.Components.Libraries
         /// <param name="DA">The DA object is used to retrieve from inputs and store in outputs.</param>
         protected override void SolveInstance(IGH_DataAccess DA)
         {
+            var info = new BuildSystemsGHInfo();
+            DA.SetData(0, info.Version);
         }
-
-        public override GH_Exposure Exposure => GH_Exposure.primary;
 
         /// <summary>
         /// Provides an Icon for the component.
         /// </summary>
-        protected override System.Drawing.Bitmap Icon =>  Properties.Resources.AssembliesLibrary;
+        protected override System.Drawing.Bitmap Icon
+        {
+            get
+            {
+                //You can add image files to your project resources and access them like this:
+                // return Resources.IconForThisComponent;
+                return null;
+            }
+        }
 
         /// <summary>
         /// Gets the unique ID for this component. Do not change this ID after release.
         /// </summary>
         public override Guid ComponentGuid
         {
-            get { return new Guid("B4553E3A-4684-40F9-AC17-82BCC91EB82E"); }
+            get { return new Guid("226CC464-9BAC-4585-B091-C69AB4E33359"); }
         }
     }
 }

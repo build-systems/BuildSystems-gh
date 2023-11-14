@@ -10,7 +10,7 @@ using Grasshopper.Kernel.Data;
 using Grasshopper.Kernel.Types;
 using Grasshopper.Documentation;
 
-namespace BuildSystemsGH.Components.Building.Create
+namespace BuildSystemsGH.Building.Create
 {
     public class CreateWindows : GH_Component
     {

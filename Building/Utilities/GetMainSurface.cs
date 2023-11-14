@@ -7,7 +7,7 @@ using Rhino.DocObjects;
 using Rhino.Collections;
 using Rhino.Geometry.Collections;
 
-namespace BuildSystemsGH.Components.Building.Utilities
+namespace BuildSystemsGH.Building.Utilities
 {
     public class GetMainSurface : GH_Component
     {

@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-
 using Grasshopper.Kernel;
 using Grasshopper.Kernel.Data;
 using Grasshopper.Kernel.Types;
 using Rhino.Geometry;
 
-namespace BuildSystemsGH.Components.Building.Define
+namespace BuildSystemsGH.Building.Define
 {
     // This GH_Component has a hard coded list of building components separated by the BuildSystems template layers.
     // You can find the Rhino file with the layers in the repos/templates folder on Google Drive.
@@ -344,7 +343,7 @@ namespace BuildSystemsGH.Components.Building.Define
         /// <summary>
         /// Provides an Icon for the component.
         /// </summary>
-        protected override System.Drawing.Bitmap Icon => Properties.Resources.DefineBuildingComponents;
+        protected override Bitmap Icon => Properties.Resources.DefineBuildingComponents;
 
         /// <summary>
         /// Gets the unique ID for this component. Do not change this ID after release.

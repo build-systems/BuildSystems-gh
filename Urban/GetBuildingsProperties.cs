@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-
 using Grasshopper.Kernel;
 using Grasshopper.Kernel.Data;
 using Grasshopper.Kernel.Types;
@@ -42,7 +41,7 @@ namespace BuildSystemsGH.Urban
 
                 // GRF (square meters of the site)
                 AreaMassProperties ampGRF = AreaMassProperties.Compute(terrainBoundary);
-                this.GRF = ampGRF.Area;
+                GRF = ampGRF.Area;
 
                 //// GR (the square meters of the outline of your building)
                 //foreach (double bGR in buildingGR)
@@ -90,24 +89,24 @@ namespace BuildSystemsGH.Urban
                 foreach (Curve curve in floorsList)
                 {
                     AreaMassProperties ampGF = AreaMassProperties.Compute(curve);
-                    this.GF += ampGF.Area;
+                    GF += ampGF.Area;
                 }
 
                 // BM (building volume)
                 foreach (Brep vol in volumes)
                 {
                     VolumeMassProperties vmpBM = VolumeMassProperties.Compute(vol);
-                    this.BM += vmpBM.Volume;
+                    BM += vmpBM.Volume;
                 }
 
                 // GRZ Grundflaechenzahl (GR / GRF)
-                this.GRZ = GR / GRF;
+                GRZ = GR / GRF;
 
                 // GFZ Geschossflaechenzahl (GF / GRF)
-                this.GFZ = GF / GRF;
+                GFZ = GF / GRF;
 
                 // BMZ Baumassenzahl (BM / GRF)
-                this.BMZ = BM / GRF;
+                BMZ = BM / GRF;
 
                 // A/V-Verhältnis
                 foreach (Brep skin in allSkins)
@@ -115,18 +114,18 @@ namespace BuildSystemsGH.Urban
                     AreaMassProperties ampSkin = AreaMassProperties.Compute(skin);
                     skinAreas += ampSkin.Area;
                 }
-                this.AV = skinAreas / this.BM;
+                AV = skinAreas / BM;
 
                 // string with all properties
-                this.AllProperties.Add("GRF: " + Math.Round(this.GRF, 2));
-                this.AllProperties.Add("GR: " + Math.Round(this.GR, 2));
-                this.AllProperties.Add("GF: " + Math.Round(this.GF, 2));
-                this.AllProperties.Add("BM: " + Math.Round(this.BM, 2));
-                this.AllProperties.Add("GRZ: " + Math.Round(this.GRZ, 3));
-                this.AllProperties.Add("GFZ: " + Math.Round(this.GFZ, 3));
-                this.AllProperties.Add("BMZ: " + Math.Round(this.BMZ, 3));
-                this.AllProperties.Add("A: " + Math.Round(this.skinAreas, 2));
-                this.AllProperties.Add("A/V: " + Math.Round(this.AV, 3));
+                AllProperties.Add("GRF: " + Math.Round(GRF, 2));
+                AllProperties.Add("GR: " + Math.Round(GR, 2));
+                AllProperties.Add("GF: " + Math.Round(GF, 2));
+                AllProperties.Add("BM: " + Math.Round(BM, 2));
+                AllProperties.Add("GRZ: " + Math.Round(GRZ, 3));
+                AllProperties.Add("GFZ: " + Math.Round(GFZ, 3));
+                AllProperties.Add("BMZ: " + Math.Round(BMZ, 3));
+                AllProperties.Add("A: " + Math.Round(skinAreas, 2));
+                AllProperties.Add("A/V: " + Math.Round(AV, 3));
             }
         }
 
@@ -140,7 +139,7 @@ namespace BuildSystemsGH.Urban
         /// <summary>
         /// Registers all the input parameters for this component.
         /// </summary>
-        protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
+        protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
             pManager.AddCurveParameter("Terrain Boundary", "Boundary", "Closed curve representing the terrain boundary.", GH_ParamAccess.item);
             pManager.AddCurveParameter("All Buildings Floors", "Floors", "Closed curves representing the buildings floors.", GH_ParamAccess.tree);
@@ -150,7 +149,7 @@ namespace BuildSystemsGH.Urban
         /// <summary>
         /// Registers all the output parameters for this component.
         /// </summary>
-        protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
+        protected override void RegisterOutputParams(GH_OutputParamManager pManager)
         {
             pManager.AddTextParameter("Buildings Properties", "Properties", "Text with the total enterprise properties.", GH_ParamAccess.list);
         }

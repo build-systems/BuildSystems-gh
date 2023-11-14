@@ -14,7 +14,7 @@ using Newtonsoft.Json.Linq;
 using BSoM;
 using Eto.Forms;
 
-namespace BuildSystemsGH.Components.Building.LCA
+namespace BuildSystemsGH.Building.LCA
 {
     public class QuickLCA : GH_Component
     {

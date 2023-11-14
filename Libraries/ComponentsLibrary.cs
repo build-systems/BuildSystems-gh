@@ -12,7 +12,7 @@ using System.Reflection;
 
 using BSoM;
 
-namespace BuildSystemsGH.Components.Libraries
+namespace BuildSystemsGH.Libraries
 {
     public class ComponentsLibrary : GH_Component
     {
@@ -335,7 +335,7 @@ namespace BuildSystemsGH.Components.Libraries
         /// <summary>
         /// Provides an Icon for the component.
         /// </summary>
-        protected override System.Drawing.Bitmap Icon => Properties.Resources.ComponentsLibrary;
+        protected override Bitmap Icon => Properties.Resources.ComponentsLibrary;
 
         /// <summary>
         /// Gets the unique ID for this component. Do not change this ID after release.

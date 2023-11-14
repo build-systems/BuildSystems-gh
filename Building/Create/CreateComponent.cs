@@ -1,21 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-
 using Grasshopper.Kernel;
 using Rhino.Geometry;
 
-namespace BuildSystemsGH.Components.Building.Create
+namespace BuildSystemsGH.Building.Create
 {
-    // This GH_Component is a placeholder.
-    // It will take materials from the json library and add layer information to it, like thickness, spread and so on.
 
-    public class CreateLayer : GH_Component
+    // This GH_Component is a placeholder.
+    // It will get a super, main and sub assembly values and simply merging them and adding specific component values.
+    // It can use iputs from the json library or from the user.
+
+    public class CreateComponent : GH_Component
     {
         /// <summary>
-        /// Initializes a new instance of the MyComponent1 class.
+        /// Initializes a new instance of the CreateComponent class.
         /// </summary>
-        public CreateLayer()
-          : base("Create Layer", "CL",
+        public CreateComponent()
+          : base("Create Component", "CC",
               "Description",
               "BuildSystems", "LCA")
         {
@@ -48,15 +49,14 @@ namespace BuildSystemsGH.Components.Building.Create
         /// <summary>
         /// Provides an Icon for the component.
         /// </summary>
-        protected override System.Drawing.Bitmap Icon => Properties.Resources.CreateLayer;
-
+        protected override System.Drawing.Bitmap Icon => Properties.Resources.CreateComponent;
 
         /// <summary>
         /// Gets the unique ID for this component. Do not change this ID after release.
         /// </summary>
         public override Guid ComponentGuid
         {
-            get { return new Guid("5169DCB4-ED12-4DE2-853F-C54132200410"); }
+            get { return new Guid("A800D633-13C6-414A-88B3-DD55282A5D46"); }
         }
     }
 }

@@ -22,8 +22,6 @@ IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-// note on versioning: following Semantic Versioning (SemVer), initial was 0.1.0-alpha currently on 0.3.0-alpha (22/08/2023)
-
 /* Changes:
  * Folder for the libraries to plural ("Components", "Assemblies", "Materials")
 */
@@ -64,7 +62,7 @@ namespace BuildSystemsGH
         public override Bitmap Icon => null;
 
         //Return a short string describing the purpose of this GHA library.
-        public override string Description => "";
+        public override string Description => "BuildSystem toolbox developed to speed-up our sustainable consulting services.";
 
         public override Guid Id => new Guid("36538369-6017-4b4c-9973-aee8f072399a");
 
@@ -73,5 +71,8 @@ namespace BuildSystemsGH
 
         //Return a string representing your preferred contact details.
         public override string AuthorContact => "daniel.locatelli@buildsystems.de";
+
+        //Following Semantic Versioning (SemVer), initial was 0.1.0-alpha currently on 0.3.0-alpha (22/08/2023)
+        public override string Version => "0.3.0";
     }
 }

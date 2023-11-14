@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-
 using Grasshopper.Kernel;
 using Grasshopper.Kernel.Special;
 using Rhino.DocObjects;
 using Rhino.Geometry;
 
-namespace BuildSystemsGH.Components.Building.Define
+namespace BuildSystemsGH.Building.Define
 {
     public class DefineBuildingLayers : GH_Component
     {
@@ -168,7 +167,7 @@ namespace BuildSystemsGH.Components.Building.Define
         /// <summary>
         /// Provides an Icon for the component.
         /// </summary>
-        protected override System.Drawing.Bitmap Icon => Properties.Resources.DefineBuildingLayers;
+        protected override Bitmap Icon => Properties.Resources.DefineBuildingLayers;
 
         /// <summary>
         /// Gets the unique ID for this component. Do not change this ID after release.

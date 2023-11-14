@@ -8,22 +8,22 @@ using Rhino.Geometry;
 using System;
 using System.Collections.Generic;
 
-namespace BuildSystemsGH
+namespace BuildSystemsGH.Urban
 {
-//  ██████╗ ██╗   ██╗██╗██╗     ██████╗ ██╗███╗   ██╗ ██████╗         
-//  ██╔══██╗██║   ██║██║██║     ██╔══██╗██║████╗  ██║██╔════╝         
-//  ██████╔╝██║   ██║██║██║     ██║  ██║██║██╔██╗ ██║██║  ███╗        
-//  ██╔══██╗██║   ██║██║██║     ██║  ██║██║██║╚██╗██║██║   ██║        
-//  ██████╔╝╚██████╔╝██║███████╗██████╔╝██║██║ ╚████║╚██████╔╝        
-//  ╚═════╝  ╚═════╝ ╚═╝╚══════╝╚═════╝ ╚═╝╚═╝  ╚═══╝ ╚═════╝         
-                                                                  
-//  ██████╗ ██╗   ██╗    ██╗  ██╗███████╗██╗ ██████╗ ██╗  ██╗████████╗
-//  ██╔══██╗╚██╗ ██╔╝    ██║  ██║██╔════╝██║██╔════╝ ██║  ██║╚══██╔══╝
-//  ██████╔╝ ╚████╔╝     ███████║█████╗  ██║██║  ███╗███████║   ██║   
-//  ██╔══██╗  ╚██╔╝      ██╔══██║██╔══╝  ██║██║   ██║██╔══██║   ██║   
-//  ██████╔╝   ██║       ██║  ██║███████╗██║╚██████╔╝██║  ██║   ██║   
-//  ╚═════╝    ╚═╝       ╚═╝  ╚═╝╚══════╝╚═╝ ╚═════╝ ╚═╝  ╚═╝   ╚═╝   
-//                                                                    
+    //  ██████╗ ██╗   ██╗██╗██╗     ██████╗ ██╗███╗   ██╗ ██████╗         
+    //  ██╔══██╗██║   ██║██║██║     ██╔══██╗██║████╗  ██║██╔════╝         
+    //  ██████╔╝██║   ██║██║██║     ██║  ██║██║██╔██╗ ██║██║  ███╗        
+    //  ██╔══██╗██║   ██║██║██║     ██║  ██║██║██║╚██╗██║██║   ██║        
+    //  ██████╔╝╚██████╔╝██║███████╗██████╔╝██║██║ ╚████║╚██████╔╝        
+    //  ╚═════╝  ╚═════╝ ╚═╝╚══════╝╚═════╝ ╚═╝╚═╝  ╚═══╝ ╚═════╝         
+
+    //  ██████╗ ██╗   ██╗    ██╗  ██╗███████╗██╗ ██████╗ ██╗  ██╗████████╗
+    //  ██╔══██╗╚██╗ ██╔╝    ██║  ██║██╔════╝██║██╔════╝ ██║  ██║╚══██╔══╝
+    //  ██████╔╝ ╚████╔╝     ███████║█████╗  ██║██║  ███╗███████║   ██║   
+    //  ██╔══██╗  ╚██╔╝      ██╔══██║██╔══╝  ██║██║   ██║██╔══██║   ██║   
+    //  ██████╔╝   ██║       ██║  ██║███████╗██║╚██████╔╝██║  ██║   ██║   
+    //  ╚═════╝    ╚═╝       ╚═╝  ╚═╝╚══════╝╚═╝ ╚═════╝ ╚═╝  ╚═╝   ╚═╝   
+    //                                                                    
     public class BuildingByHeight : GH_Component
     {
         /// <summary>
@@ -33,7 +33,7 @@ namespace BuildSystemsGH
         /// Subcategory the panel. If you use non-existing tab or panel names, 
         /// new tabs/panels will automatically be created.
         /// </summary>
-        
+
         public class Building
         {
             public GH_Structure<GH_Curve> FloorsCurves = new GH_Structure<GH_Curve>(); //Used to calculate a lot of things
@@ -167,12 +167,12 @@ namespace BuildSystemsGH
                 }
                 // create a closed brep for volume calculations
                 Brep[] unionBrep = Brep.CreateBooleanUnion(closedExtrusions, 0.1);
-                this.BrepVolume = unionBrep[0];
+                BrepVolume = unionBrep[0];
 
             }
 
         }
-        
+
         public BuildingByHeight()
           : base("Building by Height", "BBH",
             "Creates a building volume defined by the total height.",
@@ -183,7 +183,7 @@ namespace BuildSystemsGH
         /// <summary>
         /// Registers all the input parameters for this component.
         /// </summary>
-        protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
+        protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
             pManager.AddCurveParameter("Building Boundaries", "Boundaries", "Closed curves representind the boundaries of the building.", GH_ParamAccess.list);
             pManager.AddNumberParameter("Parapet height [m]", "Parapet", "Parapet height in meters. One value for each closed curve.", GH_ParamAccess.list, new double[] { 0.0 });
@@ -196,7 +196,7 @@ namespace BuildSystemsGH
         /// <summary>
         /// Registers all the output parameters for this component.
         /// </summary>
-        protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
+        protected override void RegisterOutputParams(GH_OutputParamManager pManager)
         {
             pManager.AddCurveParameter("Floors", "Floors", "All the floors as curves", GH_ParamAccess.tree);
             pManager.AddBrepParameter("Volume", "Volume", "The resulting volume from all boundaries", GH_ParamAccess.item);
