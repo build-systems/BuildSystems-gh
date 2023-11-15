@@ -1,0 +1,3 @@
+D:\repos\BuildSystems-gh\BuildSystemsGH\obj\Debug\net7.0\BuildSystemsGH.csproj.AssemblyReference.cache
+D:\repos\BuildSystems-gh\BuildSystemsGH\obj\Debug\net7.0\BuildSystemsGH.Properties.Resources.resources
+D:\repos\BuildSystems-gh\BuildSystemsGH\obj\Debug\net7.0\BuildSystemsGH.csproj.GenerateResource.cache

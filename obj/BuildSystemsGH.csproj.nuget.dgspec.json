@@ -5,28 +5,13 @@
   },
   "projects": {
     "D:\\repos\\BuildSystems-gh\\BSoM\\BSoM.csproj": {
-      "restore": {
-        "projectUniqueName": "D:\\repos\\BuildSystems-gh\\BSoM\\BSoM.csproj",
-        "projectName": "BSoM",
-        "projectPath": "D:\\repos\\BuildSystems-gh\\BSoM\\BSoM.csproj",
-        "frameworks": {
-          "net472": {
-            "projectReferences": {}
-          }
-        }
-      },
-      "frameworks": {
-        "net472": {}
-      }
-    },
-    "D:\\repos\\BuildSystems-gh\\BuildSystemsGH\\BuildSystemsGH.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\repos\\BuildSystems-gh\\BuildSystemsGH\\BuildSystemsGH.csproj",
-        "projectName": "BuildSystemsGH",
-        "projectPath": "D:\\repos\\BuildSystems-gh\\BuildSystemsGH\\BuildSystemsGH.csproj",
+        "projectUniqueName": "D:\\repos\\BuildSystems-gh\\BSoM\\BSoM.csproj",
+        "projectName": "BuildSystemsObjectModel",
+        "projectPath": "D:\\repos\\BuildSystems-gh\\BSoM\\BSoM.csproj",
         "packagesPath": "C:\\Users\\danie\\.nuget\\packages\\",
-        "outputPath": "D:\\repos\\BuildSystems-gh\\BuildSystemsGH\\obj\\",
+        "outputPath": "D:\\repos\\BuildSystems-gh\\BSoM\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\danie\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,6 +25,55 @@
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
+          "net48": {
+            "targetAlias": "net48",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net48": {
+          "targetAlias": "net48",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\repos\\BuildSystems-gh\\BuildSystemsGH\\BuildSystemsGH.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\repos\\BuildSystems-gh\\BuildSystemsGH\\BuildSystemsGH.csproj",
+        "projectName": "BuildSystemsGH",
+        "projectPath": "D:\\repos\\BuildSystems-gh\\BuildSystemsGH\\BuildSystemsGH.csproj",
+        "packagesPath": "C:\\Users\\danie\\.nuget\\packages\\",
+        "outputPath": "D:\\repos\\BuildSystems-gh\\BuildSystemsGH\\obj\\",
+        "projectStyle": "PackageReference",
+        "crossTargeting": true,
+        "configFilePaths": [
+          "C:\\Users\\danie\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net48",
+          "net7.0-windows"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0-windows7.0": {
+            "targetAlias": "net7.0-windows",
+            "projectReferences": {
+              "D:\\repos\\BuildSystems-gh\\BSoM\\BSoM.csproj": {
+                "projectPath": "D:\\repos\\BuildSystems-gh\\BSoM\\BSoM.csproj"
+              }
+            }
+          },
           "net48": {
             "targetAlias": "net48",
             "projectReferences": {
@@ -56,18 +90,62 @@
         }
       },
       "frameworks": {
-        "net48": {
-          "targetAlias": "net48",
+        "net7.0-windows7.0": {
+          "targetAlias": "net7.0-windows",
           "dependencies": {
             "Grasshopper": {
-              "include": "Compile, Build",
               "target": "Package",
               "version": "[7.34.23267.11001, )"
             },
             "Newtonsoft.Json": {
-              "suppressParent": "None",
               "target": "Package",
               "version": "[13.0.3, )"
+            },
+            "System.Drawing.Common": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "System.Resources.Extensions": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+        },
+        "net48": {
+          "targetAlias": "net48",
+          "dependencies": {
+            "Grasshopper": {
+              "target": "Package",
+              "version": "[7.34.23267.11001, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
+            "System.Drawing.Common": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "System.Resources.Extensions": {
+              "target": "Package",
+              "version": "[8.0.0, )"
             }
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"

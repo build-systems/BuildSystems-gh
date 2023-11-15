@@ -1,98 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-	
   <PropertyGroup>
-    <TargetFramework>net48</TargetFramework>
+    <TargetFrameworks>net48;net7.0-windows</TargetFrameworks>
     <Version>1.0</Version>
     <Title>BuildSystemsGH</Title>
     <Description>BuildSystems toolbox</Description>
     <TargetExt>.gha</TargetExt>
   </PropertyGroup>
-	
-  <ItemGroup>
-    <None Remove="Newtonsoft.Json.dll" />
-    <None Remove="Resources\AssembliesLibrary.png" />
-    <None Remove="Resources\BuildingByFloorNumber.png" />
-    <None Remove="Resources\BuildingByHeight.png" />
-    <None Remove="Resources\ComponentsLibrary.png" />
-    <None Remove="Resources\CreateAssembly.png" />
-    <None Remove="Resources\CreateComponent.png" />
-    <None Remove="Resources\CreateLayer.png" />
-    <None Remove="Resources\CreateWindows.png" />
-    <None Remove="Resources\DefineBuildingComponents.png" />
-    <None Remove="Resources\DefineBuildingLayers.png" />
-    <None Remove="Resources\FullLCA.png" />
-    <None Remove="Resources\GetBuildingsProperties.png" />
-    <None Remove="Resources\GetMainSurface.png" />
-    <None Remove="Resources\MaterialsLibrary.png" />
-    <None Remove="Resources\Newtonsoft.Json.dll" />
-    <None Remove="Resources\QuickLCA.png" />
+    <ItemGroup>
+    <EmbeddedResource Include="Resources\**\*" />
   </ItemGroup>
-	
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\AssembliesLibrary.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\BuildingByFloorNumber.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\BuildingByHeight.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\ComponentsLibrary.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\CreateAssembly.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-  </ItemGroup>
-	
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\CreateComponent.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\CreateLayer.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\CreateWindows.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\DefineBuildingComponents.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\DefineBuildingLayers.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\FullLCA.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\GetBuildingsProperties.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\GetMainSurface.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\MaterialsLibrary.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Newtonsoft.Json.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\QuickLCA.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-  </ItemGroup>
-  
-  <ItemGroup>
-    <PackageReference Include="Grasshopper" Version="7.34.23267.11001" IncludeAssets="compile;build" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3">
-      <PrivateAssets>True</PrivateAssets>
-    </PackageReference>
-  </ItemGroup>
-  
   <ItemGroup>
     <ProjectReference Include="..\BSoM\BSoM.csproj" />
   </ItemGroup>
-  
   <ItemGroup>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
@@ -100,12 +19,16 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
   </ItemGroup>
-  
   <ItemGroup>
     <EmbeddedResource Update="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-
+  <ItemGroup>
+    <PackageReference Include="Grasshopper" Version="7.34.23267.11001" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="System.Drawing.Common" Version="8.0.0" />
+    <PackageReference Include="System.Resources.Extensions" Version="8.0.0" />
+  </ItemGroup>
 </Project>

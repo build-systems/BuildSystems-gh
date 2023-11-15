@@ -1,0 +1,1 @@
+"C:\Program Files\Rhino 8\System\netcore\Compat.exe" -q --check-system-assemblies D:\repos\BuildSystems-gh\BuildSystemsGH\bin\Debug\net48\BuildSystemsGH.gha
