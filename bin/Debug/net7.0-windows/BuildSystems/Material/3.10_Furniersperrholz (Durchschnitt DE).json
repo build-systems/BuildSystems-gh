@@ -1,0 +1,21 @@
+{
+  "id": "3.10",
+  "name": "Furniersperrholz (Durchschnitt DE)",
+  "unit": "m3",
+  "conversion_factor": 1.0,
+  "weight_kg": 823.93,
+  "weight per volume [kg/m3]": 823.93,
+  "weight per area [kg/m2]": NaN,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 823.93,
+  "penrt_a1toa3": 6084.26,
+  "penrt_d3": -841.64,
+  "penrt_d4": 0.0,
+  "penrt_d1": -7971.68,
+  "gwp_a1toa3": -881.59,
+  "gwp_c3": 1250.03,
+  "gwp_c4": 0.0,
+  "gwp_d1": -249.94,
+  "group": "Sperrholz",
+  "function": "Holzwerkstoff"
+}

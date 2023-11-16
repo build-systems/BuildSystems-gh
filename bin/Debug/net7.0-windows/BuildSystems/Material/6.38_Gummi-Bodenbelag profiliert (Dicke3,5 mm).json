@@ -1,0 +1,21 @@
+{
+  "id": "6.38",
+  "name": "Gummi-Bodenbelag profiliert (Dicke3,5 mm)",
+  "unit": "m2",
+  "conversion_factor": 285.71,
+  "weight_kg": 4.82,
+  "weight per volume [kg/m3]": 1357.75,
+  "weight per area [kg/m2]": 4.82,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 4.82,
+  "penrt_a1toa3": 294.9,
+  "penrt_d3": 2.7,
+  "penrt_d4": 0.0,
+  "penrt_d1": -119.51,
+  "gwp_a1toa3": 12.88,
+  "gwp_c3": 13.87,
+  "gwp_c4": 0.0,
+  "gwp_d1": -8.17,
+  "group": "Gummi",
+  "function": "Bodenbelag"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "4.33",
+  "name": "Kautschuk-Dichtmasse",
+  "unit": "kg",
+  "conversion_factor": 650.0,
+  "weight_kg": 1.0,
+  "weight per volume [kg/m3]": 650.0,
+  "weight per area [kg/m2]": NaN,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 1.0,
+  "penrt_a1toa3": 107.1,
+  "penrt_d3": 1.44,
+  "penrt_d4": 0.0,
+  "penrt_d1": -20.56,
+  "gwp_a1toa3": 3.64,
+  "gwp_c3": 3.03,
+  "gwp_c4": 0.0,
+  "gwp_d1": -1.41,
+  "group": "Kutschuk",
+  "function": "Dichtung"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "8.6",
+  "name": "Fassadenfarbe Silikonharzfarbe",
+  "unit": "kg",
+  "conversion_factor": NaN,
+  "weight_kg": 1.0,
+  "weight per volume [kg/m3]": 1580.0,
+  "weight per area [kg/m2]": NaN,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 1.0,
+  "penrt_a1toa3": 21.57,
+  "penrt_d3": 0.0,
+  "penrt_d4": 0.22,
+  "penrt_d1": -0.14,
+  "gwp_a1toa3": 1.26,
+  "gwp_c3": 0.0,
+  "gwp_c4": 0.02,
+  "gwp_d1": -0.01,
+  "group": "Silikon",
+  "function": "Beschichtung"
+}

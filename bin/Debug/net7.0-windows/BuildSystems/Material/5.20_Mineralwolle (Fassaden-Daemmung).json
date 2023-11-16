@@ -1,0 +1,21 @@
+{
+  "id": "5.20",
+  "name": "Mineralwolle (Fassaden-Daemmung)",
+  "unit": "m3",
+  "conversion_factor": 1.0,
+  "weight_kg": 46.25,
+  "weight per volume [kg/m3]": 46.25,
+  "weight per area [kg/m2]": NaN,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 46.25,
+  "penrt_a1toa3": 818.86,
+  "penrt_d3": 46.3,
+  "penrt_d4": 10.27,
+  "penrt_d1": 0.0,
+  "gwp_a1toa3": 70.39,
+  "gwp_c3": 1.27,
+  "gwp_c4": 0.7,
+  "gwp_d1": 0.0,
+  "group": "Mineralwolle",
+  "function": "Daemmung"
+}

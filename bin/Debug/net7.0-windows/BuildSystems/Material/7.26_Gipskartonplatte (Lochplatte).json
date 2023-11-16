@@ -1,0 +1,21 @@
+{
+  "id": "7.26",
+  "name": "Gipskartonplatte (Lochplatte)",
+  "unit": "m2",
+  "conversion_factor": NaN,
+  "weight_kg": 8.5,
+  "weight per volume [kg/m3]": 680.0,
+  "weight per area [kg/m2]": 8.5,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 8.5,
+  "penrt_a1toa3": 30.73,
+  "penrt_d3": 0.0,
+  "penrt_d4": 1.86,
+  "penrt_d1": 0.0,
+  "gwp_a1toa3": 1.36,
+  "gwp_c3": 0.0,
+  "gwp_c4": 0.13,
+  "gwp_d1": 0.0,
+  "group": "Gips",
+  "function": "Trockenbau"
+}

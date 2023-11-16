@@ -1,0 +1,21 @@
+{
+  "id": "4.29",
+  "name": "Baudichtstoffe auf Silikonbasis - Sanitaerdichtstoffe ",
+  "unit": "kg",
+  "conversion_factor": 1.25,
+  "weight_kg": 1.0,
+  "weight per volume [kg/m3]": 1.25,
+  "weight per area [kg/m2]": NaN,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 1.0,
+  "penrt_a1toa3": 135.96,
+  "penrt_d3": 0.0,
+  "penrt_d4": 0.0,
+  "penrt_d1": -5.44,
+  "gwp_a1toa3": 8.96,
+  "gwp_c3": 0.0,
+  "gwp_c4": 0.0,
+  "gwp_d1": -0.36,
+  "group": "Silikon",
+  "function": "Dichtung"
+}

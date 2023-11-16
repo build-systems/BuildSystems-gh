@@ -1,0 +1,21 @@
+{
+  "id": "4.16",
+  "name": "Unterspannbahn PE gewebeverstaerkt (Dicke 0,15 mm)",
+  "unit": "m2",
+  "conversion_factor": 6666.67,
+  "weight_kg": 0.14,
+  "weight per volume [kg/m3]": 933.33,
+  "weight per area [kg/m2]": 0.14,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 0.14,
+  "penrt_a1toa3": 10.96,
+  "penrt_d3": 0.05,
+  "penrt_d4": 0.0,
+  "penrt_d1": -2.09,
+  "gwp_a1toa3": 0.43,
+  "gwp_c3": 0.32,
+  "gwp_c4": 0.0,
+  "gwp_d1": -0.14,
+  "group": "PE",
+  "function": "Folie"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "3.13",
+  "name": "Roehrenspanplatte (Durchschnitt DE)",
+  "unit": "m3",
+  "conversion_factor": 1.0,
+  "weight_kg": 272.0,
+  "weight per volume [kg/m3]": 272.0,
+  "weight per area [kg/m2]": NaN,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 272.0,
+  "penrt_a1toa3": 2029.0,
+  "penrt_d3": -151.07,
+  "penrt_d4": 0.0,
+  "penrt_d1": -3001.81,
+  "gwp_a1toa3": -318.15,
+  "gwp_c3": 435.16,
+  "gwp_c4": 0.0,
+  "gwp_d1": -15.15,
+  "group": "Spanplatte",
+  "function": "Holzwerkstoff"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "10.65",
+  "name": "oeltank Polyamid (1500l)",
+  "unit": "Stueck.",
+  "conversion_factor": NaN,
+  "weight_kg": 51.5,
+  "weight per volume [kg/m3]": NaN,
+  "weight per area [kg/m2]": NaN,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 51.5,
+  "penrt_a1toa3": 9922.59,
+  "penrt_d3": 73.24,
+  "penrt_d4": 0.0,
+  "penrt_d1": -768.01,
+  "gwp_a1toa3": 537.87,
+  "gwp_c3": 140.68,
+  "gwp_c4": 0.0,
+  "gwp_d1": -53.19,
+  "group": "oeltank",
+  "function": "Speicher"
+}

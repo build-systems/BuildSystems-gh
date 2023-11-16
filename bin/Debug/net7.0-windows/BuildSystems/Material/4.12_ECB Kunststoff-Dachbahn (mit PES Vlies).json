@@ -1,0 +1,21 @@
+{
+  "id": "4.12",
+  "name": "ECB Kunststoff-Dachbahn (mit PES Vlies)",
+  "unit": "m2",
+  "conversion_factor": NaN,
+  "weight_kg": 2.32,
+  "weight per volume [kg/m3]": NaN,
+  "weight per area [kg/m2]": 2.32,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 2.32,
+  "penrt_a1toa3": 240.58,
+  "penrt_d3": 3.33,
+  "penrt_d4": 0.0,
+  "penrt_d1": -47.7,
+  "gwp_a1toa3": 8.23,
+  "gwp_c3": 7.04,
+  "gwp_c4": 0.0,
+  "gwp_d1": -3.26,
+  "group": "ECB",
+  "function": "Abdichtung"
+}

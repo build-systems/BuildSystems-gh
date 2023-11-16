@@ -1,0 +1,21 @@
+{
+  "id": "6.16",
+  "name": "Fliesenkleber",
+  "unit": "kg",
+  "conversion_factor": 1500.0,
+  "weight_kg": 1.0,
+  "weight per volume [kg/m3]": 1500.0,
+  "weight per area [kg/m2]": NaN,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 1.0,
+  "penrt_a1toa3": 1.52,
+  "penrt_d3": 0.0,
+  "penrt_d4": 0.24,
+  "penrt_d1": -0.04,
+  "gwp_a1toa3": 0.35,
+  "gwp_c3": 0.0,
+  "gwp_c4": 0.02,
+  "gwp_d1": 0.0,
+  "group": "Kunstharz",
+  "function": "Kleber"
+}

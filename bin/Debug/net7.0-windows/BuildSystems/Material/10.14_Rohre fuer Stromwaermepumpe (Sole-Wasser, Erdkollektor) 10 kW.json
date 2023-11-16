@@ -1,0 +1,21 @@
+{
+  "id": "10.14",
+  "name": "Rohre fuer Stromwaermepumpe (Sole-Wasser, Erdkollektor) 10 kW",
+  "unit": "Stueck.",
+  "conversion_factor": NaN,
+  "weight_kg": 141.0,
+  "weight per volume [kg/m3]": NaN,
+  "weight per area [kg/m2]": NaN,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 141.0,
+  "penrt_a1toa3": 12634.97,
+  "penrt_d3": 0.0,
+  "penrt_d4": 0.0,
+  "penrt_d1": 0.0,
+  "gwp_a1toa3": 363.11,
+  "gwp_c3": 0.0,
+  "gwp_c4": 0.0,
+  "gwp_d1": 0.0,
+  "group": "Rohre Waermepumpe",
+  "function": "Rohre "
+}

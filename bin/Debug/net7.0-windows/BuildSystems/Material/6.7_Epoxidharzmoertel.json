@@ -1,0 +1,21 @@
+{
+  "id": "6.7",
+  "name": "Epoxidharzmoertel",
+  "unit": "kg",
+  "conversion_factor": 1450.0,
+  "weight_kg": 1.0,
+  "weight per volume [kg/m3]": 1450.0,
+  "weight per area [kg/m2]": NaN,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 1.0,
+  "penrt_a1toa3": 121.0,
+  "penrt_d3": 0.0,
+  "penrt_d4": 0.0,
+  "penrt_d1": -1.93,
+  "gwp_a1toa3": 6.09,
+  "gwp_c3": 0.0,
+  "gwp_c4": 0.0,
+  "gwp_d1": -0.16,
+  "group": "Epoxidharz",
+  "function": "Moertel"
+}

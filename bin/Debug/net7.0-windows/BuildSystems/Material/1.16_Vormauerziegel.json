@@ -1,0 +1,21 @@
+{
+  "id": "1.16",
+  "name": "Vormauerziegel",
+  "unit": "m3",
+  "conversion_factor": 1.0,
+  "weight_kg": 1800.0,
+  "weight per volume [kg/m3]": 1800.0,
+  "weight per area [kg/m2]": NaN,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 1800.0,
+  "penrt_a1toa3": 8150.76,
+  "penrt_d3": 219.3,
+  "penrt_d4": 0.0,
+  "penrt_d1": -49.34,
+  "gwp_a1toa3": 528.54,
+  "gwp_c3": 13.21,
+  "gwp_c4": 0.0,
+  "gwp_d1": -3.7,
+  "group": "Ziegel",
+  "function": "Mauerstein"
+}

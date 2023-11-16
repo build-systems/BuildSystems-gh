@@ -1,0 +1,21 @@
+{
+  "id": "10.10",
+  "name": "oel-Brennwertgeraet 20-120 kW (Standgeraet)",
+  "unit": "Stueck.",
+  "conversion_factor": NaN,
+  "weight_kg": 439.0,
+  "weight per volume [kg/m3]": NaN,
+  "weight per area [kg/m2]": NaN,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 439.0,
+  "penrt_a1toa3": 21818.49,
+  "penrt_d3": 67.07,
+  "penrt_d4": 0.46,
+  "penrt_d1": -5993.33,
+  "gwp_a1toa3": 1754.59,
+  "gwp_c3": 72.67,
+  "gwp_c4": 1.8,
+  "gwp_d1": -610.78,
+  "group": "Brennwertheizung",
+  "function": "Heizung"
+}

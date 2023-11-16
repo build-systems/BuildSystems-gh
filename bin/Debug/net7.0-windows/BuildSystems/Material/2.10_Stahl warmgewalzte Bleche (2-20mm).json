@@ -1,0 +1,21 @@
+{
+  "id": "2.10",
+  "name": "Stahl warmgewalzte Bleche (2-20mm)",
+  "unit": "kg",
+  "conversion_factor": 7874.0,
+  "weight_kg": 1.0,
+  "weight per volume [kg/m3]": 7874.0,
+  "weight per area [kg/m2]": NaN,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 1.0,
+  "penrt_a1toa3": 25.69,
+  "penrt_d3": 0.0,
+  "penrt_d4": 0.0,
+  "penrt_d1": -11.92,
+  "gwp_a1toa3": 2.68,
+  "gwp_c3": 0.0,
+  "gwp_c4": 0.0,
+  "gwp_d1": -1.58,
+  "group": "Walzstahl",
+  "function": "Blech"
+}

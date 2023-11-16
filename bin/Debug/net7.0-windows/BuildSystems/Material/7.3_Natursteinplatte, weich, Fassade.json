@@ -1,0 +1,21 @@
+{
+  "id": "7.3",
+  "name": "Natursteinplatte, weich, Fassade",
+  "unit": "m2",
+  "conversion_factor": NaN,
+  "weight_kg": 104.0,
+  "weight per volume [kg/m3]": 2600.0,
+  "weight per area [kg/m2]": 104.0,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 104.0,
+  "penrt_a1toa3": 209.81,
+  "penrt_d3": 11.61,
+  "penrt_d4": 0.0,
+  "penrt_d1": -2.85,
+  "gwp_a1toa3": 16.23,
+  "gwp_c3": 0.7,
+  "gwp_c4": 0.0,
+  "gwp_d1": -0.21,
+  "group": "Naturstein",
+  "function": "Fassade"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "1.24",
+  "name": "Blaehton Planstein Aussenwand",
+  "unit": "m3",
+  "conversion_factor": 1.0,
+  "weight_kg": 501.0,
+  "weight per volume [kg/m3]": 501.0,
+  "weight per area [kg/m2]": NaN,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 501.0,
+  "penrt_a1toa3": 1629.47,
+  "penrt_d3": 55.84,
+  "penrt_d4": 0.0,
+  "penrt_d1": -13.7,
+  "gwp_a1toa3": 172.05,
+  "gwp_c3": 3.36,
+  "gwp_c4": 0.0,
+  "gwp_d1": -1.03,
+  "group": "Blaehton",
+  "function": "Mauerstein"
+}

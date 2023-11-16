@@ -1,0 +1,21 @@
+{
+  "id": "9.5",
+  "name": "Abstandhalter Low Psi",
+  "unit": "kg",
+  "conversion_factor": NaN,
+  "weight_kg": 1.0,
+  "weight per volume [kg/m3]": 1205.2,
+  "weight per area [kg/m2]": NaN,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 1.0,
+  "penrt_a1toa3": 67.91,
+  "penrt_d3": 1.05,
+  "penrt_d4": 0.3,
+  "penrt_d1": -15.25,
+  "gwp_a1toa3": 3.06,
+  "gwp_c3": 0.06,
+  "gwp_c4": 1.76,
+  "gwp_d1": -0.87,
+  "group": "Kunststoff",
+  "function": "Verglasung"
+}

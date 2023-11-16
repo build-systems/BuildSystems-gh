@@ -1,0 +1,21 @@
+{
+  "id": "8.7",
+  "name": "Dispersionsputz ",
+  "unit": "kg",
+  "conversion_factor": NaN,
+  "weight_kg": 1.0,
+  "weight per volume [kg/m3]": 1575.0,
+  "weight per area [kg/m2]": NaN,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 1.0,
+  "penrt_a1toa3": 22.4,
+  "penrt_d3": 0.0,
+  "penrt_d4": 0.15,
+  "penrt_d1": -0.28,
+  "gwp_a1toa3": 1.22,
+  "gwp_c3": 0.0,
+  "gwp_c4": 0.01,
+  "gwp_d1": -0.02,
+  "group": "Kunstharz",
+  "function": "Beschichtung"
+}

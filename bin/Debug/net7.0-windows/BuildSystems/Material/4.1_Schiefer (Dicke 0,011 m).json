@@ -1,0 +1,21 @@
+{
+  "id": "4.1",
+  "name": "Schiefer (Dicke 0,011 m)",
+  "unit": "m2",
+  "conversion_factor": 90.91,
+  "weight_kg": 30.0,
+  "weight per volume [kg/m3]": 2727.27,
+  "weight per area [kg/m2]": 30.0,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 30.0,
+  "penrt_a1toa3": 202.99,
+  "penrt_d3": 3.35,
+  "penrt_d4": 0.0,
+  "penrt_d1": -0.82,
+  "gwp_a1toa3": 15.04,
+  "gwp_c3": 0.2,
+  "gwp_c4": 0.0,
+  "gwp_d1": -0.06,
+  "group": "Schiefer",
+  "function": "Dachdeckung"
+}

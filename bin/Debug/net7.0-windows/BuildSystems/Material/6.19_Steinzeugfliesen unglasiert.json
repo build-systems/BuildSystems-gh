@@ -1,0 +1,21 @@
+{
+  "id": "6.19",
+  "name": "Steinzeugfliesen unglasiert",
+  "unit": "m2",
+  "conversion_factor": NaN,
+  "weight_kg": 20.0,
+  "weight per volume [kg/m3]": 2000.0,
+  "weight per area [kg/m2]": 20.0,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 20.0,
+  "penrt_a1toa3": 111.95,
+  "penrt_d3": 2.44,
+  "penrt_d4": 0.0,
+  "penrt_d1": -0.55,
+  "gwp_a1toa3": 6.85,
+  "gwp_c3": 0.15,
+  "gwp_c4": 0.0,
+  "gwp_d1": -0.04,
+  "group": "Steinzeug",
+  "function": "Fliesen"
+}

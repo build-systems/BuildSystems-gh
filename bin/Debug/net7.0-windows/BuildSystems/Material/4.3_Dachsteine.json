@@ -1,0 +1,21 @@
+{
+  "id": "4.3",
+  "name": "Dachsteine",
+  "unit": "t",
+  "conversion_factor": NaN,
+  "weight_kg": 1000.0,
+  "weight per volume [kg/m3]": 2150.0,
+  "weight per area [kg/m2]": NaN,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 1000.0,
+  "penrt_a1toa3": 1350.0,
+  "penrt_d3": 51.56,
+  "penrt_d4": 0.0,
+  "penrt_d1": -21.2,
+  "gwp_a1toa3": 209.0,
+  "gwp_c3": 2.66,
+  "gwp_c4": 0.0,
+  "gwp_d1": -1.73,
+  "group": "Beton",
+  "function": "Dachdeckung"
+}

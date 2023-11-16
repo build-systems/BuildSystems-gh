@@ -1,0 +1,21 @@
+{
+  "id": "10.11",
+  "name": "oel-Niedertemperaturgeraet 20-120 kW (Standgeraet)",
+  "unit": "Stueck.",
+  "conversion_factor": NaN,
+  "weight_kg": 354.0,
+  "weight per volume [kg/m3]": NaN,
+  "weight per area [kg/m2]": NaN,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 354.0,
+  "penrt_a1toa3": 16022.16,
+  "penrt_d3": 21.42,
+  "penrt_d4": 0.41,
+  "penrt_d1": -1888.69,
+  "gwp_a1toa3": 1287.48,
+  "gwp_c3": 19.08,
+  "gwp_c4": 1.6,
+  "gwp_d1": -223.01,
+  "group": "Niedertemperaturheizung",
+  "function": "Heizung"
+}

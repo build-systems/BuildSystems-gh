@@ -1,0 +1,21 @@
+{
+  "id": "1.37",
+  "name": "Bewehrter Porenbeton - Decke",
+  "unit": "m3",
+  "conversion_factor": 1.0,
+  "weight_kg": 550.0,
+  "weight per volume [kg/m3]": 550.0,
+  "weight per area [kg/m2]": NaN,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 550.0,
+  "penrt_a1toa3": 2136.17,
+  "penrt_d3": 0.0,
+  "penrt_d4": 109.51,
+  "penrt_d1": 0.0,
+  "gwp_a1toa3": 307.03,
+  "gwp_c3": 0.0,
+  "gwp_c4": 7.5,
+  "gwp_d1": 0.0,
+  "group": "Porenbeton",
+  "function": "Fertigteil"
+}

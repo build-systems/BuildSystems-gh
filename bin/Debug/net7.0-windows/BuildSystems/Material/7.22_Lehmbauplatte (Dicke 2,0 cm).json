@@ -1,0 +1,21 @@
+{
+  "id": "7.22",
+  "name": "Lehmbauplatte (Dicke 2,0 cm)",
+  "unit": "m2",
+  "conversion_factor": 50.0,
+  "weight_kg": 14.0,
+  "weight per volume [kg/m3]": 700.0,
+  "weight per area [kg/m2]": 14.0,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 14.0,
+  "penrt_a1toa3": 32.54,
+  "penrt_d3": 0.84,
+  "penrt_d4": 0.0,
+  "penrt_d1": -0.28,
+  "gwp_a1toa3": 0.05,
+  "gwp_c3": 0.04,
+  "gwp_c4": 0.0,
+  "gwp_d1": -0.02,
+  "group": "Lehm",
+  "function": "Trockenbau"
+}

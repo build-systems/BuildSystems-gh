@@ -1,0 +1,21 @@
+{
+  "id": "3.14",
+  "name": "Spanplatte - melaminbeschichtet (Durchschnitt DE)",
+  "unit": "m3",
+  "conversion_factor": 1.0,
+  "weight_kg": 633.29,
+  "weight per volume [kg/m3]": 633.29,
+  "weight per area [kg/m2]": NaN,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 633.29,
+  "penrt_a1toa3": 4011.63,
+  "penrt_d3": -598.11,
+  "penrt_d4": 0.0,
+  "penrt_d1": -5969.06,
+  "gwp_a1toa3": -760.31,
+  "gwp_c3": 976.97,
+  "gwp_c4": 0.0,
+  "gwp_d1": -150.49,
+  "group": "Spanplatte",
+  "function": "Holzwerkstoff"
+}

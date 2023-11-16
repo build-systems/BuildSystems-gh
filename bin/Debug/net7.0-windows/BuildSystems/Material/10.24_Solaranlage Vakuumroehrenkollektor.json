@@ -1,0 +1,21 @@
+{
+  "id": "10.24",
+  "name": "Solaranlage Vakuumroehrenkollektor",
+  "unit": "m2",
+  "conversion_factor": NaN,
+  "weight_kg": 29.5,
+  "weight per volume [kg/m3]": NaN,
+  "weight per area [kg/m2]": 29.5,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 29.5,
+  "penrt_a1toa3": 1345.51,
+  "penrt_d3": 5.57,
+  "penrt_d4": 0.0,
+  "penrt_d1": -449.17,
+  "gwp_a1toa3": 109.58,
+  "gwp_c3": 2.33,
+  "gwp_c4": 0.0,
+  "gwp_d1": -38.84,
+  "group": "Solaranlage ",
+  "function": "Warmwasser"
+}

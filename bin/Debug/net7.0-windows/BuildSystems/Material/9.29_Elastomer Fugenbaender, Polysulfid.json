@@ -1,0 +1,21 @@
+{
+  "id": "9.29",
+  "name": "Elastomer Fugenbaender, Polysulfid",
+  "unit": "kg",
+  "conversion_factor": NaN,
+  "weight_kg": 1.0,
+  "weight per volume [kg/m3]": NaN,
+  "weight per area [kg/m2]": NaN,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 1.0,
+  "penrt_a1toa3": 190.82,
+  "penrt_d3": 0.57,
+  "penrt_d4": 0.0,
+  "penrt_d1": -8.0,
+  "gwp_a1toa3": 9.16,
+  "gwp_c3": 1.18,
+  "gwp_c4": 0.0,
+  "gwp_d1": -0.55,
+  "group": "Polysulfid",
+  "function": "Dichtung"
+}

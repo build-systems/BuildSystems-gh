@@ -1,0 +1,21 @@
+{
+  "id": "6.30",
+  "name": "Laminat-Fussbodenbelaege",
+  "unit": "m2",
+  "conversion_factor": NaN,
+  "weight_kg": 7.45,
+  "weight per volume [kg/m3]": 875.0,
+  "weight per area [kg/m2]": 7.45,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 7.45,
+  "penrt_a1toa3": 130.15,
+  "penrt_d3": 3.75,
+  "penrt_d4": 0.0,
+  "penrt_d1": -63.9,
+  "gwp_a1toa3": -5.27,
+  "gwp_c3": 13.5,
+  "gwp_c4": 0.0,
+  "gwp_d1": -3.65,
+  "group": "Laminat",
+  "function": "Bodenbelag"
+}

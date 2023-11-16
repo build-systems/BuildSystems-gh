@@ -1,0 +1,21 @@
+{
+  "id": "7.5",
+  "name": "Harz-Komposit-Fassaden-Platte",
+  "unit": "m3",
+  "conversion_factor": 1.0,
+  "weight_kg": 1400.0,
+  "weight per volume [kg/m3]": 1400.0,
+  "weight per area [kg/m2]": NaN,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 1400.0,
+  "penrt_a1toa3": 30444.83,
+  "penrt_d3": 29.43,
+  "penrt_d4": 0.0,
+  "penrt_d1": -9651.84,
+  "gwp_a1toa3": -385.54,
+  "gwp_c3": 1978.67,
+  "gwp_c4": 0.0,
+  "gwp_d1": 12.13,
+  "group": "Schichtstoffplatte",
+  "function": "Abdeckung"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "10.62",
+  "name": "oeltank PE-HD (1500)",
+  "unit": "Stueck.",
+  "conversion_factor": NaN,
+  "weight_kg": 83.5,
+  "weight per volume [kg/m3]": NaN,
+  "weight per area [kg/m2]": NaN,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 83.5,
+  "penrt_a1toa3": 7549.18,
+  "penrt_d3": 46.69,
+  "penrt_d4": 0.0,
+  "penrt_d1": -1885.58,
+  "gwp_a1toa3": 219.29,
+  "gwp_c3": 309.11,
+  "gwp_c4": 0.0,
+  "gwp_d1": -128.85,
+  "group": "oeltank",
+  "function": "Speicher"
+}

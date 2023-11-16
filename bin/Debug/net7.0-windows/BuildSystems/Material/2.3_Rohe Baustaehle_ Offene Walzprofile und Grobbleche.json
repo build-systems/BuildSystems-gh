@@ -1,0 +1,21 @@
+{
+  "id": "2.3",
+  "name": "Rohe Baustaehle_ Offene Walzprofile und Grobbleche",
+  "unit": "t",
+  "conversion_factor": 7.85,
+  "weight_kg": 1000.0,
+  "weight per volume [kg/m3]": 7850.0,
+  "weight per area [kg/m2]": NaN,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 1000.0,
+  "penrt_a1toa3": 11470.0,
+  "penrt_d3": 32.19,
+  "penrt_d4": 0.0,
+  "penrt_d1": -3973.0,
+  "gwp_a1toa3": 1125.0,
+  "gwp_c3": 1.84,
+  "gwp_c4": 0.0,
+  "gwp_d1": -413.4,
+  "group": "Stahl",
+  "function": "Baustahl"
+}

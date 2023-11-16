@@ -1,0 +1,21 @@
+{
+  "id": "9.18",
+  "name": "Pfosten-Riegelsystem aus Stahl",
+  "unit": "m",
+  "conversion_factor": NaN,
+  "weight_kg": 9.48,
+  "weight per volume [kg/m3]": NaN,
+  "weight per area [kg/m2]": NaN,
+  "weight per lenght [kg/m]": 9.48,
+  "conversion factor [per kg]": 9.48,
+  "penrt_a1toa3": 494.87,
+  "penrt_d3": 1.62,
+  "penrt_d4": 0.0,
+  "penrt_d1": -124.31,
+  "gwp_a1toa3": 36.63,
+  "gwp_c3": 3.42,
+  "gwp_c4": 0.0,
+  "gwp_d1": -14.82,
+  "group": "Stahl",
+  "function": "Fenster"
+}

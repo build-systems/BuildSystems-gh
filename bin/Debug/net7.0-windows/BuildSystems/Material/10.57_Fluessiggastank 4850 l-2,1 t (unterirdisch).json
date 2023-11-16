@@ -1,0 +1,21 @@
+{
+  "id": "10.57",
+  "name": "Fluessiggastank 4850 l-2,1 t (unterirdisch)",
+  "unit": "Stueck.",
+  "conversion_factor": NaN,
+  "weight_kg": 1117.0,
+  "weight per volume [kg/m3]": NaN,
+  "weight per area [kg/m2]": NaN,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 1117.0,
+  "penrt_a1toa3": 30054.64,
+  "penrt_d3": 49.35,
+  "penrt_d4": 0.0,
+  "penrt_d1": -13376.19,
+  "gwp_a1toa3": 3084.11,
+  "gwp_c3": 78.13,
+  "gwp_c4": 0.0,
+  "gwp_d1": -1735.34,
+  "group": "Gastank",
+  "function": "Speicher"
+}

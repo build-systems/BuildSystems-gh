@@ -1,0 +1,21 @@
+{
+  "id": "5.40",
+  "name": "Baumwolle oekologisch",
+  "unit": "kg",
+  "conversion_factor": 40.0,
+  "weight_kg": 1.0,
+  "weight per volume [kg/m3]": 40.0,
+  "weight per area [kg/m2]": NaN,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 1.0,
+  "penrt_a1toa3": 6.91,
+  "penrt_d3": 0.02,
+  "penrt_d4": 0.0,
+  "penrt_d1": -8.99,
+  "gwp_a1toa3": -0.55,
+  "gwp_c3": 2.2,
+  "gwp_c4": 0.0,
+  "gwp_d1": -0.72,
+  "group": "Baumwolle",
+  "function": "Daemmung"
+}

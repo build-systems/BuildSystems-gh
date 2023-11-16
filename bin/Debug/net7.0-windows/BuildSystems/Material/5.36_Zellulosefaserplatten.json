@@ -1,0 +1,21 @@
+{
+  "id": "5.36",
+  "name": "Zellulosefaserplatten",
+  "unit": "m3",
+  "conversion_factor": 1.0,
+  "weight_kg": 80.0,
+  "weight per volume [kg/m3]": 80.0,
+  "weight per area [kg/m2]": NaN,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 80.0,
+  "penrt_a1toa3": 1895.09,
+  "penrt_d3": 1.83,
+  "penrt_d4": 0.0,
+  "penrt_d1": -623.42,
+  "gwp_a1toa3": -19.99,
+  "gwp_c3": 176.15,
+  "gwp_c4": 0.0,
+  "gwp_d1": -69.64,
+  "group": "Zellulose",
+  "function": "Daemmung"
+}

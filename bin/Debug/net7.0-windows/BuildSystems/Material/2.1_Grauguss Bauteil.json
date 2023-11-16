@@ -1,0 +1,21 @@
+{
+  "id": "2.1",
+  "name": "Grauguss Bauteil",
+  "unit": "kg",
+  "conversion_factor": 7850.0,
+  "weight_kg": 1.0,
+  "weight per volume [kg/m3]": 7850.0,
+  "weight per area [kg/m2]": NaN,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 1.0,
+  "penrt_a1toa3": 15.48,
+  "penrt_d3": 0.0,
+  "penrt_d4": 0.0,
+  "penrt_d1": 0.72,
+  "gwp_a1toa3": 1.64,
+  "gwp_c3": 0.0,
+  "gwp_c4": 0.0,
+  "gwp_d1": 0.1,
+  "group": "Gussstahl",
+  "function": "Gussbauteil"
+}

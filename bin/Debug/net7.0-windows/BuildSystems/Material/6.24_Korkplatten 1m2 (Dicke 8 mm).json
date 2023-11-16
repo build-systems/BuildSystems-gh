@@ -1,0 +1,21 @@
+{
+  "id": "6.24",
+  "name": "Korkplatten 1m2 (Dicke 8 mm)",
+  "unit": "m2",
+  "conversion_factor": 125.0,
+  "weight_kg": 3.6,
+  "weight per volume [kg/m3]": 450.0,
+  "weight per area [kg/m2]": 3.6,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 3.6,
+  "penrt_a1toa3": 29.9,
+  "penrt_d3": 0.08,
+  "penrt_d4": 0.0,
+  "penrt_d1": -24.82,
+  "gwp_a1toa3": -6.08,
+  "gwp_c3": 6.39,
+  "gwp_c4": 0.0,
+  "gwp_d1": -0.67,
+  "group": "Kork",
+  "function": "Bodenbelag"
+}

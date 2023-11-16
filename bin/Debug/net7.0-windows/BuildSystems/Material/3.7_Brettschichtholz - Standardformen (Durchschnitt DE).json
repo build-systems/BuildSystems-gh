@@ -1,0 +1,21 @@
+{
+  "id": "3.7",
+  "name": "Brettschichtholz - Standardformen (Durchschnitt DE)",
+  "unit": "m3",
+  "conversion_factor": 1.0,
+  "weight_kg": 507.11,
+  "weight per volume [kg/m3]": 507.11,
+  "weight per area [kg/m2]": NaN,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 507.11,
+  "penrt_a1toa3": 2175.48,
+  "penrt_d3": -34.42,
+  "penrt_d4": 0.0,
+  "penrt_d1": -4944.12,
+  "gwp_a1toa3": -666.2,
+  "gwp_c3": 819.35,
+  "gwp_c4": 0.0,
+  "gwp_d1": -319.08,
+  "group": "Schichtholz",
+  "function": "Holzwerkstoff"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "7.28",
+  "name": "Kleber fuer Gipsplatten",
+  "unit": "kg",
+  "conversion_factor": NaN,
+  "weight_kg": 1.0,
+  "weight per volume [kg/m3]": 1000.0,
+  "weight per area [kg/m2]": NaN,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 1.0,
+  "penrt_a1toa3": 1.54,
+  "penrt_d3": 0.0,
+  "penrt_d4": 0.22,
+  "penrt_d1": 0.0,
+  "gwp_a1toa3": 0.1,
+  "gwp_c3": 0.0,
+  "gwp_c4": 0.02,
+  "gwp_d1": 0.0,
+  "group": "Gips",
+  "function": "Kleber"
+}

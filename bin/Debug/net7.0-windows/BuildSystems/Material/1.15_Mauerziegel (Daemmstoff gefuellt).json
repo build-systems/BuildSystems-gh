@@ -1,0 +1,21 @@
+{
+  "id": "1.15",
+  "name": "Mauerziegel (Daemmstoff gefuellt)",
+  "unit": "m3",
+  "conversion_factor": 1.0,
+  "weight_kg": 575.0,
+  "weight per volume [kg/m3]": 575.0,
+  "weight per area [kg/m2]": NaN,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 575.0,
+  "penrt_a1toa3": 1782.97,
+  "penrt_d3": 28.32,
+  "penrt_d4": 4.39,
+  "penrt_d1": -101.79,
+  "gwp_a1toa3": 177.0,
+  "gwp_c3": -10.06,
+  "gwp_c4": 0.32,
+  "gwp_d1": -6.97,
+  "group": "Ziegel",
+  "function": "Mauerstein"
+}

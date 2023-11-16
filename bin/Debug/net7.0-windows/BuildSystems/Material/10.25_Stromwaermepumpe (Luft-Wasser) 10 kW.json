@@ -1,0 +1,21 @@
+{
+  "id": "10.25",
+  "name": "Stromwaermepumpe (Luft-Wasser) 10 kW",
+  "unit": "Stueck.",
+  "conversion_factor": NaN,
+  "weight_kg": 134.0,
+  "weight per volume [kg/m3]": NaN,
+  "weight per area [kg/m2]": NaN,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 134.0,
+  "penrt_a1toa3": 5853.12,
+  "penrt_d3": 14.58,
+  "penrt_d4": 1.09,
+  "penrt_d1": -2292.06,
+  "gwp_a1toa3": 458.99,
+  "gwp_c3": 30.09,
+  "gwp_c4": 4.28,
+  "gwp_d1": -241.52,
+  "group": "Waermepumpe",
+  "function": "Heizung"
+}

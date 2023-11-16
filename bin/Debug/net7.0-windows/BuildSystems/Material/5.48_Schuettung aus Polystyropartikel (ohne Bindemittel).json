@@ -1,0 +1,21 @@
+{
+  "id": "5.48",
+  "name": "Schuettung aus Polystyropartikel (ohne Bindemittel)",
+  "unit": "m3",
+  "conversion_factor": 1.0,
+  "weight_kg": 15.0,
+  "weight per volume [kg/m3]": 15.0,
+  "weight per area [kg/m2]": NaN,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 15.0,
+  "penrt_a1toa3": 1445.18,
+  "penrt_d3": 8.33,
+  "penrt_d4": 0.0,
+  "penrt_d1": -339.63,
+  "gwp_a1toa3": 48.87,
+  "gwp_c3": 55.41,
+  "gwp_c4": 0.0,
+  "gwp_d1": -23.21,
+  "group": "Polystyrol",
+  "function": "Daemmung"
+}

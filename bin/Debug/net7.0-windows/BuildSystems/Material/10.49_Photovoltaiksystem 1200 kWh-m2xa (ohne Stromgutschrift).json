@@ -1,0 +1,21 @@
+{
+  "id": "10.49",
+  "name": "Photovoltaiksystem 1200 kWh-m2xa (ohne Stromgutschrift)",
+  "unit": "m2",
+  "conversion_factor": NaN,
+  "weight_kg": 12.0,
+  "weight per volume [kg/m3]": NaN,
+  "weight per area [kg/m2]": 12.0,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 12.0,
+  "penrt_a1toa3": 3912.59,
+  "penrt_d3": 0.0,
+  "penrt_d4": 73.02,
+  "penrt_d1": -401.61,
+  "gwp_a1toa3": 296.69,
+  "gwp_c3": 0.0,
+  "gwp_c4": 12.14,
+  "gwp_d1": -36.2,
+  "group": "PV",
+  "function": "Elektro"
+}

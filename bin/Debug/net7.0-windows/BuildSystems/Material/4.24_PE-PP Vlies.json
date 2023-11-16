@@ -1,0 +1,21 @@
+{
+  "id": "4.24",
+  "name": "PE-PP Vlies",
+  "unit": "m2",
+  "conversion_factor": NaN,
+  "weight_kg": 0.5,
+  "weight per volume [kg/m3]": 396.0,
+  "weight per area [kg/m2]": 0.5,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 0.5,
+  "penrt_a1toa3": 44.31,
+  "penrt_d3": 0.3,
+  "penrt_d4": 0.0,
+  "penrt_d1": -12.48,
+  "gwp_a1toa3": 1.26,
+  "gwp_c3": 1.88,
+  "gwp_c4": 0.0,
+  "gwp_d1": -0.85,
+  "group": "PE",
+  "function": "Vlies"
+}

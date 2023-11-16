@@ -1,0 +1,21 @@
+{
+  "id": "10.40",
+  "name": "Luefter dezentral mit WRG (Wand & Decke) 60 m3-h",
+  "unit": "Stueck.",
+  "conversion_factor": NaN,
+  "weight_kg": 3.69,
+  "weight per volume [kg/m3]": NaN,
+  "weight per area [kg/m2]": NaN,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 3.69,
+  "penrt_a1toa3": 410.61,
+  "penrt_d3": 0.88,
+  "penrt_d4": 0.01,
+  "penrt_d1": -153.57,
+  "gwp_a1toa3": 25.33,
+  "gwp_c3": 4.49,
+  "gwp_c4": 0.05,
+  "gwp_d1": -11.7,
+  "group": "Luefter",
+  "function": "Lueftung"
+}

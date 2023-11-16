@@ -1,0 +1,21 @@
+{
+  "id": "10.1",
+  "name": "Gas-Brennwertgeraet less than 20 kW (Wandgeraet)",
+  "unit": "Stueck.",
+  "conversion_factor": NaN,
+  "weight_kg": 43.0,
+  "weight per volume [kg/m3]": NaN,
+  "weight per area [kg/m2]": NaN,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 43.0,
+  "penrt_a1toa3": 3170.29,
+  "penrt_d3": 6.51,
+  "penrt_d4": 0.13,
+  "penrt_d1": -581.96,
+  "gwp_a1toa3": 243.63,
+  "gwp_c3": 7.05,
+  "gwp_c4": 0.51,
+  "gwp_d1": -59.31,
+  "group": "Brennwertheizung",
+  "function": "Heizung"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "3.15",
+  "name": "Spanplatte, roh (Durchschnitt DE)",
+  "unit": "m3",
+  "conversion_factor": 1.0,
+  "weight_kg": 633.31,
+  "weight per volume [kg/m3]": 633.31,
+  "weight per area [kg/m2]": NaN,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 633.31,
+  "penrt_a1toa3": 3500.02,
+  "penrt_d3": -526.75,
+  "penrt_d4": 0.0,
+  "penrt_d1": -5679.74,
+  "gwp_a1toa3": -809.86,
+  "gwp_c3": 989.25,
+  "gwp_c4": 0.0,
+  "gwp_d1": -173.36,
+  "group": "Spanplatte",
+  "function": "Holzwerkstoff"
+}

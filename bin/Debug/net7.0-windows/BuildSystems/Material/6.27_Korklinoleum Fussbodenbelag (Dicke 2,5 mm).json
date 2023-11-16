@@ -1,0 +1,21 @@
+{
+  "id": "6.27",
+  "name": "Korklinoleum Fussbodenbelag (Dicke 2,5 mm)",
+  "unit": "m2",
+  "conversion_factor": 400.0,
+  "weight_kg": 3.1,
+  "weight per volume [kg/m3]": 1240.0,
+  "weight per area [kg/m2]": 3.1,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 3.1,
+  "penrt_a1toa3": 96.75,
+  "penrt_d3": 0.07,
+  "penrt_d4": 0.0,
+  "penrt_d1": -23.51,
+  "gwp_a1toa3": 3.6,
+  "gwp_c3": 3.59,
+  "gwp_c4": 0.0,
+  "gwp_d1": -0.35,
+  "group": "Linoleum",
+  "function": "Bodenbelag"
+}

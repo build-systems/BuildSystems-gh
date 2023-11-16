@@ -1,0 +1,21 @@
+{
+  "id": "10.53",
+  "name": "Fahrtreppe - Grundkomponenten (unabhaengig von der Foerderhoehe)",
+  "unit": "Stueck.",
+  "conversion_factor": NaN,
+  "weight_kg": 4076.0,
+  "weight per volume [kg/m3]": NaN,
+  "weight per area [kg/m2]": NaN,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 4076.0,
+  "penrt_a1toa3": 130854.64,
+  "penrt_d3": 274.49,
+  "penrt_d4": 1.25,
+  "penrt_d1": -48479.15,
+  "gwp_a1toa3": 12715.09,
+  "gwp_c3": 105.5,
+  "gwp_c4": 4.88,
+  "gwp_d1": -5674.33,
+  "group": "Fahrtreppe",
+  "function": "Transport"
+}

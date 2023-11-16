@@ -1,0 +1,21 @@
+{
+  "id": "10.44",
+  "name": "Luefter zentral mit WRG 1000 m3-h",
+  "unit": "Stueck.",
+  "conversion_factor": NaN,
+  "weight_kg": 99.1,
+  "weight per volume [kg/m3]": NaN,
+  "weight per area [kg/m2]": NaN,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 99.1,
+  "penrt_a1toa3": 4028.84,
+  "penrt_d3": 4.03,
+  "penrt_d4": 0.02,
+  "penrt_d1": -2113.38,
+  "gwp_a1toa3": 372.13,
+  "gwp_c3": 0.61,
+  "gwp_c4": 0.09,
+  "gwp_d1": -212.09,
+  "group": "Luefter",
+  "function": "Lueftung"
+}

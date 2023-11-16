@@ -1,0 +1,21 @@
+{
+  "id": "9.33",
+  "name": "Fenster-Beschlag fuer Doppelfluegelfenster",
+  "unit": "Stueck.",
+  "conversion_factor": NaN,
+  "weight_kg": 1.01,
+  "weight per volume [kg/m3]": NaN,
+  "weight per area [kg/m2]": NaN,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 1.01,
+  "penrt_a1toa3": 125.92,
+  "penrt_d3": 0.0,
+  "penrt_d4": 0.0,
+  "penrt_d1": -54.2,
+  "gwp_a1toa3": 8.73,
+  "gwp_c3": 0.0,
+  "gwp_c4": 0.0,
+  "gwp_d1": -4.08,
+  "group": "Metall",
+  "function": "Beschlag"
+}

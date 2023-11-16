@@ -1,0 +1,21 @@
+{
+  "id": "7.13",
+  "name": "Gipsputz (Gips-Kalk-Putz)",
+  "unit": "m3",
+  "conversion_factor": 1.0,
+  "weight_kg": 900.0,
+  "weight per volume [kg/m3]": 900.0,
+  "weight per area [kg/m2]": NaN,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 900.0,
+  "penrt_a1toa3": 1779.7,
+  "penrt_d3": 0.0,
+  "penrt_d4": 197.12,
+  "penrt_d1": 0.0,
+  "gwp_a1toa3": 134.17,
+  "gwp_c3": 0.0,
+  "gwp_c4": 13.5,
+  "gwp_d1": 0.0,
+  "group": "Gips",
+  "function": "Putz"
+}

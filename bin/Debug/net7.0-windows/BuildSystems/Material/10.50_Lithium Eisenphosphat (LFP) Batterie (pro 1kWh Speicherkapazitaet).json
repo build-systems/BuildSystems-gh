@@ -1,0 +1,21 @@
+{
+  "id": "10.50",
+  "name": "Lithium Eisenphosphat (LFP) Batterie (pro 1kWh Speicherkapazitaet)",
+  "unit": "Stueck.",
+  "conversion_factor": NaN,
+  "weight_kg": 23.3,
+  "weight per volume [kg/m3]": NaN,
+  "weight per area [kg/m2]": NaN,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 23.3,
+  "penrt_a1toa3": 3415.43,
+  "penrt_d3": 0.0,
+  "penrt_d4": 70.74,
+  "penrt_d1": -468.4,
+  "gwp_a1toa3": 241.48,
+  "gwp_c3": 0.0,
+  "gwp_c4": 22.59,
+  "gwp_d1": -35.29,
+  "group": "Batterie",
+  "function": "Elektro"
+}

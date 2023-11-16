@@ -1,0 +1,21 @@
+{
+  "id": "1.31",
+  "name": "Betonfertigteil Decke 20cm",
+  "unit": "m2",
+  "conversion_factor": 5.0,
+  "weight_kg": 504.0,
+  "weight per volume [kg/m3]": 2520.0,
+  "weight per area [kg/m2]": NaN,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 504.0,
+  "penrt_a1toa3": 482.59,
+  "penrt_d3": 58.46,
+  "penrt_d4": 0.0,
+  "penrt_d1": -13.15,
+  "gwp_a1toa3": 84.48,
+  "gwp_c3": 3.52,
+  "gwp_c4": 0.0,
+  "gwp_d1": -0.99,
+  "group": "Beton",
+  "function": "Fertigteil"
+}

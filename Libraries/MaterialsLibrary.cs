@@ -112,34 +112,42 @@ namespace BuildSystemsGH.Libraries
                 JObject materialJsonObj = JObject.Parse(materialJsonFile);
 
                 // JSON keys are hard-coded here
-                string keyID = "CODE";
-                string keyName = "Datensatzbezeichner";
-                string keyUnit = "Deklarierte Einheit";
-                string keyWeight = "Gewicht [kg]";
-                string keyConvFactor = "Umrech-nungsfaktor [pro kg]";
-                string keyPenrtA1ToA3 = "PENRT A1-A3 [MJ]";
-                string keyPenrtC3 = "PENRT C3 [MJ]";
-                string keyPenrtC4 = "PENRT C4 [MJ]";
-                string keyPenrtD1 = "PENRT D1 [MJ]";
-                string keyGwpA1ToA3 = "GWP A1-A3 [kg CO2e]";
-                string keyGwpC3 = "GWP C3 [kg CO2e]";
-                string keyGwpC4 = "GWP C4 [kg CO2e]";
-                string keyGwpD1 = "GWP D1 [kg CO2e]";
+                string keyID = "id";
+                string keyName = "name";
+                string keyUnit = "unit";
+                string keyWeight = "weight_kg";
+                string keyDensity = "density";
+                string keyDensityArea = "area_density";
+                string keyDensityLinear = "linear_density";
+                string keyConvFactor = "conversion_factor";
+                string keyConvFactorKg = "conversion_factor_kg";
+                string keyPenrtA1ToA3 = "penrt_a1toa3";
+                string keyPenrtC3 = "penrt_c3";
+                string keyPenrtC4 = "penrt_c4";
+                string keyPenrtD1 = "penrt_d1";
+                string keyGwpA1ToA3 = "gwp_a1toa3";
+                string keyGwpC3 = "gwp_c3";
+                string keyGwpC4 = "gwp_c4";
+                string keyGwpD1 = "gwp_d1";
 
                 // Convert values from json. If empty assign 0 to doubles
                 material.ID = (string)materialJsonObj[keyID];
                 material.Name = (string)materialJsonObj[keyName];
                 material.Unit = (string)materialJsonObj[keyUnit];
-                material.Weight = ((string)materialJsonObj[keyWeight] != "") ? (double)materialJsonObj[keyWeight] : 0;
-                material.ConversionFactor = ((string)materialJsonObj[keyConvFactor] != "") ? (double)materialJsonObj[keyConvFactor] : 0;
-                material.PENRT_A1ToA3 = ((string)materialJsonObj[keyPenrtA1ToA3] != "") ? (double)materialJsonObj[keyPenrtA1ToA3] : 0;
-                material.PENRT_C3 = ((string)materialJsonObj[keyPenrtC3] != "") ? (double)materialJsonObj[keyPenrtC3] : 0;
-                material.PENRT_C4 = ((string)materialJsonObj[keyPenrtC4] != "") ? (double)materialJsonObj[keyPenrtC4] : 0;
-                material.PENRT_D1 = ((string)materialJsonObj[keyPenrtD1] != "") ? (double)materialJsonObj[keyPenrtD1] : 0;
-                material.GWP_A1ToA3 = ((string)materialJsonObj[keyGwpA1ToA3] != "") ? (double)materialJsonObj[keyGwpA1ToA3] : 0;
-                material.GWP_C3 = ((string)materialJsonObj[keyGwpC3] != "") ? (double)materialJsonObj[keyGwpC3] : 0;
-                material.GWP_C4 = ((string)materialJsonObj[keyGwpC4] != "") ? (double)materialJsonObj[keyGwpC4] : 0;
-                material.GWP_D1 = ((string)materialJsonObj[keyGwpD1] != "") ? (double)materialJsonObj[keyGwpD1] : 0;
+                material.Weight = (materialJsonObj[keyWeight] != null) ? (double)materialJsonObj[keyWeight] : 0;
+                material.Density = (materialJsonObj[keyDensity] != null) ? (double)materialJsonObj[keyWeight] : 0;
+                material.DensityArea = (materialJsonObj[keyDensityArea] != null) ? (double)materialJsonObj[keyWeight] : 0;
+                material.DensityLinear = (materialJsonObj[keyDensityLinear] != null) ? (double)materialJsonObj[keyWeight] : 0;
+                material.ConversionFactor = (materialJsonObj[keyConvFactor] != null) ? (double)materialJsonObj[keyConvFactor] : 0;
+                material.ConversionFactorKg = (materialJsonObj[keyConvFactorKg] != null) ? (double)materialJsonObj[keyConvFactor] : 0;
+                material.PENRT_A1ToA3 = (materialJsonObj[keyPenrtA1ToA3] != null) ? (double)materialJsonObj[keyPenrtA1ToA3] : 0;
+                material.PENRT_C3 = (materialJsonObj[keyPenrtC3] != null) ? (double)materialJsonObj[keyPenrtC3] : 0;
+                material.PENRT_C4 = (materialJsonObj[keyPenrtC4] != null) ? (double)materialJsonObj[keyPenrtC4] : 0;
+                material.PENRT_D1 = (materialJsonObj[keyPenrtD1] != null) ? (double)materialJsonObj[keyPenrtD1] : 0;
+                material.GWP_A1ToA3 = (materialJsonObj[keyGwpA1ToA3] != null) ? (double)materialJsonObj[keyGwpA1ToA3] : 0;
+                material.GWP_C3 = (materialJsonObj[keyGwpC3] != null) ? (double)materialJsonObj[keyGwpC3] : 0;
+                material.GWP_C4 = (materialJsonObj[keyGwpC4] != null) ? (double)materialJsonObj[keyGwpC4] : 0;
+                material.GWP_D1 = (materialJsonObj[keyGwpD1] != null) ? (double)materialJsonObj[keyGwpD1] : 0;
 
                 DA.SetData(0, material);
             }

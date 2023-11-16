@@ -1,0 +1,21 @@
+{
+  "id": "5.27",
+  "name": "Mineralfaser Deckenplatten (Dicke 1,5 cm)",
+  "unit": "m2",
+  "conversion_factor": 66.67,
+  "weight_kg": 2.4,
+  "weight per volume [kg/m3]": 160.0,
+  "weight per area [kg/m2]": 2.4,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 2.4,
+  "penrt_a1toa3": 56.78,
+  "penrt_d3": 0.0,
+  "penrt_d4": 0.53,
+  "penrt_d1": 0.0,
+  "gwp_a1toa3": 3.49,
+  "gwp_c3": 0.0,
+  "gwp_c4": 0.04,
+  "gwp_d1": 0.0,
+  "group": "Mineralfaser",
+  "function": "Deckenplatten"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "9.49",
+  "name": "Rolltor",
+  "unit": "m2",
+  "conversion_factor": NaN,
+  "weight_kg": 36.3,
+  "weight per volume [kg/m3]": NaN,
+  "weight per area [kg/m2]": 36.3,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 36.3,
+  "penrt_a1toa3": 1000.68,
+  "penrt_d3": 1.05,
+  "penrt_d4": 1.77,
+  "penrt_d1": -534.72,
+  "gwp_a1toa3": 78.47,
+  "gwp_c3": 0.06,
+  "gwp_c4": 3.55,
+  "gwp_d1": -49.13,
+  "group": "Stahl",
+  "function": "Tor"
+}

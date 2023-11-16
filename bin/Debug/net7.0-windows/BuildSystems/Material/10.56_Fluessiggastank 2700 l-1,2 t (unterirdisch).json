@@ -1,0 +1,21 @@
+{
+  "id": "10.56",
+  "name": "Fluessiggastank 2700 l-1,2 t (unterirdisch)",
+  "unit": "Stueck.",
+  "conversion_factor": NaN,
+  "weight_kg": 773.0,
+  "weight per volume [kg/m3]": NaN,
+  "weight per area [kg/m2]": NaN,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 773.0,
+  "penrt_a1toa3": 20813.81,
+  "penrt_d3": 34.23,
+  "penrt_d4": 0.0,
+  "penrt_d1": -9265.88,
+  "gwp_a1toa3": 2135.85,
+  "gwp_c3": 54.23,
+  "gwp_c4": 0.0,
+  "gwp_d1": -1202.05,
+  "group": "Gastank",
+  "function": "Speicher"
+}

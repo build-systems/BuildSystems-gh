@@ -1,0 +1,21 @@
+{
+  "id": "6.17",
+  "name": "Keramische Fliesen und Platten",
+  "unit": "m2",
+  "conversion_factor": NaN,
+  "weight_kg": 18.65,
+  "weight per volume [kg/m3]": 2487.0,
+  "weight per area [kg/m2]": 18.65,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 18.65,
+  "penrt_a1toa3": 220.26,
+  "penrt_d3": 0.0,
+  "penrt_d4": 4.09,
+  "penrt_d1": -0.75,
+  "gwp_a1toa3": 12.94,
+  "gwp_c3": 0.0,
+  "gwp_c4": 0.3,
+  "gwp_d1": -0.05,
+  "group": "Keramik",
+  "function": "Fliesen"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "5.34",
+  "name": "Hobelspandaemmung",
+  "unit": "m3",
+  "conversion_factor": 1.0,
+  "weight_kg": 70.0,
+  "weight per volume [kg/m3]": 70.0,
+  "weight per area [kg/m2]": NaN,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 70.0,
+  "penrt_a1toa3": 59.3,
+  "penrt_d3": 23.3,
+  "penrt_d4": 0.0,
+  "penrt_d1": -664.0,
+  "gwp_a1toa3": -107.0,
+  "gwp_c3": 113.0,
+  "gwp_c4": 0.0,
+  "gwp_d1": -45.8,
+  "group": "Hobelspaene",
+  "function": "Daemmung"
+}

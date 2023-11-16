@@ -1,0 +1,21 @@
+{
+  "id": "5.24",
+  "name": "Steinwolle-Daemmstoff im hohen Rohdichtebereich",
+  "unit": "m3",
+  "conversion_factor": 1.0,
+  "weight_kg": 155.0,
+  "weight per volume [kg/m3]": 155.0,
+  "weight per area [kg/m2]": NaN,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 155.0,
+  "penrt_a1toa3": 1836.01,
+  "penrt_d3": 0.0,
+  "penrt_d4": 33.01,
+  "penrt_d1": -78.87,
+  "gwp_a1toa3": 196.64,
+  "gwp_c3": 0.0,
+  "gwp_c4": 2.46,
+  "gwp_d1": -5.42,
+  "group": "Steinwolle",
+  "function": "Daemmung"
+}

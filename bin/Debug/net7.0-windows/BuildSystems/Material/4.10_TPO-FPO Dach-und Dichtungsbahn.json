@@ -1,0 +1,21 @@
+{
+  "id": "4.10",
+  "name": "TPO-FPO Dach-und Dichtungsbahn",
+  "unit": "m2",
+  "conversion_factor": NaN,
+  "weight_kg": 2.2,
+  "weight per volume [kg/m3]": 969.0,
+  "weight per area [kg/m2]": 2.22,
+  "weight per lenght [kg/m]": NaN,
+  "conversion factor [per kg]": 2.2,
+  "penrt_a1toa3": 194.0,
+  "penrt_d3": 1.79,
+  "penrt_d4": 1.32,
+  "penrt_d1": 0.0,
+  "gwp_a1toa3": 7.01,
+  "gwp_c3": 0.13,
+  "gwp_c4": 1.9,
+  "gwp_d1": 0.0,
+  "group": "TPO",
+  "function": "Abdichtung"
+}
