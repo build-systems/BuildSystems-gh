@@ -230,22 +230,14 @@ namespace BuildSystemsGH.Libraries
                     AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "An error occurred: " + ex.Message);
                 }
 
-
-            List<string> maualList = new List<string>
+                List<Grasshopper.Kernel.Special.GH_ValueListItem> materialsAvailable = new List<Grasshopper.Kernel.Special.GH_ValueListItem>();
+                foreach (string material in materialsList)
                 {
-                    "1-1_Kies_2-32",
-                    "7-26_Gipskartonplatte_Lochplatte",
-                    "8-3_Fassadenfarbe_Voranstrich_Silikat-Dispersion"
-                };
-
-                List<Grasshopper.Kernel.Special.GH_ValueListItem> componentsAvailable = new List<Grasshopper.Kernel.Special.GH_ValueListItem>();
-                foreach (string component in materialsList)
-                {
-                    Grasshopper.Kernel.Special.GH_ValueListItem valueItem = new Grasshopper.Kernel.Special.GH_ValueListItem(component, '"' + component + '"');
-                    componentsAvailable.Add(valueItem);
+                    Grasshopper.Kernel.Special.GH_ValueListItem valueItem = new Grasshopper.Kernel.Special.GH_ValueListItem(material, '"' + material + '"');
+                    materialsAvailable.Add(valueItem);
                 }
 
-                valList.ListItems.AddRange(componentsAvailable);
+                valList.ListItems.AddRange(materialsAvailable);
                 document.AddObject(valList, false);
                 in0str.AddSource(valList);
             }

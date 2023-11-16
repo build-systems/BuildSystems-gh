@@ -10,7 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 
-using BSoM;
+using BSoM.LCA;
 
 namespace BuildSystemsGH.Libraries
 {
@@ -116,7 +116,7 @@ namespace BuildSystemsGH.Libraries
         /// </summary>
         protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
-            Assembly assembly = Assembly.GetExecutingAssembly();
+            System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
             string filePath = assembly.Location;
             // Get the directory name from the original path.
             string directoryPath = Path.GetDirectoryName(filePath);
@@ -247,77 +247,61 @@ namespace BuildSystemsGH.Libraries
                 valList.Attributes.ExpireLayout();
                 valList.ListItems.Clear();
 
-                List<string> maualList = new List<string>
+                // Library path
+                System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
+                string filePath = assembly.Location;
+                // Get the directory name from the original path.
+                string directoryPath = Path.GetDirectoryName(filePath);
+                // Combine with the new directory.
+                string libPath = Path.Combine(directoryPath, "BuildSystems");
+
+                // Material list
+                List<string> componentsList = new List<string>();
+                string[] jsonComponentsPathArray;
+
+                // Sanity check
+                // Check if the folder path is valid
+                string[] requiredFolders = { "Component" };
+                try
                 {
-                    "TD-tr-HM-A",
-                    "TD-tr-HM-B",
-                    "TD-tr-HM-C",
-                    "TD-tr-HT-A",
-                    "TD-tr-HT-B",
-                    "TD-tr-HBV-A",
-                    "TD-tr-HBV-B",
-                    "TD-tr-STB-A",
-                    "DD-tr-HM-A",
-                    "DD-tr-HM-B",
-                    "DD-tr-HM-C",
-                    "DD-tr-HT-A",
-                    "DD-tr-HT-B",
-                    "DD-tr-STB-A",
-                    "DD-tr-STB-B",
-                    "TW-tr-HM-A",
-                    "TW-tr-HM-B",
-                    "TW-tr-HM-C",
-                    "TW-tr-HM-D",
-                    "TW-tr-HAT-A",
-                    "TW-tr-HAT-B",
-                    "TW-tr-HAT-C",
-                    "TW-tr-STB",
-                    "TW-tr-MWZ-A",
-                    "TW-tr-MWZ-B",
-                    "TW-tr-MWKS-A",
-                    "TW-tr-MWKS-B",
-                    "TW-nt-LB-A",
-                    "TW-nt-LB-B",
-                    "IW-tr-HM-A",
-                    "IW-nt-HT-A",
-                    "IW-nt-HT-B",
-                    "IW-tr-STB",
-                    "IW-nt-MWZ-A",
-                    "IW-tr-MWKS-A",
-                    "IW-tr-MWKS-B",
-                    "IW-nt-MWKS-C",
-                    "IW-nt-LB-A",
-                    "IW-nt-LB-B",
-                    "AW-tr-HM-A",
-                    "AW-tr-HM-B",
-                    "AW-tr-HM-C",
-                    "AW-tr-HM-D",
-                    "AW-tr-HM-E",
-                    "AW-nt-TF-A",
-                    "AW-tr-TF-B",
-                    "AW-tr-TF-C",
-                    "AW-tr-TF-D",
-                    "AW-tr-TF-E",
-                    "AW-tr-STB-A",
-                    "AW-tr-STB-B",
-                    "AW-tr-STB-C",
-                    "AW-tr-STB-D",
-                    "AW-tr-STB-E",
-                    "AW-tr-MWZ-A",
-                    "AW-tr-MWZ-B",
-                    "AW-tr-MWZ-C",
-                    "AW-tr-MWKS-A",
-                    "AW-tr-MWKS-B",
-                    "AW-tr-MWKS-C",
-                    "AW-tr-MWKS-D",
-                    "KW-tr-STB-A",
-                    "KW-tr-MWZ-A",
-                    "KW-tr-MWKS-A",
-                    "BP-tr-STB-A"
-                };
+                    // Get all subdirectories
+                    string[] subdirectories = Directory.GetDirectories(libPath);
+
+                    // Check if the required folders match the subdirectories
+                    foreach (string requiredFolder in requiredFolders)
+                    {
+                        // Check if the required folder is in the subdirectories
+                        if (!subdirectories.Contains(libPath + "\\" + requiredFolder))
+                        {
+                            AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "The folder path is not valid. The sub-folder '" + requiredFolder + "' is missing.");
+                            return;
+                        }
+                    }
+
+                    // Make a list of json files in the database directory
+                    string databaseMaterials = libPath + "\\" + "Component";
+                    jsonComponentsPathArray = Directory.GetFiles(databaseMaterials, "*.json");
+
+                    // Convert to list
+                    componentsList = jsonComponentsPathArray.ToList();
+
+                    // Get the name of file without the path
+                    for (int j = 0; j < componentsList.Count; j++)
+                    {
+                        // Extract the file name without the path
+                        componentsList[j] = componentsList[j].Substring(componentsList[j].LastIndexOf("\\") + 1);
+                        // Extract the file name without the extension
+                        componentsList[j] = componentsList[j].Substring(0, componentsList[j].LastIndexOf("."));
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "An error occurred: " + ex.Message);
+                }
 
                 List<Grasshopper.Kernel.Special.GH_ValueListItem> componentsAvailable = new List<Grasshopper.Kernel.Special.GH_ValueListItem>();
-                foreach (string component in maualList)
+                foreach (string component in componentsList)
                 {
                     Grasshopper.Kernel.Special.GH_ValueListItem valueItem = new Grasshopper.Kernel.Special.GH_ValueListItem(component, '"' + component + '"');
                     componentsAvailable.Add(valueItem);

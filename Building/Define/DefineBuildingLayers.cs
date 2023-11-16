@@ -11,7 +11,7 @@ namespace BuildSystemsGH.Building.Define
     public class DefineBuildingLayers : GH_Component
     {
         /// <summary>
-        /// Initializes a new instance of the MyComponent1 class.
+        /// Initializes a new instance of the DefineBuildingLayers class.
         /// </summary>
         /// 
 
