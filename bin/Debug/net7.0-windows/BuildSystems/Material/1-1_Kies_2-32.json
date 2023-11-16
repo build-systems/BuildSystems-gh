@@ -1,0 +1,22 @@
+{
+    "CODE": "1.1",
+    "Datensatzbezeichner": "Kies 2/32",
+    "Deklarierte Einheit": "kg",
+    "Umrechnungsfaktor": "1850",
+    "Gewicht [kg]": "1",
+    "Rohdichte [kg/m3]": "1850",
+    "Flaechengewicht [kg/m2]": "",
+    "Laengengewicht [kg/m]": "",
+    "Umrech-nungsfaktor [pro kg]": "1",
+    "PENRT A1-A3 [MJ]": "0.03811957",
+    "PENRT C3 [MJ]": "0.111681",
+    "PENRT C4 [MJ]": "0",
+    "PENRT D1 [MJ]": "-0.027409",
+    "GWP A1-A3 [kg CO2e]": "0.00285398",
+    "GWP C3 [kg CO2e]": "0.006726",
+    "GWP C4 [kg CO2e]": "0",
+    "GWP D1 [kg CO2e]": "-0.002054",
+    "Bezeichner": "Kies 2/32",
+    "Materialgruppe": "Kies",
+    "Funktion am und im Gebaeude": "Aushub"
+}

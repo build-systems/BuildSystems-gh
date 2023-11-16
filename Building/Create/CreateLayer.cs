@@ -25,6 +25,21 @@ namespace BuildSystemsGH.Building.Create
         /// </summary>
         protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
+            //ID
+
+            //Material
+
+            //LOD
+
+            //Level
+
+            //Category
+
+            //Description
+
+            //Thickness
+
+            //Kosten
         }
 
         /// <summary>

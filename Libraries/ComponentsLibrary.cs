@@ -116,8 +116,6 @@ namespace BuildSystemsGH.Libraries
         /// </summary>
         protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
-            //GH_AssemblyInfo info = Grasshopper.Instances.ComponentServer.FindAssembly(new Guid("36538369-6017-4b4c-9973-aee8f072399a"));
-            //string filePath = info.Location;
             Assembly assembly = Assembly.GetExecutingAssembly();
             string filePath = assembly.Location;
             // Get the directory name from the original path.
@@ -190,7 +188,9 @@ namespace BuildSystemsGH.Libraries
                 // Get the name of file without the path
                 for (int i = 0; i < buildingComponetsList.Count; i++)
                 {
+                    // Extract the file name without the path
                     buildingComponetsList[i] = buildingComponetsList[i].Substring(buildingComponetsList[i].LastIndexOf("\\") + 1);
+                    // Extract the file name without the extension
                     buildingComponetsList[i] = buildingComponetsList[i].Substring(0, buildingComponetsList[i].LastIndexOf("."));
                 }
 

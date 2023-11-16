@@ -8,7 +8,7 @@
     "Rhino 8": {
       "commandName": "Executable",
       "executablePath": "C:\\Program Files\\Rhino 8\\System\\Rhino.exe",
-      "commandLineArgs": "/runscript=\"_Grasshopper\""
+      "commandLineArgs": "/nosplash /runscript=\"_Grasshopper\""
     }
   }
 }
