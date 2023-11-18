@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyDescriptionAttribute("BuildSystems toolbox")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+750e326363c4d31c4421fc97d334dcf6050dd5e2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+5c06493cf8b38850b2d8a6dee28f9a9734ed48c3")]
 [assembly: System.Reflection.AssemblyProductAttribute("BuildSystemsGH")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BuildSystemsGH")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
