@@ -29,14 +29,18 @@ namespace BuildSystemsGH.Building.Create
         {
             //Material
             pManager.AddGenericParameter("BSoM Material", "Material", "Add a material from BSoM (BuildSystems object Model).", GH_ParamAccess.item);
+            //Thickness
+            pManager.AddNumberParameter("Thickness", "Thickness", "Layer thickness in meters.", GH_ParamAccess.item);
             //Category
             pManager.AddTextParameter("Category", "Category", "Layer category ex. Timber.", GH_ParamAccess.item);
             //Description
             pManager.AddTextParameter("Description", "Desctription", "Layer description ex. Insulation.", GH_ParamAccess.item);
-            //Thickness
-            pManager.AddNumberParameter("Thickness", "Thickness", "Layer thickness in meters.", GH_ParamAccess.item);
             //Cost
             pManager.AddNumberParameter("Cost", "Cost", "Layer cost per squared meters.", GH_ParamAccess.item);
+
+            pManager[2].Optional = true;
+            pManager[3].Optional = true;
+            pManager[4].Optional = true;
         }
 
         /// <summary>
@@ -54,17 +58,18 @@ namespace BuildSystemsGH.Building.Create
         protected override void SolveInstance(IGH_DataAccess DA)
         {
             Material materialOption = new Material();
-            string category = string.Empty;
+            double thickness = 0.0;
+            string category = "";
             string desctription = string.Empty;
-            double thickness = 0;
             double cost = 0;
 
             if (!DA.GetData(0, ref materialOption)) return;
-            if (!DA.GetData(1, ref category)) return;
-            if (!DA.GetData(2, ref desctription)) return;
-            if (!DA.GetData(3, ref thickness)) return;
-            if (!DA.GetData(4, ref cost)) return;
-            
+            if (!DA.GetData(1, ref thickness)) return;
+            DA.GetData(2, ref category);
+            DA.GetData(3, ref desctription);
+            DA.GetData(4, ref cost);
+
+
             SolidLayer layer = new SolidLayer();
             layer.AddMaterialOption(materialOption);
             layer.Category = category;

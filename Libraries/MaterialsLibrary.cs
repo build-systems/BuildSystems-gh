@@ -31,13 +31,7 @@ namespace BuildSystemsGH.Libraries
         /// </summary>
         protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
-            System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
-            string filePath = assembly.Location;
-            // Get the directory name from the original path.
-            string directoryPath = Path.GetDirectoryName(filePath);
-            // Combine with the new directory.
-            string libPath = Path.Combine(directoryPath, "Resources/BuildSystems");
-            pManager.AddTextParameter("Folder Path", "Path", "Root folder containing the three other folders with the JSON libraries.", GH_ParamAccess.item, libPath);
+            pManager.AddTextParameter("Folder Path", "Path", "Root folder containing the three other folders with the JSON libraries.", GH_ParamAccess.item, BSoM.Database.Info.Folder);
             pManager.AddTextParameter("Material name", "Name", "Name of the material", GH_ParamAccess.item);
         }
 
@@ -63,46 +57,35 @@ namespace BuildSystemsGH.Libraries
 
             // Create one BSoM material with BSoM.LCA
             Material material = new Material();
-            // List of all the materials available
-            List<string> materialsList = new List<string>();
-            string[] jsonMaterialsPathArray;
 
             // Sanity check
             // Check if the folder path is valid
-            string[] requiredFolders = { "Material" };
+            string requiredFolder = BSoM.Database.Info.Material;
             try
             {
                 // Get all subdirectories
                 string[] subdirectories = Directory.GetDirectories(libPath);
 
-                // Check if the required folders match the subdirectories
-                foreach (string requiredFolder in requiredFolders)
+                // Check if the required folder is in the subdirectories
+                if (!subdirectories.Contains(libPath + "\\" + requiredFolder))
                 {
-                    // Check if the required folder is in the subdirectories
-                    if (!subdirectories.Contains(libPath + "\\" + requiredFolder))
-                    {
-                        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "The folder path is not valid. The sub-folder '" + requiredFolder + "' is missing.");
-                        return;
-                    }
+                    AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "The folder path is not valid. The sub-folder '" + requiredFolder + "' is missing.");
+                    return;
                 }
 
-                // Make a list of json files in the database directory
-                string databaseMaterials = libPath + "\\" + "Material";
-                jsonMaterialsPathArray = Directory.GetFiles(databaseMaterials, "*.json");
-
-                // Convert to list
-                materialsList = jsonMaterialsPathArray.ToList();
+                // List of all the materials available
+                List<string> jsonMaterialsFiles = BSoM.Database.Info.MaterialFiles();
 
                 // Filter the buildingComponetsList to find the selected component
-                List<string> selectedMaterialPath = jsonMaterialsPathArray.Where(s => s.Contains(materialName)).ToList();
+                List<string> selectedMaterialPath = jsonMaterialsFiles.Where(s => s.Contains(materialName)).ToList();
 
                 // Get the name of file without the path
-                for (int i = 0; i < materialsList.Count; i++)
+                for (int i = 0; i < jsonMaterialsFiles.Count; i++)
                 {
                     // Extract the file name without the path
-                    materialsList[i] = materialsList[i].Substring(materialsList[i].LastIndexOf("\\") + 1);
+                    jsonMaterialsFiles[i] = jsonMaterialsFiles[i].Substring(jsonMaterialsFiles[i].LastIndexOf("\\") + 1);
                     // Extract the file name without the extension
-                    materialsList[i] = materialsList[i].Substring(0, materialsList[i].LastIndexOf("."));
+                    jsonMaterialsFiles[i] = jsonMaterialsFiles[i].Substring(0, jsonMaterialsFiles[i].LastIndexOf("."));
                 }
 
                 // Read the json file
@@ -177,43 +160,27 @@ namespace BuildSystemsGH.Libraries
                 valList.Attributes.ExpireLayout();
                 valList.ListItems.Clear();
 
-                // Library path
-                System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
-                string filePath = assembly.Location;
-                // Get the directory name from the original path.
-                string directoryPath = Path.GetDirectoryName(filePath);
-                // Combine with the new directory.
-                string libPath = Path.Combine(directoryPath, "BuildSystems");
-
-                // Material list
+                string libPath = BSoM.Database.Info.Folder;
+                // Initiate empty materials list (will fill inside try)
                 List<string> materialsList = new List<string>();
-                string[] jsonMaterialsPathArray;
 
                 // Sanity check
                 // Check if the folder path is valid
-                string[] requiredFolders = { "Material" };
+                string requiredFolder = BSoM.Database.Info.Material;
                 try
                 {
                     // Get all subdirectories
                     string[] subdirectories = Directory.GetDirectories(libPath);
 
-                    // Check if the required folders match the subdirectories
-                    foreach (string requiredFolder in requiredFolders)
+                    // Check if the required folder is in the subdirectories
+                    if (!subdirectories.Contains(libPath + "\\" + requiredFolder))
                     {
-                        // Check if the required folder is in the subdirectories
-                        if (!subdirectories.Contains(libPath + "\\" + requiredFolder))
-                        {
-                            AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "The folder path is not valid. The sub-folder '" + requiredFolder + "' is missing.");
-                            return;
-                        }
+                        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "The folder path is not valid. The sub-folder '" + requiredFolder + "' is missing.");
+                        return;
                     }
 
-                    // Make a list of json files in the database directory
-                    string databaseMaterials = libPath + "\\" + "Material";
-                    jsonMaterialsPathArray = Directory.GetFiles(databaseMaterials, "*.json");
-
-                    // Convert to list
-                    materialsList = jsonMaterialsPathArray.ToList();
+                    // Material list
+                    materialsList = BSoM.Database.Info.MaterialFiles();
 
                     // Get the name of file without the path
                     for (int j = 0; j < materialsList.Count; j++)
