@@ -139,6 +139,8 @@ namespace BuildSystemsGH.Libraries
             string componentName = "";
             DA.GetData(0, ref databasefolder);
             if (!DA.GetData(1, ref componentName)) return;
+            //BSoM.Database.Info database = new BSoM.Database.Info();
+            //database.Path = databasefolder;
 
             // Initialize
             List<string> buildingComponetsList = new List<string>();
@@ -184,6 +186,13 @@ namespace BuildSystemsGH.Libraries
                 string superAssembly = (string)jObjectComponent[keySuper];
                 string mainAssembly = (string)jObjectComponent[keyMain];
                 string subAssembly = (string)jObjectComponent[keySub];
+
+
+
+                ////// Create assembly using a constructor, as input a filename and a database folder
+
+
+
 
                 // Create a new GH data tree for the bauteil data
                 GH_Structure<GH_String> componentDataTree = new GH_Structure<GH_String>();
