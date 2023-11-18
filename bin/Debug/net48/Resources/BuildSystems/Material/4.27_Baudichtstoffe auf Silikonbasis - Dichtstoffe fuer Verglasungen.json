@@ -1,0 +1,21 @@
+{
+  "id": "4.27",
+  "name": "Baudichtstoffe auf Silikonbasis - Dichtstoffe fuer Verglasungen",
+  "unit": "kg",
+  "weight_kg": 1.0,
+  "density": 1.25,
+  "area_density": NaN,
+  "linear_density": NaN,
+  "conversion_factor": 1.25,
+  "conversion_factor_kg": 1.0,
+  "penrt_a1toa3": 135.96,
+  "penrt_d3": 0.0,
+  "penrt_d4": 0.0,
+  "penrt_d1": -5.44,
+  "gwp_a1toa3": 8.96,
+  "gwp_c3": 0.0,
+  "gwp_c4": 0.0,
+  "gwp_d1": -0.36,
+  "group": "Silikon",
+  "function": "Dichtung"
+}

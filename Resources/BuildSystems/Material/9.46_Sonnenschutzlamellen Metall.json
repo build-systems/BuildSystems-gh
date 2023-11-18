@@ -1,0 +1,21 @@
+{
+  "id": "9.46",
+  "name": "Sonnenschutzlamellen Metall",
+  "unit": "m2",
+  "weight_kg": 2.39,
+  "density": NaN,
+  "area_density": 2.39,
+  "linear_density": NaN,
+  "conversion_factor": NaN,
+  "conversion_factor_kg": 2.39,
+  "penrt_a1toa3": 318.71,
+  "penrt_d3": 0.0,
+  "penrt_d4": 0.0,
+  "penrt_d1": -192.06,
+  "gwp_a1toa3": 23.64,
+  "gwp_c3": 0.0,
+  "gwp_c4": 0.0,
+  "gwp_d1": -14.88,
+  "group": "Metalllamellen",
+  "function": "Sonnenschutz"
+}

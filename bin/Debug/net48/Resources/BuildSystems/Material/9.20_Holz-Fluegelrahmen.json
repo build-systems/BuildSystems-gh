@@ -1,0 +1,21 @@
+{
+  "id": "9.20",
+  "name": "Holz-Fluegelrahmen",
+  "unit": "m",
+  "weight_kg": 2.11,
+  "density": NaN,
+  "area_density": NaN,
+  "linear_density": 2.11,
+  "conversion_factor": NaN,
+  "conversion_factor_kg": 2.11,
+  "penrt_a1toa3": 56.95,
+  "penrt_d3": 0.04,
+  "penrt_d4": 0.0,
+  "penrt_d1": -24.82,
+  "gwp_a1toa3": -0.15,
+  "gwp_c3": 4.04,
+  "gwp_c4": 0.0,
+  "gwp_d1": -1.61,
+  "group": "Holz",
+  "function": "Fenster"
+}

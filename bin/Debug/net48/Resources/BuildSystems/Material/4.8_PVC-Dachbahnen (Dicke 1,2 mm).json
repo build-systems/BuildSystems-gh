@@ -1,0 +1,21 @@
+{
+  "id": "4.8",
+  "name": "PVC-Dachbahnen (Dicke 1,2 mm)",
+  "unit": "m2",
+  "weight_kg": 1.5,
+  "density": 1350.0,
+  "area_density": 1.5,
+  "linear_density": NaN,
+  "conversion_factor": 833.33,
+  "conversion_factor_kg": 1.5,
+  "penrt_a1toa3": 129.45,
+  "penrt_d3": 10.48,
+  "penrt_d4": 0.0,
+  "penrt_d1": -14.67,
+  "gwp_a1toa3": 6.07,
+  "gwp_c3": 4.93,
+  "gwp_c4": 0.0,
+  "gwp_d1": -1.0,
+  "group": "PVC",
+  "function": "Abdichtung"
+}

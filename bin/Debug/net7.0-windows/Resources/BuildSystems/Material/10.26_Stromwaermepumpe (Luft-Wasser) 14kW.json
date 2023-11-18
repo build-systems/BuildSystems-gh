@@ -1,0 +1,21 @@
+{
+  "id": "10.26",
+  "name": "Stromwaermepumpe (Luft-Wasser) 14kW",
+  "unit": "Stueck.",
+  "weight_kg": 187.6,
+  "density": NaN,
+  "area_density": NaN,
+  "linear_density": NaN,
+  "conversion_factor": NaN,
+  "conversion_factor_kg": 187.6,
+  "penrt_a1toa3": 8194.36,
+  "penrt_d3": 20.41,
+  "penrt_d4": 1.53,
+  "penrt_d1": -3208.88,
+  "gwp_a1toa3": 642.59,
+  "gwp_c3": 42.12,
+  "gwp_c4": 5.99,
+  "gwp_d1": -338.13,
+  "group": "Waermepumpe",
+  "function": "Heizung"
+}

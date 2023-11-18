@@ -1,0 +1,21 @@
+{
+  "id": "6.25",
+  "name": "Korkplatten 1m2 (Dicke 6 mm)",
+  "unit": "m2",
+  "weight_kg": 2.7,
+  "density": 450.0,
+  "area_density": 2.7,
+  "linear_density": NaN,
+  "conversion_factor": 166.67,
+  "conversion_factor_kg": 2.7,
+  "penrt_a1toa3": 22.43,
+  "penrt_d3": 0.06,
+  "penrt_d4": 0.0,
+  "penrt_d1": -18.61,
+  "gwp_a1toa3": -4.56,
+  "gwp_c3": 4.84,
+  "gwp_c4": 0.0,
+  "gwp_d1": -0.54,
+  "group": "Kork",
+  "function": "Bodenbelag"
+}

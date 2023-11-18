@@ -1,0 +1,21 @@
+{
+  "id": "9.34",
+  "name": "Fenster-Beschlag fuer Drehkippfenster (Aluminium)",
+  "unit": "Stueck.",
+  "weight_kg": 1.65,
+  "density": NaN,
+  "area_density": NaN,
+  "linear_density": NaN,
+  "conversion_factor": NaN,
+  "conversion_factor_kg": 1.65,
+  "penrt_a1toa3": 172.48,
+  "penrt_d3": 0.0,
+  "penrt_d4": 0.0,
+  "penrt_d1": -104.31,
+  "gwp_a1toa3": 12.37,
+  "gwp_c3": 0.0,
+  "gwp_c4": 0.0,
+  "gwp_d1": -8.02,
+  "group": "Metall",
+  "function": "Beschlag"
+}

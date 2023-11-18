@@ -1,0 +1,21 @@
+{
+  "id": "5.51",
+  "name": "XPS-Daemmstoff",
+  "unit": "m3",
+  "weight_kg": 32.0,
+  "density": 32.0,
+  "area_density": NaN,
+  "linear_density": NaN,
+  "conversion_factor": 1.0,
+  "conversion_factor_kg": 32.0,
+  "penrt_a1toa3": 2838.65,
+  "penrt_d3": 17.77,
+  "penrt_d4": 0.0,
+  "penrt_d1": -724.54,
+  "gwp_a1toa3": 96.34,
+  "gwp_c3": 118.21,
+  "gwp_c4": 0.0,
+  "gwp_d1": -49.51,
+  "group": "XPS",
+  "function": "Daemmung"
+}

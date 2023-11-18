@@ -1,0 +1,21 @@
+{
+  "id": "9.7",
+  "name": "Bauprofil-Gussglas ",
+  "unit": "m2",
+  "weight_kg": 25.5,
+  "density": 2500.0,
+  "area_density": 25.5,
+  "linear_density": NaN,
+  "conversion_factor": NaN,
+  "conversion_factor_kg": 25.5,
+  "penrt_a1toa3": 53.6,
+  "penrt_d3": 0.0,
+  "penrt_d4": 4.72,
+  "penrt_d1": 0.0,
+  "gwp_a1toa3": 1.61,
+  "gwp_c3": 0.0,
+  "gwp_c4": 0.28,
+  "gwp_d1": 0.0,
+  "group": "Glas",
+  "function": "Verglasung"
+}

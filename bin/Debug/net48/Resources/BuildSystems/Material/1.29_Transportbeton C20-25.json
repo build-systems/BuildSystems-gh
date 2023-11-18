@@ -1,0 +1,21 @@
+{
+  "id": "1.29",
+  "name": "Transportbeton C20-25",
+  "unit": "m3",
+  "weight_kg": 2360.0,
+  "density": 2360.0,
+  "area_density": NaN,
+  "linear_density": NaN,
+  "conversion_factor": 1.0,
+  "conversion_factor_kg": 2360.0,
+  "penrt_a1toa3": 926.04,
+  "penrt_d3": 263.57,
+  "penrt_d4": 0.0,
+  "penrt_d1": -64.69,
+  "gwp_a1toa3": 228.62,
+  "gwp_c3": 15.87,
+  "gwp_c4": 0.0,
+  "gwp_d1": -4.85,
+  "group": "Beton",
+  "function": "Beton"
+}

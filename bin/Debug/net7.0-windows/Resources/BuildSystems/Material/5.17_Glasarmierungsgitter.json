@@ -1,0 +1,21 @@
+{
+  "id": "5.17",
+  "name": "Glasarmierungsgitter",
+  "unit": "m2",
+  "weight_kg": 0.16,
+  "density": NaN,
+  "area_density": 0.16,
+  "linear_density": NaN,
+  "conversion_factor": NaN,
+  "conversion_factor_kg": 0.16,
+  "penrt_a1toa3": 9.89,
+  "penrt_d3": 0.0,
+  "penrt_d4": 0.04,
+  "penrt_d1": 0.0,
+  "gwp_a1toa3": 0.55,
+  "gwp_c3": 0.0,
+  "gwp_c4": 0.0,
+  "gwp_d1": 0.0,
+  "group": "Glasfaser",
+  "function": "Daemmung"
+}

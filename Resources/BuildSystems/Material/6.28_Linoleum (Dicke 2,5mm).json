@@ -1,0 +1,21 @@
+{
+  "id": "6.28",
+  "name": "Linoleum (Dicke 2,5mm)",
+  "unit": "m2",
+  "weight_kg": 3.0,
+  "density": 1200.0,
+  "area_density": 3.0,
+  "linear_density": NaN,
+  "conversion_factor": 400.0,
+  "conversion_factor_kg": 3.0,
+  "penrt_a1toa3": 96.29,
+  "penrt_d3": 0.06,
+  "penrt_d4": 0.0,
+  "penrt_d1": -22.76,
+  "gwp_a1toa3": -3.25,
+  "gwp_c3": 3.59,
+  "gwp_c4": 0.0,
+  "gwp_d1": -0.44,
+  "group": "Linoleum",
+  "function": "Bodenbelag"
+}

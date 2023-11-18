@@ -1,0 +1,21 @@
+{
+  "id": "6.42",
+  "name": "Getuftete Teppichfliesen LC3, PA 6, Schwerbeschichtung auf Bitumenbasis",
+  "unit": "m2",
+  "weight_kg": 4.4,
+  "density": NaN,
+  "area_density": 4.4,
+  "linear_density": NaN,
+  "conversion_factor": NaN,
+  "conversion_factor_kg": 4.4,
+  "penrt_a1toa3": 328.48,
+  "penrt_d3": 0.56,
+  "penrt_d4": 0.0,
+  "penrt_d1": -81.86,
+  "gwp_a1toa3": 15.4,
+  "gwp_c3": 0.03,
+  "gwp_c4": 0.0,
+  "gwp_d1": -0.49,
+  "group": "Polyamid",
+  "function": "Bodenbelag"
+}

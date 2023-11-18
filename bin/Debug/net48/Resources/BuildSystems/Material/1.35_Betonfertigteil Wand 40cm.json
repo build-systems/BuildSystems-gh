@@ -1,0 +1,21 @@
+{
+  "id": "1.35",
+  "name": "Betonfertigteil Wand 40cm",
+  "unit": "m2",
+  "weight_kg": 971.0,
+  "density": 2427.5,
+  "area_density": NaN,
+  "linear_density": NaN,
+  "conversion_factor": 2.5,
+  "conversion_factor_kg": 971.0,
+  "penrt_a1toa3": 665.31,
+  "penrt_d3": 50.06,
+  "penrt_d4": 0.0,
+  "penrt_d1": -20.59,
+  "gwp_a1toa3": 129.99,
+  "gwp_c3": 2.59,
+  "gwp_c4": 0.0,
+  "gwp_d1": -1.68,
+  "group": "Beton",
+  "function": "Fertigteil"
+}

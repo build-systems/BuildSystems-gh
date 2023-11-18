@@ -1,0 +1,21 @@
+{
+  "id": "10.67",
+  "name": "oeltank Stahl-PE-HD (Doppelwandtank, 1000l)",
+  "unit": "Stueck.",
+  "weight_kg": 84.0,
+  "density": NaN,
+  "area_density": NaN,
+  "linear_density": NaN,
+  "conversion_factor": NaN,
+  "conversion_factor_kg": 84.0,
+  "penrt_a1toa3": 3962.93,
+  "penrt_d3": 13.46,
+  "penrt_d4": 0.0,
+  "penrt_d1": -1249.29,
+  "gwp_a1toa3": 251.27,
+  "gwp_c3": 84.29,
+  "gwp_c4": 0.0,
+  "gwp_d1": -132.37,
+  "group": "oeltank",
+  "function": "Speicher"
+}

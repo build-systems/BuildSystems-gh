@@ -1,0 +1,21 @@
+{
+  "id": "9.42",
+  "name": "Kunststoffprofil SBR",
+  "unit": "kg",
+  "weight_kg": 1.0,
+  "density": 400.0,
+  "area_density": NaN,
+  "linear_density": NaN,
+  "conversion_factor": NaN,
+  "conversion_factor_kg": 1.0,
+  "penrt_a1toa3": 114.53,
+  "penrt_d3": 0.61,
+  "penrt_d4": 0.0,
+  "penrt_d1": -24.79,
+  "gwp_a1toa3": 4.2,
+  "gwp_c3": 3.14,
+  "gwp_c4": 0.0,
+  "gwp_d1": -1.7,
+  "group": "SBR",
+  "function": "Dichtung"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "9.21",
+  "name": "Blendrahmen PVC-U",
+  "unit": "m",
+  "weight_kg": 2.8,
+  "density": 571.2,
+  "area_density": NaN,
+  "linear_density": 2.8,
+  "conversion_factor": NaN,
+  "conversion_factor_kg": 2.8,
+  "penrt_a1toa3": 136.21,
+  "penrt_d3": 8.33,
+  "penrt_d4": 0.0,
+  "penrt_d1": -30.57,
+  "gwp_a1toa3": 8.25,
+  "gwp_c3": 3.92,
+  "gwp_c4": 0.0,
+  "gwp_d1": -3.23,
+  "group": "Kunststoff",
+  "function": "Fenster"
+}

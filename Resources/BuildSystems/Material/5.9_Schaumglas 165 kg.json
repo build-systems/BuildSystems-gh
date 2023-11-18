@@ -1,0 +1,21 @@
+{
+  "id": "5.9",
+  "name": "Schaumglas 165 kg",
+  "unit": "kg",
+  "weight_kg": 1.0,
+  "density": 165.0,
+  "area_density": NaN,
+  "linear_density": NaN,
+  "conversion_factor": 165.0,
+  "conversion_factor_kg": 1.0,
+  "penrt_a1toa3": 23.0,
+  "penrt_d3": 0.0,
+  "penrt_d4": 0.19,
+  "penrt_d1": -0.11,
+  "gwp_a1toa3": 1.48,
+  "gwp_c3": 0.0,
+  "gwp_c4": 0.01,
+  "gwp_d1": -0.01,
+  "group": "Schaumglas",
+  "function": "Daemmung"
+}

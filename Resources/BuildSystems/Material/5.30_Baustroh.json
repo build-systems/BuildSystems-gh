@@ -1,0 +1,21 @@
+{
+  "id": "5.30",
+  "name": "Baustroh",
+  "unit": "m3",
+  "weight_kg": 100.0,
+  "density": 100.0,
+  "area_density": NaN,
+  "linear_density": NaN,
+  "conversion_factor": 1.0,
+  "conversion_factor_kg": 100.0,
+  "penrt_a1toa3": 62.8,
+  "penrt_d3": 31.2,
+  "penrt_d4": 0.0,
+  "penrt_d1": -769.0,
+  "gwp_a1toa3": -127.0,
+  "gwp_c3": 123.0,
+  "gwp_c4": 13.4,
+  "gwp_d1": -63.0,
+  "group": "Stroh",
+  "function": "Daemmung"
+}

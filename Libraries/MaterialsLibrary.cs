@@ -36,7 +36,7 @@ namespace BuildSystemsGH.Libraries
             // Get the directory name from the original path.
             string directoryPath = Path.GetDirectoryName(filePath);
             // Combine with the new directory.
-            string libPath = Path.Combine(directoryPath, "BuildSystems");
+            string libPath = Path.Combine(directoryPath, "Resources/BuildSystems");
             pManager.AddTextParameter("Folder Path", "Path", "Root folder containing the three other folders with the JSON libraries.", GH_ParamAccess.item, libPath);
             pManager.AddTextParameter("Material name", "Name", "Name of the material", GH_ParamAccess.item);
         }
