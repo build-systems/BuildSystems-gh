@@ -1,0 +1,21 @@
+{
+  "id": "7.2",
+  "name": "Natursteinplatte, hart, Fassade (Dicke 3,0 cm)",
+  "unit": "m2",
+  "weight_kg": 78.0,
+  "density": 2600.0,
+  "area_density": 78.0,
+  "linear_density": NaN,
+  "conversion_factor": 33.33,
+  "conversion_factor_kg": 78.0,
+  "penrt_a1toa3": 414.97,
+  "penrt_d3": 8.71,
+  "penrt_d4": 0.0,
+  "penrt_d1": -2.14,
+  "gwp_a1toa3": 32.41,
+  "gwp_c3": 0.52,
+  "gwp_c4": 0.0,
+  "gwp_d1": -0.16,
+  "group": "Naturstein",
+  "function": "Fassade"
+}

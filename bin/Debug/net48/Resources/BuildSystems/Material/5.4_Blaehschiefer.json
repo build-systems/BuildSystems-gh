@@ -1,0 +1,21 @@
+{
+  "id": "5.4",
+  "name": "Blaehschiefer",
+  "unit": "kg",
+  "weight_kg": 1.0,
+  "density": 600.0,
+  "area_density": NaN,
+  "linear_density": NaN,
+  "conversion_factor": 600.0,
+  "conversion_factor_kg": 1.0,
+  "penrt_a1toa3": 2.06,
+  "penrt_d3": 0.0,
+  "penrt_d4": 0.2,
+  "penrt_d1": 0.0,
+  "gwp_a1toa3": 0.34,
+  "gwp_c3": 0.0,
+  "gwp_c4": 0.01,
+  "gwp_d1": 0.0,
+  "group": "Blaehschiefer",
+  "function": "Daemmung"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "3.9",
+  "name": "3- und 5-Schicht Massivholzplatte (Durchschnitt DE)",
+  "unit": "m3",
+  "weight_kg": 510.45,
+  "density": 510.45,
+  "area_density": NaN,
+  "linear_density": NaN,
+  "conversion_factor": 1.0,
+  "conversion_factor_kg": 510.45,
+  "penrt_a1toa3": 2273.35,
+  "penrt_d3": -124.77,
+  "penrt_d4": 0.0,
+  "penrt_d1": -4880.1,
+  "gwp_a1toa3": -647.42,
+  "gwp_c3": 810.12,
+  "gwp_c4": 0.0,
+  "gwp_d1": -261.1,
+  "group": "Schichtholz",
+  "function": "Holzwerkstoff"
+}

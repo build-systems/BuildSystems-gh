@@ -1,0 +1,21 @@
+{
+  "id": "6.39",
+  "name": "Fussbodenbelag mehrschichtiges Nadelvlies (Dicke 6,0 mm)",
+  "unit": "m2",
+  "weight_kg": 1.4,
+  "density": NaN,
+  "area_density": 1.4,
+  "linear_density": NaN,
+  "conversion_factor": 166.67,
+  "conversion_factor_kg": 1.4,
+  "penrt_a1toa3": 191.31,
+  "penrt_d3": 1.61,
+  "penrt_d4": 0.0,
+  "penrt_d1": -23.37,
+  "gwp_a1toa3": 8.92,
+  "gwp_c3": 4.05,
+  "gwp_c4": 0.0,
+  "gwp_d1": -1.6,
+  "group": "Teppich",
+  "function": "Bodenbelag"
+}

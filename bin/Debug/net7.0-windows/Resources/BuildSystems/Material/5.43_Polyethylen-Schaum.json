@@ -1,0 +1,21 @@
+{
+  "id": "5.43",
+  "name": "Polyethylen-Schaum",
+  "unit": "kg",
+  "weight_kg": 1.0,
+  "density": 30.0,
+  "area_density": NaN,
+  "linear_density": NaN,
+  "conversion_factor": 30.0,
+  "conversion_factor_kg": 1.0,
+  "penrt_a1toa3": 96.03,
+  "penrt_d3": 0.64,
+  "penrt_d4": 0.0,
+  "penrt_d1": -26.39,
+  "gwp_a1toa3": 3.06,
+  "gwp_c3": 3.98,
+  "gwp_c4": 0.0,
+  "gwp_d1": -1.8,
+  "group": "Polyethylen",
+  "function": "Daemmung"
+}

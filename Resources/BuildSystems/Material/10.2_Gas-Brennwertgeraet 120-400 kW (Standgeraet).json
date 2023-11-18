@@ -1,0 +1,21 @@
+{
+  "id": "10.2",
+  "name": "Gas-Brennwertgeraet 120-400 kW (Standgeraet)",
+  "unit": "Stueck.",
+  "weight_kg": 974.0,
+  "density": NaN,
+  "area_density": NaN,
+  "linear_density": NaN,
+  "conversion_factor": NaN,
+  "conversion_factor_kg": 974.0,
+  "penrt_a1toa3": 41634.38,
+  "penrt_d3": 149.12,
+  "penrt_d4": 0.46,
+  "penrt_d1": -13320.66,
+  "gwp_a1toa3": 3422.37,
+  "gwp_c3": 161.5,
+  "gwp_c4": 1.8,
+  "gwp_d1": -1357.73,
+  "group": "Brennwertheizung",
+  "function": "Heizung"
+}

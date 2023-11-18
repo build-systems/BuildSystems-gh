@@ -1,0 +1,21 @@
+{
+  "id": "2.14",
+  "name": "Aluminiumblech",
+  "unit": "kg",
+  "weight_kg": 1.0,
+  "density": 2700.0,
+  "area_density": NaN,
+  "linear_density": NaN,
+  "conversion_factor": 2700.0,
+  "conversion_factor_kg": 1.0,
+  "penrt_a1toa3": 141.37,
+  "penrt_d3": 0.0,
+  "penrt_d4": 0.0,
+  "penrt_d1": -104.86,
+  "gwp_a1toa3": 10.46,
+  "gwp_c3": 0.0,
+  "gwp_c4": 0.0,
+  "gwp_d1": -7.89,
+  "group": "Aluminium",
+  "function": "Blech"
+}

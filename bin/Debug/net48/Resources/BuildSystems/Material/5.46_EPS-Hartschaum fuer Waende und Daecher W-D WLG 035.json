@@ -1,0 +1,21 @@
+{
+  "id": "5.46",
+  "name": "EPS-Hartschaum fuer Waende und Daecher W-D WLG 035",
+  "unit": "m3",
+  "weight_kg": 22.7,
+  "density": 22.7,
+  "area_density": NaN,
+  "linear_density": NaN,
+  "conversion_factor": 1.0,
+  "conversion_factor_kg": 22.7,
+  "penrt_a1toa3": 1810.0,
+  "penrt_d3": 0.0,
+  "penrt_d4": 9.6,
+  "penrt_d1": -604.0,
+  "gwp_a1toa3": 59.5,
+  "gwp_c3": 0.0,
+  "gwp_c4": 75.2,
+  "gwp_d1": -39.6,
+  "group": "Polystyrol",
+  "function": "Daemmung"
+}

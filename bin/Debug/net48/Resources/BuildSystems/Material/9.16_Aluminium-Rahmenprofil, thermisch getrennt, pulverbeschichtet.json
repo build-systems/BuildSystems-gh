@@ -1,0 +1,21 @@
+{
+  "id": "9.16",
+  "name": "Aluminium-Rahmenprofil, thermisch getrennt, pulverbeschichtet",
+  "unit": "m",
+  "weight_kg": 1.43,
+  "density": NaN,
+  "area_density": NaN,
+  "linear_density": 1.43,
+  "conversion_factor": NaN,
+  "conversion_factor_kg": 1.43,
+  "penrt_a1toa3": 224.24,
+  "penrt_d3": 0.36,
+  "penrt_d4": 0.0,
+  "penrt_d1": -126.82,
+  "gwp_a1toa3": 15.77,
+  "gwp_c3": 0.69,
+  "gwp_c4": 0.0,
+  "gwp_d1": -9.52,
+  "group": "Aluminium",
+  "function": "Fenster"
+}

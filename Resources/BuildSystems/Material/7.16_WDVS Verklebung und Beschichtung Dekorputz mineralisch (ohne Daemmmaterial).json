@@ -1,0 +1,21 @@
+{
+  "id": "7.16",
+  "name": "WDVS Verklebung und Beschichtung Dekorputz mineralisch (ohne Daemmmaterial)",
+  "unit": "m2",
+  "weight_kg": 17.4,
+  "density": NaN,
+  "area_density": 17.4,
+  "linear_density": NaN,
+  "conversion_factor": NaN,
+  "conversion_factor_kg": 17.4,
+  "penrt_a1toa3": 79.58,
+  "penrt_d3": 0.0,
+  "penrt_d4": 3.77,
+  "penrt_d1": 0.0,
+  "gwp_a1toa3": 7.34,
+  "gwp_c3": 0.0,
+  "gwp_c4": 0.26,
+  "gwp_d1": 0.0,
+  "group": "WDVS-Putz",
+  "function": "Putz"
+}

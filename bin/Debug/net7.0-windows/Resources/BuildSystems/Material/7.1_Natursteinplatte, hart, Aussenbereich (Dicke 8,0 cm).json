@@ -1,0 +1,21 @@
+{
+  "id": "7.1",
+  "name": "Natursteinplatte, hart, Aussenbereich (Dicke 8,0 cm)",
+  "unit": "m2",
+  "weight_kg": 208.0,
+  "density": 2600.0,
+  "area_density": 208.0,
+  "linear_density": NaN,
+  "conversion_factor": 12.5,
+  "conversion_factor_kg": 208.0,
+  "penrt_a1toa3": 79.63,
+  "penrt_d3": 23.23,
+  "penrt_d4": 0.0,
+  "penrt_d1": -5.7,
+  "gwp_a1toa3": 5.74,
+  "gwp_c3": 1.4,
+  "gwp_c4": 0.0,
+  "gwp_d1": -0.43,
+  "group": "Naturstein",
+  "function": "Aussenanlage"
+}

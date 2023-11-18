@@ -1,0 +1,21 @@
+{
+  "id": "5.55",
+  "name": "PIR Hartschaum",
+  "unit": "m3",
+  "weight_kg": 30.0,
+  "density": 30.0,
+  "area_density": NaN,
+  "linear_density": NaN,
+  "conversion_factor": 1.0,
+  "conversion_factor_kg": 30.0,
+  "penrt_a1toa3": 18136.89,
+  "penrt_d3": 194.06,
+  "penrt_d4": 0.0,
+  "penrt_d1": -3645.06,
+  "gwp_a1toa3": 781.38,
+  "gwp_c3": 644.63,
+  "gwp_c4": 0.0,
+  "gwp_d1": -249.99,
+  "group": "PIR",
+  "function": "Daemmung"
+}

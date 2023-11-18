@@ -1,0 +1,21 @@
+{
+  "id": "6.21",
+  "name": "Massivholzparkett (Durchschnitt DE)",
+  "unit": "m2",
+  "weight_kg": 11.71,
+  "density": 665.34,
+  "area_density": 11.71,
+  "linear_density": NaN,
+  "conversion_factor": NaN,
+  "conversion_factor_kg": 11.71,
+  "penrt_a1toa3": 90.04,
+  "penrt_d3": 0.94,
+  "penrt_d4": 0.0,
+  "penrt_d1": -118.51,
+  "gwp_a1toa3": -12.63,
+  "gwp_c3": 19.93,
+  "gwp_c4": 0.0,
+  "gwp_d1": -8.93,
+  "group": "Parkett",
+  "function": "Bodenbelag"
+}

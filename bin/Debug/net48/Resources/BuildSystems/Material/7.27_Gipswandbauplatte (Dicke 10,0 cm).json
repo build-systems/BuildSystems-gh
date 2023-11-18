@@ -1,0 +1,21 @@
+{
+  "id": "7.27",
+  "name": "Gipswandbauplatte (Dicke 10,0 cm)",
+  "unit": "m2",
+  "weight_kg": 84.0,
+  "density": 840.0,
+  "area_density": 84.0,
+  "linear_density": NaN,
+  "conversion_factor": 10.0,
+  "conversion_factor_kg": 84.0,
+  "penrt_a1toa3": 356.21,
+  "penrt_d3": 0.0,
+  "penrt_d4": 18.4,
+  "penrt_d1": 0.0,
+  "gwp_a1toa3": 22.35,
+  "gwp_c3": 0.0,
+  "gwp_c4": 1.26,
+  "gwp_d1": 0.0,
+  "group": "Gips",
+  "function": "Trockenbau"
+}

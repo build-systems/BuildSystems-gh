@@ -10,6 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 
+using BSoM.Database;
 using BSoM.LCA;
 
 namespace BuildSystemsGH.Libraries
@@ -17,22 +18,22 @@ namespace BuildSystemsGH.Libraries
     public class ComponentsLibrary : GH_Component
     {
         /// <summary>
-        /// Initializes a new instance of the MyComponent1 class.
+        /// Initializes a new instance of the ComponentsLibrary class.
         /// </summary>
 
         public GH_Structure<GH_String> MapChildrenToAlpha1(GH_Structure<GH_String> datatree, JToken children, int newIndex, int index)
         {
             // Function to map data to surface tool alpha 1
-            string childLOD = (string)children[newIndex]["Properties"]["LOD"];
-            string childLevel = (string)children[newIndex]["Properties"]["Level"];
+            string childLOD = (string)children[newIndex]["properties"]["lod"];
+            string childLevel = (string)children[newIndex]["properties"]["level"];
             string childBOM = Convert.ToString(Convert.ToInt32(childLOD) - 1);
-            string childID = (string)children[newIndex]["Option A"]["ID"];
-            string childMaterial = (string)children[newIndex]["Option A"]["Material"];
-            string childCategory = (string)children[newIndex]["Properties"]["Category"];
-            string childDescription = (string)children[newIndex]["Properties"]["Description"];
-            string childThickness = (string)children[newIndex]["Properties"]["Thickness"];
-            string childWidth = (string)children[newIndex]["Properties"]["Width"];
-            string childSpread = (string)children[newIndex]["Properties"]["Spread"];
+            string childID = (string)children[newIndex]["option A"]["id"];
+            string childMaterial = (string)children[newIndex]["option A"]["material"];
+            string childCategory = (string)children[newIndex]["properties"]["category"];
+            string childDescription = (string)children[newIndex]["properties"]["description"];
+            string childThickness = (string)children[newIndex]["properties"]["thickness"];
+            string childWidth = (string)children[newIndex]["properties"]["width"];
+            string childSpread = (string)children[newIndex]["properties"]["spread"];
 
             GH_String gH_childLOD = new GH_String(childLOD);
             GH_String gH_childLevel = new GH_String(childLevel);
@@ -67,15 +68,15 @@ namespace BuildSystemsGH.Libraries
 
             while (newIndex < sizeChildren)
             {
-                while (children[newIndex]["Children"] == null)
+                while (children[newIndex]["children"] == null)
                 {
                     MapChildrenToAlpha1(datatree, children, newIndex, index);
                     index++;
                     newIndex++;
-                    if (newIndex == sizeChildren || children[newIndex]["Children"] != null) break;
+                    if (newIndex == sizeChildren || children[newIndex]["children"] != null) break;
                 }
                 if (newIndex == sizeChildren) break;
-                JToken childrenOfChildren = children[newIndex]["Children"];
+                JToken childrenOfChildren = children[newIndex]["children"];
                 DeserializeJSONToDataTree(datatree, childrenOfChildren, ref index);
                 newIndex++;
             }
@@ -98,7 +99,7 @@ namespace BuildSystemsGH.Libraries
                 JObject jObjectAssembled = new JObject();
                 jObjectAssembled[header] = jObjectAssembly;
 
-                JToken children = jObjectAssembly["Children"];
+                JToken children = jObjectAssembly["children"];
 
                 // Add the children of the super Aufbau to the bauteilDataTree
                 componentDataTree = DeserializeJSONToDataTree(componentDataTree, children, ref index);
@@ -121,7 +122,7 @@ namespace BuildSystemsGH.Libraries
             // Get the directory name from the original path.
             string directoryPath = Path.GetDirectoryName(filePath);
             // Combine with the new directory.
-            string libPath = Path.Combine(directoryPath, "BuildSystems");
+            string libPath = Path.Combine(directoryPath, "Resources\\BuildSystems");
             pManager.AddTextParameter("Folder Path", "Path", "Root folder containing the three other folders with the JSON libraries.", GH_ParamAccess.item, libPath);
             pManager.AddTextParameter("Building Component ID", "ID", "ID of the building component (Bauteil)", GH_ParamAccess.item);
         }
@@ -140,10 +141,12 @@ namespace BuildSystemsGH.Libraries
         /// <param name="DA">The DA object is used to retrieve from inputs and store in outputs.</param>
         protected override void SolveInstance(IGH_DataAccess DA)
         {
-            string libPath = "";
+            string databasefolder = "";
             string componentName = "";
-            DA.GetData(0, ref libPath);
+            DA.GetData(0, ref databasefolder);
             if (!DA.GetData(1, ref componentName)) return;
+            //BSoM.Database.Info database = new BSoM.Database.Info();
+            //database.Path = databasefolder;
 
             // Initialize
             List<string> buildingComponetsList = new List<string>();
@@ -158,13 +161,13 @@ namespace BuildSystemsGH.Libraries
             try
             {
                 // Get all subdirectories
-                string[] subdirectories = Directory.GetDirectories(libPath);
+                string[] subdirectories = Directory.GetDirectories(databasefolder);
 
                 // Check if the required folders match the subdirectories
                 foreach (string requiredFolder in requiredFolders)
                 {
                     // Check if the required folder is in the subdirectories
-                    if (!subdirectories.Contains(libPath + "\\" + requiredFolder))
+                    if (!subdirectories.Contains(databasefolder + "\\" + requiredFolder))
                     {
                         AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "The folder path is not valid. The sub-folder '" + requiredFolder + "' is missing.");
                         return;
@@ -172,11 +175,11 @@ namespace BuildSystemsGH.Libraries
                 }
 
                 // Make a list of json files in the database directory
-                string databaseComponents = libPath + "\\" + "Component";
+                string databaseComponents = databasefolder + "\\" + "Component";
                 jsonComponentsPathArray = Directory.GetFiles(databaseComponents, "*.json");
-                string databaseAssemblies = libPath + "\\" + "Assembly";
+                string databaseAssemblies = databasefolder + "\\" + "Assembly";
                 jsonAssembliesPathArray = Directory.GetFiles(databaseAssemblies, "*.json");
-                string databaseMaterials = libPath + "\\" + "Material";
+                string databaseMaterials = databasefolder + "\\" + "Material";
                 jsonMaterialsPathArray = Directory.GetFiles(databaseMaterials, "*.json");
 
                 // Convert to list
@@ -198,19 +201,25 @@ namespace BuildSystemsGH.Libraries
                 string jsonComponent = File.ReadAllText(selectedComponentPath[0]);
 
 
-
                 // Convert json string to a json object
                 JObject jObjectComponent = JObject.Parse(jsonComponent);
 
                 // Keys on the JSON. They derive from the headers on the Excel database
-                string keySuper = "Super-Aufbau";
-                string keyMain = "Main-Aufbau";
-                string keySub = "Sub-Aufbau";
+                string keySuper = "superAssemblyId";
+                string keyMain = "mainAssemblyId";
+                string keySub = "subAssemblyId";
 
                 // Get the super, main and sub Aufbau from the json object
                 string superAssembly = (string)jObjectComponent[keySuper];
                 string mainAssembly = (string)jObjectComponent[keyMain];
                 string subAssembly = (string)jObjectComponent[keySub];
+
+
+
+                ////// Create assembly using a constructor, as input a filename and a database folder
+
+
+
 
                 // Create a new GH data tree for the bauteil data
                 GH_Structure<GH_String> componentDataTree = new GH_Structure<GH_String>();
@@ -253,7 +262,7 @@ namespace BuildSystemsGH.Libraries
                 // Get the directory name from the original path.
                 string directoryPath = Path.GetDirectoryName(filePath);
                 // Combine with the new directory.
-                string libPath = Path.Combine(directoryPath, "BuildSystems");
+                string libPath = Path.Combine(directoryPath, "Resources\\BuildSystems");
 
                 // Material list
                 List<string> componentsList = new List<string>();

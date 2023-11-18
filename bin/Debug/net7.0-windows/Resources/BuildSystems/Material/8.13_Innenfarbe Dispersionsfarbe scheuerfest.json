@@ -1,0 +1,21 @@
+{
+  "id": "8.13",
+  "name": "Innenfarbe Dispersionsfarbe scheuerfest",
+  "unit": "kg",
+  "weight_kg": 1.0,
+  "density": 1560.0,
+  "area_density": NaN,
+  "linear_density": NaN,
+  "conversion_factor": NaN,
+  "conversion_factor_kg": 1.0,
+  "penrt_a1toa3": 58.03,
+  "penrt_d3": 0.0,
+  "penrt_d4": 0.22,
+  "penrt_d1": -0.16,
+  "gwp_a1toa3": 2.62,
+  "gwp_c3": 0.0,
+  "gwp_c4": 0.02,
+  "gwp_d1": -0.01,
+  "group": "Kunstharz",
+  "function": "Beschichtung"
+}

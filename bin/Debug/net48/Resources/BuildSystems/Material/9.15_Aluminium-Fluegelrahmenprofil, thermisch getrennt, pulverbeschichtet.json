@@ -1,0 +1,21 @@
+{
+  "id": "9.15",
+  "name": "Aluminium-Fluegelrahmenprofil, thermisch getrennt, pulverbeschichtet",
+  "unit": "m",
+  "weight_kg": 1.51,
+  "density": NaN,
+  "area_density": NaN,
+  "linear_density": 1.51,
+  "conversion_factor": NaN,
+  "conversion_factor_kg": 1.51,
+  "penrt_a1toa3": 240.73,
+  "penrt_d3": 0.31,
+  "penrt_d4": 0.0,
+  "penrt_d1": -138.77,
+  "gwp_a1toa3": 17.06,
+  "gwp_c3": 0.59,
+  "gwp_c4": 0.0,
+  "gwp_d1": -10.42,
+  "group": "Aluminium",
+  "function": "Fenster"
+}

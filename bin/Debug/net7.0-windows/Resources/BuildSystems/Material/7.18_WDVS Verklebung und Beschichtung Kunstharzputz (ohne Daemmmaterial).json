@@ -1,0 +1,21 @@
+{
+  "id": "7.18",
+  "name": "WDVS Verklebung und Beschichtung Kunstharzputz (ohne Daemmmaterial)",
+  "unit": "m2",
+  "weight_kg": 12.48,
+  "density": NaN,
+  "area_density": 12.48,
+  "linear_density": NaN,
+  "conversion_factor": NaN,
+  "conversion_factor_kg": 12.48,
+  "penrt_a1toa3": 136.17,
+  "penrt_d3": 0.0,
+  "penrt_d4": 2.73,
+  "penrt_d1": 0.0,
+  "gwp_a1toa3": 6.7,
+  "gwp_c3": 0.0,
+  "gwp_c4": 0.19,
+  "gwp_d1": 0.0,
+  "group": "WDVS-Putz",
+  "function": "Putz"
+}

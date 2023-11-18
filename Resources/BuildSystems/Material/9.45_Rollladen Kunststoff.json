@@ -1,0 +1,21 @@
+{
+  "id": "9.45",
+  "name": "Rollladen Kunststoff",
+  "unit": "m2",
+  "weight_kg": 6.24,
+  "density": NaN,
+  "area_density": 6.24,
+  "linear_density": NaN,
+  "conversion_factor": NaN,
+  "conversion_factor_kg": 6.24,
+  "penrt_a1toa3": 406.85,
+  "penrt_d3": 25.62,
+  "penrt_d4": 0.0,
+  "penrt_d1": -123.41,
+  "gwp_a1toa3": 23.47,
+  "gwp_c3": 12.05,
+  "gwp_c4": 0.0,
+  "gwp_d1": -10.05,
+  "group": "Kunststoff",
+  "function": "Rolladen"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "10.68",
+  "name": "oeltank Stahl-PE-HD (Doppelwandtank, 750l)",
+  "unit": "Stueck.",
+  "weight_kg": 68.0,
+  "density": NaN,
+  "area_density": NaN,
+  "linear_density": NaN,
+  "conversion_factor": NaN,
+  "conversion_factor_kg": 68.0,
+  "penrt_a1toa3": 3208.08,
+  "penrt_d3": 10.91,
+  "penrt_d4": 0.0,
+  "penrt_d1": -1011.58,
+  "gwp_a1toa3": 203.41,
+  "gwp_c3": 68.32,
+  "gwp_c4": 0.0,
+  "gwp_d1": -107.15,
+  "group": "oeltank",
+  "function": "Speicher"
+}

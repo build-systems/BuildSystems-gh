@@ -1,0 +1,21 @@
+{
+  "id": "5.33",
+  "name": "Holzfaserdaemmstoff Trockenverfahren (Durchschnitt DE)",
+  "unit": "m3",
+  "weight_kg": 150.76,
+  "density": 150.76,
+  "area_density": NaN,
+  "linear_density": NaN,
+  "conversion_factor": 1.0,
+  "conversion_factor_kg": 150.76,
+  "penrt_a1toa3": 1710.93,
+  "penrt_d3": 15.04,
+  "penrt_d4": 0.0,
+  "penrt_d1": -2088.62,
+  "gwp_a1toa3": -156.28,
+  "gwp_c3": 238.18,
+  "gwp_c4": 0.0,
+  "gwp_d1": -123.99,
+  "group": "Holzfaser",
+  "function": "Daemmung"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "6.36",
+  "name": "PVC Fussbodenbelag",
+  "unit": "m2",
+  "weight_kg": 3.3,
+  "density": 1650.0,
+  "area_density": 3.3,
+  "linear_density": NaN,
+  "conversion_factor": NaN,
+  "conversion_factor_kg": 3.3,
+  "penrt_a1toa3": 169.55,
+  "penrt_d3": 23.06,
+  "penrt_d4": 0.0,
+  "penrt_d1": -32.28,
+  "gwp_a1toa3": 8.19,
+  "gwp_c3": 10.85,
+  "gwp_c4": 0.0,
+  "gwp_d1": -2.2,
+  "group": "PVC",
+  "function": "Bodenbelag"
+}
