@@ -83,9 +83,9 @@ namespace BuildSystemsGH.Libraries
             return datatree;
         }
 
-        public void AppendAssemblyToTree(GH_Structure<GH_String> componentDataTree, string assembly, string[] jsonAssemblyPathArray, string header, ref int index)
+        public void AppendAssemblyToTree(GH_Structure<GH_String> componentDataTree, string assembly, List<string> jsonAssemblyPathArray, string header, ref int index)
         {
-            if (assembly != string.Empty)
+            if (assembly != string.Empty && assembly != null)
             {
                 // Filter the json Assembly paths list to find the selected Aufbau
                 List<string> assemblyPath = jsonAssemblyPathArray.Where(s => s.Contains(assembly)).ToList();
@@ -117,13 +117,7 @@ namespace BuildSystemsGH.Libraries
         /// </summary>
         protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
-            System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
-            string filePath = assembly.Location;
-            // Get the directory name from the original path.
-            string directoryPath = Path.GetDirectoryName(filePath);
-            // Combine with the new directory.
-            string libPath = Path.Combine(directoryPath, "Resources\\BuildSystems");
-            pManager.AddTextParameter("Folder Path", "Path", "Root folder containing the three other folders with the JSON libraries.", GH_ParamAccess.item, libPath);
+            pManager.AddTextParameter("Folder Path", "Path", "Root folder containing the three other folders with the JSON libraries.", GH_ParamAccess.item, BSoM.Database.Info.Folder);
             pManager.AddTextParameter("Building Component ID", "ID", "ID of the building component (Bauteil)", GH_ParamAccess.item);
         }
 
@@ -145,15 +139,13 @@ namespace BuildSystemsGH.Libraries
             string componentName = "";
             DA.GetData(0, ref databasefolder);
             if (!DA.GetData(1, ref componentName)) return;
-            //BSoM.Database.Info database = new BSoM.Database.Info();
-            //database.Path = databasefolder;
 
             // Initialize
             List<string> buildingComponetsList = new List<string>();
             GH_Structure<GH_String> MaterialList = new GH_Structure<GH_String>();
-            string[] jsonComponentsPathArray;
-            string[] jsonAssembliesPathArray;
-            string[] jsonMaterialsPathArray;
+            List<string> jsonComponentsFiles = BSoM.Database.Info.ComponentFiles();
+            List<string> jsonAssembliesFiles = BSoM.Database.Info.AssemblyFiles();
+            List<string> jsonMaterialsFiles = BSoM.Database.Info.MaterialFiles();
 
             // Sanity check
             // Check if the folder path is valid
@@ -174,32 +166,11 @@ namespace BuildSystemsGH.Libraries
                     }
                 }
 
-                // Make a list of json files in the database directory
-                string databaseComponents = databasefolder + "\\" + "Component";
-                jsonComponentsPathArray = Directory.GetFiles(databaseComponents, "*.json");
-                string databaseAssemblies = databasefolder + "\\" + "Assembly";
-                jsonAssembliesPathArray = Directory.GetFiles(databaseAssemblies, "*.json");
-                string databaseMaterials = databasefolder + "\\" + "Material";
-                jsonMaterialsPathArray = Directory.GetFiles(databaseMaterials, "*.json");
-
-                // Convert to list
-                buildingComponetsList = jsonComponentsPathArray.ToList();
-
                 // Filter the buildingComponetsList to find the selected component
-                List<string> selectedComponentPath = jsonComponentsPathArray.Where(s => s.Contains(componentName)).ToList();
-
-                // Get the name of file without the path
-                for (int i = 0; i < buildingComponetsList.Count; i++)
-                {
-                    // Extract the file name without the path
-                    buildingComponetsList[i] = buildingComponetsList[i].Substring(buildingComponetsList[i].LastIndexOf("\\") + 1);
-                    // Extract the file name without the extension
-                    buildingComponetsList[i] = buildingComponetsList[i].Substring(0, buildingComponetsList[i].LastIndexOf("."));
-                }
+                List<string> selectedComponentPath = jsonComponentsFiles.Where(s => s.Contains(componentName)).ToList();
 
                 // Read the json file
                 string jsonComponent = File.ReadAllText(selectedComponentPath[0]);
-
 
                 // Convert json string to a json object
                 JObject jObjectComponent = JObject.Parse(jsonComponent);
@@ -214,20 +185,13 @@ namespace BuildSystemsGH.Libraries
                 string mainAssembly = (string)jObjectComponent[keyMain];
                 string subAssembly = (string)jObjectComponent[keySub];
 
-
-
-                ////// Create assembly using a constructor, as input a filename and a database folder
-
-
-
-
                 // Create a new GH data tree for the bauteil data
                 GH_Structure<GH_String> componentDataTree = new GH_Structure<GH_String>();
 
                 int indexDataTree = 0;
-                AppendAssemblyToTree(componentDataTree, superAssembly, jsonAssembliesPathArray, keySuper, ref indexDataTree);
-                AppendAssemblyToTree(componentDataTree, mainAssembly, jsonAssembliesPathArray, keyMain, ref indexDataTree);
-                AppendAssemblyToTree(componentDataTree, subAssembly, jsonAssembliesPathArray, keySub, ref indexDataTree);
+                AppendAssemblyToTree(componentDataTree, superAssembly, jsonAssembliesFiles, keySuper, ref indexDataTree);
+                AppendAssemblyToTree(componentDataTree, mainAssembly, jsonAssembliesFiles, keyMain, ref indexDataTree);
+                AppendAssemblyToTree(componentDataTree, subAssembly, jsonAssembliesFiles, keySub, ref indexDataTree);
 
                 DA.SetDataTree(0, componentDataTree);
             }
@@ -256,51 +220,33 @@ namespace BuildSystemsGH.Libraries
                 valList.Attributes.ExpireLayout();
                 valList.ListItems.Clear();
 
-                // Library path
-                System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
-                string filePath = assembly.Location;
-                // Get the directory name from the original path.
-                string directoryPath = Path.GetDirectoryName(filePath);
-                // Combine with the new directory.
-                string libPath = Path.Combine(directoryPath, "Resources\\BuildSystems");
+                string libFolder = BSoM.Database.Info.Folder;
 
                 // Material list
                 List<string> componentsList = new List<string>();
-                string[] jsonComponentsPathArray;
+                List<string> jsonComponentsFiles = BSoM.Database.Info.ComponentFiles();
 
                 // Sanity check
                 // Check if the folder path is valid
-                string[] requiredFolders = { "Component" };
+                string requiredFolder = BSoM.Database.Info.Component;
                 try
                 {
                     // Get all subdirectories
-                    string[] subdirectories = Directory.GetDirectories(libPath);
-
-                    // Check if the required folders match the subdirectories
-                    foreach (string requiredFolder in requiredFolders)
+                    string[] subdirectories = Directory.GetDirectories(libFolder);
+                    // Check if the required folder is in the subdirectories
+                    if (!subdirectories.Contains(libFolder + "\\" + requiredFolder))
                     {
-                        // Check if the required folder is in the subdirectories
-                        if (!subdirectories.Contains(libPath + "\\" + requiredFolder))
-                        {
-                            AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "The folder path is not valid. The sub-folder '" + requiredFolder + "' is missing.");
-                            return;
-                        }
+                        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "The folder path is not valid. The sub-folder '" + requiredFolder + "' is missing.");
+                        return;
                     }
 
-                    // Make a list of json files in the database directory
-                    string databaseMaterials = libPath + "\\" + "Component";
-                    jsonComponentsPathArray = Directory.GetFiles(databaseMaterials, "*.json");
-
-                    // Convert to list
-                    componentsList = jsonComponentsPathArray.ToList();
-
                     // Get the name of file without the path
-                    for (int j = 0; j < componentsList.Count; j++)
+                    for (int j = 0; j < jsonComponentsFiles.Count; j++)
                     {
                         // Extract the file name without the path
-                        componentsList[j] = componentsList[j].Substring(componentsList[j].LastIndexOf("\\") + 1);
+                        jsonComponentsFiles[j] = jsonComponentsFiles[j].Substring(jsonComponentsFiles[j].LastIndexOf("\\") + 1);
                         // Extract the file name without the extension
-                        componentsList[j] = componentsList[j].Substring(0, componentsList[j].LastIndexOf("."));
+                        jsonComponentsFiles[j] = jsonComponentsFiles[j].Substring(0, jsonComponentsFiles[j].LastIndexOf("."));
                     }
 
                 }
@@ -309,13 +255,15 @@ namespace BuildSystemsGH.Libraries
                     AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "An error occurred: " + ex.Message);
                 }
 
+                // Add items to value list
                 List<Grasshopper.Kernel.Special.GH_ValueListItem> componentsAvailable = new List<Grasshopper.Kernel.Special.GH_ValueListItem>();
-                foreach (string component in componentsList)
+                foreach (string component in jsonComponentsFiles)
                 {
                     Grasshopper.Kernel.Special.GH_ValueListItem valueItem = new Grasshopper.Kernel.Special.GH_ValueListItem(component, '"' + component + '"');
                     componentsAvailable.Add(valueItem);
                 }
 
+                // Add value list to Grasshopper document
                 valList.ListItems.AddRange(componentsAvailable);
                 document.AddObject(valList, false);
                 in0str.AddSource(valList);
