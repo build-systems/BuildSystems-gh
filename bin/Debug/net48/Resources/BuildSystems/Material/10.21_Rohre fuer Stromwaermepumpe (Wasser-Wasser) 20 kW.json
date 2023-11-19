@@ -1,0 +1,21 @@
+{
+  "id": "10.21",
+  "name": "Rohre fuer Stromwaermepumpe (Wasser-Wasser) 20 kW",
+  "unit": "Stueck.",
+  "weight_kg": 48.0,
+  "density": NaN,
+  "area_density": NaN,
+  "linear_density": NaN,
+  "conversion_factor": NaN,
+  "conversion_factor_kg": 48.0,
+  "penrt_a1toa3": 3679.45,
+  "penrt_d3": 0.22,
+  "penrt_d4": 0.0,
+  "penrt_d1": -212.25,
+  "gwp_a1toa3": 174.76,
+  "gwp_c3": 0.01,
+  "gwp_c4": 0.0,
+  "gwp_d1": -28.07,
+  "group": "Rohre Waermepumpe",
+  "function": "Rohre "
+}

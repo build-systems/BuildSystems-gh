@@ -1,0 +1,21 @@
+{
+  "id": "4.9",
+  "name": "Dachbahnen EPDM (Dicke1,5 mm)",
+  "unit": "m2",
+  "weight_kg": 2.0,
+  "density": 955.0,
+  "area_density": 2.0,
+  "linear_density": NaN,
+  "conversion_factor": 666.67,
+  "conversion_factor_kg": 2.0,
+  "penrt_a1toa3": 247.21,
+  "penrt_d3": 1.32,
+  "penrt_d4": 0.0,
+  "penrt_d1": -49.59,
+  "gwp_a1toa3": 8.6,
+  "gwp_c3": 6.8,
+  "gwp_c4": 0.0,
+  "gwp_d1": -3.39,
+  "group": "EPDM",
+  "function": "Abdichtung"
+}

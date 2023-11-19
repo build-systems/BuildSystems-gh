@@ -1,0 +1,21 @@
+{
+  "id": "10.51",
+  "name": "Fahrstuhl - Grundkomponenten (stockwerkunabhaengig)",
+  "unit": "Stueck.",
+  "weight_kg": 1603.0,
+  "density": NaN,
+  "area_density": NaN,
+  "linear_density": NaN,
+  "conversion_factor": NaN,
+  "conversion_factor_kg": 1603.0,
+  "penrt_a1toa3": 58692.39,
+  "penrt_d3": 147.21,
+  "penrt_d4": 1.25,
+  "penrt_d1": -13355.73,
+  "gwp_a1toa3": 5193.0,
+  "gwp_c3": 37.39,
+  "gwp_c4": 4.88,
+  "gwp_d1": -1579.64,
+  "group": "Fahrstuhl",
+  "function": "Transport"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "10.45",
+  "name": "Luefter zentral mit WRG 10000 m3-h",
+  "unit": "Stueck.",
+  "weight_kg": 704.0,
+  "density": NaN,
+  "area_density": NaN,
+  "linear_density": NaN,
+  "conversion_factor": NaN,
+  "conversion_factor_kg": 704.0,
+  "penrt_a1toa3": 31204.33,
+  "penrt_d3": 26.25,
+  "penrt_d4": 0.07,
+  "penrt_d1": -18073.88,
+  "gwp_a1toa3": 2815.96,
+  "gwp_c3": 3.47,
+  "gwp_c4": 0.27,
+  "gwp_d1": -1717.02,
+  "group": "Luefter",
+  "function": "Lueftung"
+}

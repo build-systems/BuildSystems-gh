@@ -1,0 +1,21 @@
+{
+  "id": "5.31",
+  "name": "Holzfaserdaemmplatte (Nassverfahren)",
+  "unit": "m3",
+  "weight_kg": 160.0,
+  "density": 160.0,
+  "area_density": NaN,
+  "linear_density": NaN,
+  "conversion_factor": 1.0,
+  "conversion_factor_kg": 160.0,
+  "penrt_a1toa3": 1822.51,
+  "penrt_d3": 3.67,
+  "penrt_d4": 0.0,
+  "penrt_d1": -1537.78,
+  "gwp_a1toa3": -182.18,
+  "gwp_c3": 334.69,
+  "gwp_c4": 0.0,
+  "gwp_d1": -88.66,
+  "group": "Holzfaser",
+  "function": "Daemmung"
+}

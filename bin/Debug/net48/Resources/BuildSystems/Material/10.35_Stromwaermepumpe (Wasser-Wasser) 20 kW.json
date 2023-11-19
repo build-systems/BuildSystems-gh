@@ -1,0 +1,21 @@
+{
+  "id": "10.35",
+  "name": "Stromwaermepumpe (Wasser-Wasser) 20 kW",
+  "unit": "Stueck.",
+  "weight_kg": 104.0,
+  "density": NaN,
+  "area_density": NaN,
+  "linear_density": NaN,
+  "conversion_factor": NaN,
+  "conversion_factor_kg": 104.0,
+  "penrt_a1toa3": 3061.26,
+  "penrt_d3": 3.64,
+  "penrt_d4": 0.01,
+  "penrt_d1": -1402.34,
+  "gwp_a1toa3": 284.32,
+  "gwp_c3": 5.22,
+  "gwp_c4": 0.03,
+  "gwp_d1": -173.46,
+  "group": "Waermepumpe",
+  "function": "Heizung"
+}

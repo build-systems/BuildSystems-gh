@@ -1,0 +1,21 @@
+{
+  "id": "2.7",
+  "name": "Feuerverzinktes Stahlblech",
+  "unit": "m2",
+  "weight_kg": 5.72,
+  "density": NaN,
+  "area_density": 5.72,
+  "linear_density": NaN,
+  "conversion_factor": 1.0,
+  "conversion_factor_kg": 5.72,
+  "penrt_a1toa3": 154.91,
+  "penrt_d3": 0.0,
+  "penrt_d4": 0.0,
+  "penrt_d1": -68.03,
+  "gwp_a1toa3": 16.39,
+  "gwp_c3": 0.0,
+  "gwp_c4": 0.0,
+  "gwp_d1": -9.0,
+  "group": "Verzinkter Stahl",
+  "function": "Blech"
+}

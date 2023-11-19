@@ -1,0 +1,21 @@
+{
+  "id": "4.13",
+  "name": "Polyisobutylen-Dachbahn (Dicke 1,5 mm)",
+  "unit": "m2",
+  "weight_kg": 1.93,
+  "density": NaN,
+  "area_density": 1.93,
+  "linear_density": NaN,
+  "conversion_factor": 666.67,
+  "conversion_factor_kg": 1.93,
+  "penrt_a1toa3": 159.0,
+  "penrt_d3": 3.11,
+  "penrt_d4": 0.0,
+  "penrt_d1": -45.2,
+  "gwp_a1toa3": 7.63,
+  "gwp_c3": 7.82,
+  "gwp_c4": 0.0,
+  "gwp_d1": -3.1,
+  "group": "PIB",
+  "function": "Abdichtung"
+}

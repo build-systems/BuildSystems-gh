@@ -27,15 +27,11 @@ namespace BuildSystemsGH.Building.Create
         /// </summary>
         protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
-            //Material
+            // Modify first to accept a list
             pManager.AddGenericParameter("BSoM Material", "Material", "Add a material from BSoM (BuildSystems object Model).", GH_ParamAccess.item);
-            //Thickness
             pManager.AddNumberParameter("Thickness", "Thickness", "Layer thickness in meters.", GH_ParamAccess.item);
-            //Category
             pManager.AddTextParameter("Category", "Category", "Layer category ex. Timber.", GH_ParamAccess.item);
-            //Description
             pManager.AddTextParameter("Description", "Desctription", "Layer description ex. Insulation.", GH_ParamAccess.item);
-            //Cost
             pManager.AddNumberParameter("Cost", "Cost", "Layer cost per squared meters.", GH_ParamAccess.item);
 
             pManager[2].Optional = true;

@@ -1,0 +1,21 @@
+{
+  "id": "7.17",
+  "name": "WDVS Verklebung und Beschichtung Kratzputz mineralisch (ohne Daemmmaterial)",
+  "unit": "m2",
+  "weight_kg": 35.18,
+  "density": NaN,
+  "area_density": 35.18,
+  "linear_density": NaN,
+  "conversion_factor": NaN,
+  "conversion_factor_kg": 35.18,
+  "penrt_a1toa3": 81.56,
+  "penrt_d3": 0.0,
+  "penrt_d4": 7.7,
+  "penrt_d1": 0.0,
+  "gwp_a1toa3": 9.84,
+  "gwp_c3": 0.0,
+  "gwp_c4": 0.53,
+  "gwp_d1": 0.0,
+  "group": "WDVS-Putz",
+  "function": "Putz"
+}

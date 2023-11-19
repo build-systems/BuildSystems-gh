@@ -1,0 +1,21 @@
+{
+  "id": "3.3",
+  "name": "Nadelschnittholz - frisch (Durchschnitt DE)",
+  "unit": "m3",
+  "weight_kg": 674.74,
+  "density": 674.74,
+  "area_density": NaN,
+  "linear_density": NaN,
+  "conversion_factor": 1.0,
+  "conversion_factor_kg": 674.74,
+  "penrt_a1toa3": 435.49,
+  "penrt_d3": 53.61,
+  "penrt_d4": 0.0,
+  "penrt_d1": -4727.41,
+  "gwp_a1toa3": -766.49,
+  "gwp_c3": 801.76,
+  "gwp_c4": 0.0,
+  "gwp_d1": -356.69,
+  "group": "Holz",
+  "function": "Bauholz"
+}

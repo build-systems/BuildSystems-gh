@@ -1,0 +1,21 @@
+{
+  "id": "9.32",
+  "name": "Beschlagverbund Fenster Stahl",
+  "unit": "Stueck.",
+  "weight_kg": 2.63,
+  "density": NaN,
+  "area_density": NaN,
+  "linear_density": NaN,
+  "conversion_factor": NaN,
+  "conversion_factor_kg": 2.63,
+  "penrt_a1toa3": 100.19,
+  "penrt_d3": 0.0,
+  "penrt_d4": 0.0,
+  "penrt_d1": -37.91,
+  "gwp_a1toa3": 9.27,
+  "gwp_c3": 0.0,
+  "gwp_c4": 0.0,
+  "gwp_d1": -5.01,
+  "group": "Stahl",
+  "function": "Beschlag"
+}

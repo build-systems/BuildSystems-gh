@@ -1,0 +1,21 @@
+{
+  "id": "4.22",
+  "name": "Folie PE-HD mit PP-Vlies zur Abdichtung",
+  "unit": "m2",
+  "weight_kg": 1.3,
+  "density": 396.0,
+  "area_density": 1.3,
+  "linear_density": NaN,
+  "conversion_factor": NaN,
+  "conversion_factor_kg": 1.3,
+  "penrt_a1toa3": 113.67,
+  "penrt_d3": 0.78,
+  "penrt_d4": 0.0,
+  "penrt_d1": -32.07,
+  "gwp_a1toa3": 3.21,
+  "gwp_c3": 4.84,
+  "gwp_c4": 0.0,
+  "gwp_d1": -2.19,
+  "group": "PP",
+  "function": "Folie"
+}

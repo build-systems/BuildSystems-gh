@@ -1,0 +1,21 @@
+{
+  "id": "5.35",
+  "name": "Zellulosefaser Einblas-Daemmstoff",
+  "unit": "m3",
+  "weight_kg": 45.0,
+  "density": 45.0,
+  "area_density": NaN,
+  "linear_density": NaN,
+  "conversion_factor": 1.0,
+  "conversion_factor_kg": 45.0,
+  "penrt_a1toa3": 94.79,
+  "penrt_d3": 1.03,
+  "penrt_d4": 0.0,
+  "penrt_d1": -420.81,
+  "gwp_a1toa3": -73.37,
+  "gwp_c3": 99.08,
+  "gwp_c4": 0.0,
+  "gwp_d1": -30.51,
+  "group": "Zellulose",
+  "function": "Daemmung"
+}

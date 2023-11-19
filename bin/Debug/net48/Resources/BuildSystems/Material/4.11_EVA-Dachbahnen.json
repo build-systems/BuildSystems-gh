@@ -1,0 +1,21 @@
+{
+  "id": "4.11",
+  "name": "EVA-Dachbahnen",
+  "unit": "m2",
+  "weight_kg": 2.0,
+  "density": 396.0,
+  "area_density": 2.0,
+  "linear_density": NaN,
+  "conversion_factor": NaN,
+  "conversion_factor_kg": 2.0,
+  "penrt_a1toa3": 168.75,
+  "penrt_d3": 1.28,
+  "penrt_d4": 0.0,
+  "penrt_d1": -52.78,
+  "gwp_a1toa3": 5.13,
+  "gwp_c3": 7.97,
+  "gwp_c4": 0.0,
+  "gwp_d1": -3.61,
+  "group": "EVA",
+  "function": "Abdichtung"
+}

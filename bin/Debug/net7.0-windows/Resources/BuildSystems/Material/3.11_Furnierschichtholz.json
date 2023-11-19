@@ -1,0 +1,21 @@
+{
+  "id": "3.11",
+  "name": "Furnierschichtholz",
+  "unit": "m3",
+  "weight_kg": 465.7,
+  "density": 465.7,
+  "area_density": NaN,
+  "linear_density": NaN,
+  "conversion_factor": 1.0,
+  "conversion_factor_kg": 465.7,
+  "penrt_a1toa3": 6758.39,
+  "penrt_d3": 9.8,
+  "penrt_d4": 0.0,
+  "penrt_d1": -4180.89,
+  "gwp_a1toa3": -465.42,
+  "gwp_c3": 896.18,
+  "gwp_c4": 0.0,
+  "gwp_d1": -30.48,
+  "group": "Schichtholz",
+  "function": "Holzwerkstoff"
+}

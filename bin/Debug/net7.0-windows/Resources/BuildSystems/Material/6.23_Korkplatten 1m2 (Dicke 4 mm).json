@@ -1,0 +1,21 @@
+{
+  "id": "6.23",
+  "name": "Korkplatten 1m2 (Dicke 4 mm)",
+  "unit": "m2",
+  "weight_kg": 1.8,
+  "density": 450.0,
+  "area_density": 1.8,
+  "linear_density": NaN,
+  "conversion_factor": 250.0,
+  "conversion_factor_kg": 1.8,
+  "penrt_a1toa3": 14.95,
+  "penrt_d3": 0.04,
+  "penrt_d4": 0.0,
+  "penrt_d1": -12.41,
+  "gwp_a1toa3": -3.04,
+  "gwp_c3": 3.22,
+  "gwp_c4": 0.0,
+  "gwp_d1": -0.35,
+  "group": "Kork",
+  "function": "Bodenbelag"
+}

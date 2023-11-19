@@ -1,0 +1,21 @@
+{
+  "id": "3.8",
+  "name": "Brettsperrholz (Durchschnitt DE)",
+  "unit": "m3",
+  "weight_kg": 489.41,
+  "density": 489.41,
+  "area_density": NaN,
+  "linear_density": NaN,
+  "conversion_factor": 1.0,
+  "conversion_factor_kg": 489.41,
+  "penrt_a1toa3": 1876.9,
+  "penrt_d3": -21.96,
+  "penrt_d4": 0.0,
+  "penrt_d1": -4682.53,
+  "gwp_a1toa3": -658.0,
+  "gwp_c3": 792.46,
+  "gwp_c4": 0.0,
+  "gwp_d1": -305.99,
+  "group": "Sperrholz",
+  "function": "Holzwerkstoff"
+}

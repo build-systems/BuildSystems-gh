@@ -1,0 +1,21 @@
+{
+  "id": "7.6",
+  "name": "Lehmputz",
+  "unit": "m3",
+  "weight_kg": 900.0,
+  "density": 900.0,
+  "area_density": NaN,
+  "linear_density": NaN,
+  "conversion_factor": 1.0,
+  "conversion_factor_kg": 900.0,
+  "penrt_a1toa3": 948.01,
+  "penrt_d3": 54.23,
+  "penrt_d4": 0.0,
+  "penrt_d1": -55.92,
+  "gwp_a1toa3": 93.15,
+  "gwp_c3": 2.81,
+  "gwp_c4": 0.0,
+  "gwp_d1": -3.89,
+  "group": "Lehm",
+  "function": "Putz"
+}

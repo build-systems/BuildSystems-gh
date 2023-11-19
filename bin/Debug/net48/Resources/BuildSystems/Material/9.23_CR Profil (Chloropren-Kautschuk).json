@@ -1,0 +1,21 @@
+{
+  "id": "9.23",
+  "name": "CR Profil (Chloropren-Kautschuk)",
+  "unit": "m",
+  "weight_kg": 0.18,
+  "density": NaN,
+  "area_density": NaN,
+  "linear_density": 0.18,
+  "conversion_factor": NaN,
+  "conversion_factor_kg": 0.18,
+  "penrt_a1toa3": 19.39,
+  "penrt_d3": 0.11,
+  "penrt_d4": 0.0,
+  "penrt_d1": -4.05,
+  "gwp_a1toa3": 0.9,
+  "gwp_c3": 0.56,
+  "gwp_c4": 0.0,
+  "gwp_d1": -0.28,
+  "group": "Kautschuk",
+  "function": "Dichtung"
+}

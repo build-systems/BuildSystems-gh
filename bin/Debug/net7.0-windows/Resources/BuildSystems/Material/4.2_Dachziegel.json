@@ -1,0 +1,21 @@
+{
+  "id": "4.2",
+  "name": "Dachziegel",
+  "unit": "m2",
+  "weight_kg": 45.0,
+  "density": 2180.0,
+  "area_density": 45.0,
+  "linear_density": NaN,
+  "conversion_factor": NaN,
+  "conversion_factor_kg": 45.0,
+  "penrt_a1toa3": 248.88,
+  "penrt_d3": 5.03,
+  "penrt_d4": 0.0,
+  "penrt_d1": -1.23,
+  "gwp_a1toa3": 15.88,
+  "gwp_c3": 0.3,
+  "gwp_c4": 0.0,
+  "gwp_d1": -0.09,
+  "group": "Ziegel",
+  "function": "Dachdeckung"
+}
