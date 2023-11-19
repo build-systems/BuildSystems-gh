@@ -80,8 +80,14 @@ namespace BuildSystemsGH.Libraries
                 // Read the json file
                 string materialAsJson = File.ReadAllText(selectedMaterialPath[0]);
 
+                // JSON settings
+                var settings = new JsonSerializerSettings
+                {
+                    NullValueHandling = NullValueHandling.Ignore,
+                };
+
                 // Deserialize JSON to C# object
-                Material material = JsonConvert.DeserializeObject<Material>(materialAsJson);
+                Material material = JsonConvert.DeserializeObject<Material>(materialAsJson, settings);
 
                 DA.SetData(0, material);
             }
