@@ -237,7 +237,7 @@ namespace BuildSystemsGH.Libraries
 
                 // Sanity check
                 // Check if the folder path is valid
-                string requiredFolder = BSoM.Database.Info.Component;
+                string requiredFolder = BSoM.Database.Info.ComponentTag;
                 try
                 {
                     // Get all subdirectories

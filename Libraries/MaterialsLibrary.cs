@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Drawing;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace BuildSystemsGH.Libraries
 {
@@ -55,12 +56,9 @@ namespace BuildSystemsGH.Libraries
             DA.GetData(0, ref libPath);
             if (!DA.GetData(1, ref materialName)) return;
 
-            // Create one BSoM material with BSoM.LCA
-            Material material = new Material();
-
             // Sanity check
             // Check if the folder path is valid
-            string requiredFolder = BSoM.Database.Info.Material;
+            string requiredFolder = BSoM.Database.Info.MaterialTag;
             try
             {
                 // Get all subdirectories
@@ -79,58 +77,11 @@ namespace BuildSystemsGH.Libraries
                 // Filter the buildingComponetsList to find the selected component
                 List<string> selectedMaterialPath = jsonMaterialsFiles.Where(s => s.Contains(materialName)).ToList();
 
-                // Get the name of file without the path
-                for (int i = 0; i < jsonMaterialsFiles.Count; i++)
-                {
-                    // Extract the file name without the path
-                    jsonMaterialsFiles[i] = jsonMaterialsFiles[i].Substring(jsonMaterialsFiles[i].LastIndexOf("\\") + 1);
-                    // Extract the file name without the extension
-                    jsonMaterialsFiles[i] = jsonMaterialsFiles[i].Substring(0, jsonMaterialsFiles[i].LastIndexOf("."));
-                }
-
                 // Read the json file
-                string materialJsonFile = File.ReadAllText(selectedMaterialPath[0]);
+                string materialAsJson = File.ReadAllText(selectedMaterialPath[0]);
 
-                // Convert json string to a json object
-                JObject materialJsonObj = JObject.Parse(materialJsonFile);
-
-                // JSON keys are hard-coded here
-                string keyID = "id";
-                string keyName = "name";
-                string keyUnit = "unit";
-                string keyWeight = "weight_kg";
-                string keyDensity = "density";
-                string keyDensityArea = "area_density";
-                string keyDensityLinear = "linear_density";
-                string keyConvFactor = "conversion_factor";
-                string keyConvFactorKg = "conversion_factor_kg";
-                string keyPenrtA1ToA3 = "penrt_a1toa3";
-                string keyPenrtC3 = "penrt_c3";
-                string keyPenrtC4 = "penrt_c4";
-                string keyPenrtD1 = "penrt_d1";
-                string keyGwpA1ToA3 = "gwp_a1toa3";
-                string keyGwpC3 = "gwp_c3";
-                string keyGwpC4 = "gwp_c4";
-                string keyGwpD1 = "gwp_d1";
-
-                // Convert values from json. If empty assign 0 to doubles
-                material.ID = (string)materialJsonObj[keyID];
-                material.Name = (string)materialJsonObj[keyName];
-                material.Unit = (string)materialJsonObj[keyUnit];
-                material.Weight = (materialJsonObj[keyWeight] != null) ? (double)materialJsonObj[keyWeight] : 0;
-                material.Density = (materialJsonObj[keyDensity] != null) ? (double)materialJsonObj[keyWeight] : 0;
-                material.DensityArea = (materialJsonObj[keyDensityArea] != null) ? (double)materialJsonObj[keyWeight] : 0;
-                material.DensityLinear = (materialJsonObj[keyDensityLinear] != null) ? (double)materialJsonObj[keyWeight] : 0;
-                material.ConversionFactor = (materialJsonObj[keyConvFactor] != null) ? (double)materialJsonObj[keyConvFactor] : 0;
-                material.ConversionFactorKg = (materialJsonObj[keyConvFactorKg] != null) ? (double)materialJsonObj[keyConvFactor] : 0;
-                material.PENRT_A1ToA3 = (materialJsonObj[keyPenrtA1ToA3] != null) ? (double)materialJsonObj[keyPenrtA1ToA3] : 0;
-                material.PENRT_C3 = (materialJsonObj[keyPenrtC3] != null) ? (double)materialJsonObj[keyPenrtC3] : 0;
-                material.PENRT_C4 = (materialJsonObj[keyPenrtC4] != null) ? (double)materialJsonObj[keyPenrtC4] : 0;
-                material.PENRT_D1 = (materialJsonObj[keyPenrtD1] != null) ? (double)materialJsonObj[keyPenrtD1] : 0;
-                material.GWP_A1ToA3 = (materialJsonObj[keyGwpA1ToA3] != null) ? (double)materialJsonObj[keyGwpA1ToA3] : 0;
-                material.GWP_C3 = (materialJsonObj[keyGwpC3] != null) ? (double)materialJsonObj[keyGwpC3] : 0;
-                material.GWP_C4 = (materialJsonObj[keyGwpC4] != null) ? (double)materialJsonObj[keyGwpC4] : 0;
-                material.GWP_D1 = (materialJsonObj[keyGwpD1] != null) ? (double)materialJsonObj[keyGwpD1] : 0;
+                // Deserialize JSON to C# object
+                Material material = JsonConvert.DeserializeObject<Material>(materialAsJson);
 
                 DA.SetData(0, material);
             }
@@ -166,7 +117,7 @@ namespace BuildSystemsGH.Libraries
 
                 // Sanity check
                 // Check if the folder path is valid
-                string requiredFolder = BSoM.Database.Info.Material;
+                string requiredFolder = BSoM.Database.Info.MaterialTag;
                 try
                 {
                     // Get all subdirectories
