@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using BSoM.LCA.Layers;
 using Grasshopper.Kernel;
-using Rhino.Geometry;
+using BSoM.LCA;
 
 namespace BuildSystemsGH.Building.Analise
 {
-    public class AnaliseSolidLayer : GH_Component
+    public class AnaliseLayer : GH_Component
     {
         /// <summary>
         /// Initializes a new instance of the AnaliseSolidLayer class.
         /// </summary>
-        public AnaliseSolidLayer()
-          : base("Analise Layer", "AL",
-              "Analise BSoM Layer (deconstruct it).",
+        public AnaliseLayer()
+          : base("Analise Solid Layer", "ASL",
+              "Analise BSoM Solid Layer (deconstruct it).",
               "BuildSystems", "LCA")
         {
         }
@@ -31,7 +31,6 @@ namespace BuildSystemsGH.Building.Analise
         /// </summary>
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
-            // Update first to accept a list
             pManager.AddGenericParameter("BSoM Material Options", "Material", "List of possible material options for this layer.", GH_ParamAccess.list);
             pManager.AddNumberParameter("Thickness", "Thickness", "Layer thickness in meters.", GH_ParamAccess.item);
             pManager.AddTextParameter("Category", "Category", "Layer category ex. Timber.", GH_ParamAccess.item);
@@ -50,7 +49,7 @@ namespace BuildSystemsGH.Building.Analise
             if (!DA.GetData(0, ref layer)) return;
 
             // Convert dictionary into a list, ignoring the option tag
-            List<BSoM.LCA.Material> options = new List<BSoM.LCA.Material> (layer.MaterialOptions.Values);
+            List<Material> options = new List<Material> (layer.MaterialOptions.Values);
 
             // Update later to list
             DA.SetDataList(0, options);

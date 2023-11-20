@@ -54,7 +54,7 @@ namespace BuildSystemsGH.Building.Create
         {
             List<Material> materialOptions = new List<Material>();
             double thickness = 0.0;
-            string category = "";
+            string category = string.Empty;
             string desctription = string.Empty;
             double cost = 0;
 
