@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "GsUbamkbDPhO+SJzXt8fX8fDJYO8lHkE/hXQiJ2sIJz67t0Jxgmcv9TqWHDtsAEEQC4IxPdzUqXxwtbxW++gEQ==",
+  "dgSpecHash": "Nwk+0KYiFdhc9Ky1GaTz3Kgg33GOO0QcJATs2sXAEWPzwK++ZYvgPvC8cAFmGVGNtFa+dGZc5LLOaJf6i5KmEQ==",
   "success": true,
-  "projectFilePath": "D:\\repos\\BuildSystems-gh\\BuildSystemsGH\\BuildSystemsGH.csproj",
+  "projectFilePath": "D:\\repos\\BuildSystems\\BuildSystemsGH\\BuildSystemsGH.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\danie\\.nuget\\packages\\grasshopper\\7.34.23267.11001\\grasshopper.7.34.23267.11001.nupkg.sha512",
     "C:\\Users\\danie\\.nuget\\packages\\microsoft.win32.systemevents\\8.0.0\\microsoft.win32.systemevents.8.0.0.nupkg.sha512",
