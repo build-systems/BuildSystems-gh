@@ -1,7 +1,19 @@
 # BuildSystems-gh
 
-version 0.1.0-alpha2
+version 0.2.0-alpha
 
+This version is being developed on top of the BSoM (Build Systems object Model).
+Road map:
+* Finish BSoM
+    * Create componsite layer
+    * Analise composite layer
+    * Create Assembly
+    * Analise Assembly
+    * Create Component
+    * Analise Component
+
+(the text bellow may be outdated)
+ 
 ## Urban Level Tools
 During the initial phase of a development, to identify if a building will be feasible or not,
 we rely on simple rules like city legislation or fire protection standards.
