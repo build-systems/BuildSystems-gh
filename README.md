@@ -4,7 +4,7 @@ version 0.2.0-alpha
 
 This version is being developed on top of the BSoM (Build Systems object Model).
 Road map:
-* Finish BSoM
+* Add the following components
     * Create componsite layer
     * Analise composite layer
     * Create Assembly
