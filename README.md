@@ -2,7 +2,7 @@
 
 version 0.2.0-alpha
 
-This version is being developed on top of the Build Systems object Model and the BuildSystems database. Each one has their own repository.
+This version is being developed on top of the Build Systems object Model and the BuildSystems database. Each one have their own repository.
 Road map:
 * Add the following components
     * Create componsite layer
