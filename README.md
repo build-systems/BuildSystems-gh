@@ -3,6 +3,7 @@
 version 0.2.0-alpha
 
 This version is being developed on top of the Build Systems object Model and the BuildSystems database. Each one have their own repository.
+
 Road map:
 * Add the following components
     * Create componsite layer
@@ -76,8 +77,7 @@ Output
 ## LCA Tools
 Our LCA tool - Life Cycle Assessment.
 
-We have a component with our own in-house developed library assembled on top of [Oköbaudat](https://www.oekobaudat.de/)
-And a component that calculates the amount of material and its 
+We have a component with our own in-house developed library assembled on top of [Oköbaudat](https://www.oekobaudat.de/).
 
 ### Components
 <details>
